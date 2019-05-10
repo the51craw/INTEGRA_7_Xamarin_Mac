@@ -33,9 +33,10 @@ namespace INTEGRA_7_MacOS
             LoadApplication(new INTEGRA_7.App());
             UIHandler.appType = UIHandler._appType.MacOS;
             MainPage_Portable = INTEGRA_7.MainPage.GetMainPage();
-            MainPage_Portable.uIHandler.DrawLibrarianPage();
+            //MainPage_Portable.uIHandler.DrawLibrarianPage();
             MainPage_Portable.SetDeviceSpecificMainPage(this);
-            MainPage_Portable.uIHandler.ShowPleaseWaitPage(WaitingFor.CONNECTION, UIHandler.CurrentPage.LIBRARIAN, null);
+            MainPage_Portable.uIHandler.ShowPleaseWaitPage(WaitingFor.STARTUP, UIHandler.CurrentPage.PLEASE_WAIT, null);
+            //MainPage_Portable.uIHandler.ShowPleaseWaitPage(WaitingFor.CONNECTION, UIHandler.CurrentPage.LIBRARIAN, null);
 
             base.DidFinishLaunching(notification);
         }

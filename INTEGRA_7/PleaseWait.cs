@@ -6,6 +6,8 @@ namespace INTEGRA_7
 {
     public enum WaitingFor
     {
+        STARTUP,
+        STARTED,
         CONNECTION,
         USB,
         MIDI,
@@ -57,6 +59,7 @@ namespace INTEGRA_7
         private Int32 connectionCurrentlyUnderTest;
         private List<String> possibleConnections;
         private Boolean gotResponseFromI7 = false;
+        //private bool stopProgressTimer = true;
 
         /// <summary>
         /// Call to show a wait page with a progress bar
@@ -89,7 +92,12 @@ namespace INTEGRA_7
         private void PleaseWait_Init()
         {
             switch (waitingFor)
-            {   
+            {
+                case WaitingFor.STARTUP:
+                    queryType = QueryType.STARTING_UP;
+                    btnPleaseWait.Text = "Please wait...";
+                    pb_WaitingProgress.Progress = 0;
+                    break;
                 case WaitingFor.CONNECTION:
                     waitingFor = WaitingFor.IDLE; // To avoid that Timer_Tick messes with our initialization
                     btnPleaseWait.Text = "Please wait while connecting to your INTEGRA-7...";
@@ -115,6 +123,29 @@ namespace INTEGRA_7
                     break;
             }
         }
+
+        //public void StartProgressTimer()
+        //{
+        //    stopProgressTimer = false;
+
+        //    Device.BeginInvokeOnMainThread(() =>
+        //    {
+        //        Device.StartTimer(TimeSpan.FromMilliseconds(10), () =>
+        //        {
+        //            if (stopProgressTimer)
+        //            {
+        //                return false;
+        //            }
+        //            pb_WaitingProgress.Progress += 0.5 * (1 - pb_WaitingProgress.Progress);
+        //            return true;
+        //        });
+        //    });
+        //}
+
+        //public void StopProgressTimer()
+        //{
+        //    stopProgressTimer = true;
+        //}
 
         /**
          * How to connect?
@@ -285,6 +316,22 @@ namespace INTEGRA_7
         {
             switch (waitingFor)
             {
+                case WaitingFor.STARTUP:
+                    waitingFor = WaitingFor.STARTED;
+                    //if (stopProgressTimer)
+                    //{
+                    //    StartProgressTimer();
+                    //}
+                    break;
+                case WaitingFor.STARTED:
+                    pb_WaitingProgress.Progress += 0.5 * (1 - pb_WaitingProgress.Progress);
+                    if (initDone)
+                    {
+                        continueTo = CurrentPage.LIBRARIAN;
+                        btnPleaseWait.Text = "Please wait while connecting to your INTEGRA-7...";
+                        ConnectToIntegra7();
+                    }
+                    break;
                 case WaitingFor.WAITING_FOR_INTEGRA_7:
                     //HoldTimer();
                     waitCount--;
@@ -620,6 +667,8 @@ namespace INTEGRA_7
 
         private void ContinueToPage()
         {
+            //StopProgressTimer();
+
             switch (continueTo)
             {
                 case CurrentPage.EDIT_STUDIO_SET:

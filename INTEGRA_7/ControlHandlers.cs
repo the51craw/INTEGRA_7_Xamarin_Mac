@@ -639,23 +639,7 @@ namespace INTEGRA_7
                         if (listIndex >= commonState.DrumKeyAssignLists.ToneNames.Count())
                         {
                             // This is a new list. Add it:
-                            commonState.DrumKeyAssignLists.ToneNames.Add(new List<String>());
-                            listIndex = commonState.DrumKeyAssignLists.ToneNames.Count() - 1;
-                            // Fill out the header strings
-                            commonState.DrumKeyAssignLists.ToneNames[listIndex].Add("PCM Drum Kit");
-                            commonState.DrumKeyAssignLists.ToneNames[listIndex].Add(tbEditTone_SaveTone_TitleText.Text.Trim());
-                            // Fill out the names:
-                            for (keyIndex = 0; keyIndex < commonState.KeyNames.Count(); keyIndex++)
-                            {
-                                if (String.IsNullOrEmpty(commonState.KeyNames[keyIndex]))
-                                {
-                                    commonState.DrumKeyAssignLists.ToneNames[listIndex].Add("");
-                                }
-                                else
-                                {
-                                    commonState.DrumKeyAssignLists.ToneNames[listIndex].Add(commonState.KeyNames[keyIndex]);
-                                }
-                            }
+                            AddDrumList("PCM Drum Kit");
                         }
                         else
                         {
@@ -899,25 +883,7 @@ namespace INTEGRA_7
                         if (listIndex >= commonState.DrumKeyAssignLists.ToneNames.Count())
                         {
                             // This is a new list. Add it:
-                            commonState.DrumKeyAssignLists.ToneNames.Add(new List<String>());
-                            listIndex = commonState.DrumKeyAssignLists.ToneNames.Count() - 1;
-
-                            // Fill out the header strings
-                            commonState.DrumKeyAssignLists.ToneNames[listIndex].Add("SuperNATURAL Drum Kit");
-                            commonState.DrumKeyAssignLists.ToneNames[listIndex].Add(tbEditTone_SaveTone_TitleText.Text.Trim());
-
-                            // Fill out the names:
-                            for (keyIndex = 0; keyIndex < commonState.KeyNames.Count(); keyIndex++)
-                            {
-                                if (String.IsNullOrEmpty(commonState.KeyNames[keyIndex]))
-                                {
-                                    commonState.DrumKeyAssignLists.ToneNames[listIndex].Add("");
-                                }
-                                else
-                                {
-                                    commonState.DrumKeyAssignLists.ToneNames[listIndex].Add(commonState.KeyNames[keyIndex]);
-                                }
-                            }
+                            AddDrumList("SuperNATURAL Drum Kit");
                         }
                         else
                         {
@@ -992,6 +958,28 @@ namespace INTEGRA_7
                 }
                 Waiting(false, "Working...", Edit_StackLayout);
             }
+        }
+
+        private void AddDrumList(string name)
+        {
+            List<string> drumNames = new List<string>();
+            //->listIndex = commonState.DrumKeyAssignLists.ToneNames.Count() - 1;
+            // Fill out the header strings
+            drumNames.Add(name);
+            drumNames.Add(tbEditTone_SaveTone_TitleText.Text.Trim());
+            // Fill out the names:
+            for (int keyIndex = 0; keyIndex < commonState.KeyNames.Count(); keyIndex++)
+            {
+                if (String.IsNullOrEmpty(commonState.KeyNames[keyIndex]))
+                {
+                    drumNames.Add("");
+                }
+                else
+                {
+                    drumNames.Add(commonState.KeyNames[keyIndex]);
+                }
+            }
+            commonState.DrumKeyAssignLists.Add(drumNames);
         }
 
         private async void btnEditTone_DeleteTone_Click(object sender, EventArgs e)
@@ -1117,7 +1105,7 @@ namespace INTEGRA_7
                         }
                         if (found)
                         {
-                            commonState.DrumKeyAssignLists.ToneNames.RemoveAt(i);
+                            commonState.DrumKeyAssignLists.ClearAt(i);
                         }
                         // Finally, re-draw the tab to update controls:
                         UpdatePCMDrumKitControls();

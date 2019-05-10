@@ -33,6 +33,7 @@ namespace INTEGRA_7
         Boolean needToSetFontSize = true;
         //public Double x { get; set; }
         //public Double y { get; set; }
+        private List<string> temporaryDrumListEntry;
 
         Dictionary<String, String> localSettings = new Dictionary<String, String>();
 
@@ -910,9 +911,9 @@ namespace INTEGRA_7
                                     tone.Add((userToneIndex++).ToString());
                                     commonState.ToneList.Add(tone);
                                     // Create a list for the key names:
-                                    commonState.DrumKeyAssignLists.ToneNames.Add(new List<String>());
-                                    commonState.DrumKeyAssignLists.ToneNames[commonState.DrumKeyAssignLists.ToneNames.Count - 1].Add("PCM Drum Kit");
-                                    commonState.DrumKeyAssignLists.ToneNames[commonState.DrumKeyAssignLists.ToneNames.Count - 1].Add(commonState.CurrentTone.Name);
+                                    //commonState.DrumKeyAssignLists.Add(new List<String>());
+                                    //commonState.DrumKeyAssignLists.ToneNames[commonState.DrumKeyAssignLists.ToneNames.Count - 1].Add("PCM Drum Kit");
+                                    //commonState.DrumKeyAssignLists.ToneNames[commonState.DrumKeyAssignLists.ToneNames.Count - 1].Add(commonState.CurrentTone.Name);
                                     // Read all key names:
                                     key = 0;
                                     QueryPcmDrumKitKeyName(key);
@@ -947,13 +948,18 @@ namespace INTEGRA_7
                                 QueryUserPCMDrumKitTones();
                                 break;
                             case QueryType.PCM_KEY_NAME:
+                                if (key == 0)
+                                {
+                                    temporaryDrumListEntry = new List<string>();
+                                }
                                 // Put the name into the list:
                                 String name = "";
                                 for (byte i = 0; i < 12; i++)
                                 {
                                     name += (char)data[i + 11];
                                 }
-                                commonState.DrumKeyAssignLists.ToneNames[commonState.DrumKeyAssignLists.ToneNames.Count - 1].Add(name);
+                                temporaryDrumListEntry.Add(name);
+                                //commonState.DrumKeyAssignLists.ToneNames[commonState.DrumKeyAssignLists.ToneNames.Count - 1].Add(name);
                                 // Query next if more is expected:
                                 key++;
                                 if (key < 88)
@@ -968,19 +974,20 @@ namespace INTEGRA_7
                                     if (pc > 32 || (!scanAll && emptySlots > 10))
                                     {
                                         // No more patches to test!
-                                        while (commonState.ToneNames[1].Count() < 32)
-                                        {
-                                            commonState.ToneNames[1].Add("INIT KIT");
-                                        }
-                                        msb = 89;
-                                        lsb = 0;
-                                        pc = 1;
-                                        emptySlots = 10;
-                                        for (byte i = 0; i < 128; i++)
-                                        {
-                                            userToneNumbers[i] = 0;
-                                        }
-                                        emptySlots = 0;
+                                        //while (commonState.ToneNames[1].Count() < 32)
+                                        //{
+                                        //    commonState.ToneNames[1].Add("INIT KIT");
+                                        //}
+                                        //msb = 89;
+                                        //lsb = 0;
+                                        //pc = 1;
+                                        //emptySlots = 10;
+                                        //for (byte i = 0; i < 128; i++)
+                                        //{
+                                        //    userToneNumbers[i] = 0;
+                                        //}
+                                        //emptySlots = 0;
+                                        commonState.DrumKeyAssignLists.Add(temporaryDrumListEntry);
                                         QueryUserSuperNaturalAcousticTones();
                                         break;
                                     }
@@ -1125,15 +1132,24 @@ namespace INTEGRA_7
                                     tone.Add((userToneIndex++).ToString());
                                     commonState.ToneList.Add(tone);
                                     // Create a list for the key names:
-                                    commonState.DrumKeyAssignLists.ToneNames.Add(new List<String>());
-                                    commonState.DrumKeyAssignLists.ToneNames[commonState.DrumKeyAssignLists.ToneNames.Count - 1].Add("SuperNATURAL Drum Kit");
-                                    commonState.DrumKeyAssignLists.ToneNames[commonState.DrumKeyAssignLists.ToneNames.Count - 1].Add(commonState.CurrentTone.Name);
-                                    // SN-D keys does not have keys 22 - 26, fill with empth slots:
-                                    commonState.DrumKeyAssignLists.ToneNames[commonState.DrumKeyAssignLists.ToneNames.Count - 1].Add("-----");
-                                    commonState.DrumKeyAssignLists.ToneNames[commonState.DrumKeyAssignLists.ToneNames.Count - 1].Add("-----");
-                                    commonState.DrumKeyAssignLists.ToneNames[commonState.DrumKeyAssignLists.ToneNames.Count - 1].Add("-----");
-                                    commonState.DrumKeyAssignLists.ToneNames[commonState.DrumKeyAssignLists.ToneNames.Count - 1].Add("-----");
-                                    commonState.DrumKeyAssignLists.ToneNames[commonState.DrumKeyAssignLists.ToneNames.Count - 1].Add("-----");
+                                    //commonState.DrumKeyAssignLists.ToneNames.Add(new List<String>());
+                                    //commonState.DrumKeyAssignLists.ToneNames[commonState.DrumKeyAssignLists.ToneNames.Count - 1].Add("SuperNATURAL Drum Kit");
+                                    //commonState.DrumKeyAssignLists.ToneNames[commonState.DrumKeyAssignLists.ToneNames.Count - 1].Add(commonState.CurrentTone.Name);
+                                    //// SN-D keys does not have keys 22 - 26, fill with empth slots:
+                                    //commonState.DrumKeyAssignLists.ToneNames[commonState.DrumKeyAssignLists.ToneNames.Count - 1].Add("-----");
+                                    //commonState.DrumKeyAssignLists.ToneNames[commonState.DrumKeyAssignLists.ToneNames.Count - 1].Add("-----");
+                                    //commonState.DrumKeyAssignLists.ToneNames[commonState.DrumKeyAssignLists.ToneNames.Count - 1].Add("-----");
+                                    //commonState.DrumKeyAssignLists.ToneNames[commonState.DrumKeyAssignLists.ToneNames.Count - 1].Add("-----");
+                                    //commonState.DrumKeyAssignLists.ToneNames[commonState.DrumKeyAssignLists.ToneNames.Count - 1].Add("-----");
+                                    temporaryDrumListEntry = new List<string>();
+                                    temporaryDrumListEntry.Add("SuperNATURAL Drum Kit");
+                                    temporaryDrumListEntry.Add("SuperNATURAL Drum Kit");
+                                    temporaryDrumListEntry.Add("-----");
+                                    temporaryDrumListEntry.Add("-----");
+                                    temporaryDrumListEntry.Add("-----");
+                                    temporaryDrumListEntry.Add("-----");
+                                    temporaryDrumListEntry.Add("-----");
+                                    commonState.DrumKeyAssignLists.Add(temporaryDrumListEntry);
                                     // Read all key names:
                                     key = 0;
                                     QuerySnDrumKitKeyName(key);
@@ -1159,13 +1175,18 @@ namespace INTEGRA_7
                                 QueryUserSuperNaturalDrumKitTones();
                                 break;
                             case QueryType.SND_KEY_NAME:
-                                // Put the name into the list:
-                                try
+                                if (key == 0)
                                 {
-                                    commonState.DrumKeyAssignLists.ToneNames[commonState.DrumKeyAssignLists.ToneNames.Count - 1]
-                                        .Add(superNATURALDrumKitInstrumentList.DrumInstruments[data[12] * 256 + data[13] * 16 + data[14]].Name);
+                                    temporaryDrumListEntry = new List<string>();
                                 }
-                                catch { }
+                                // Put the name into the list:
+                                temporaryDrumListEntry.Add(superNATURALDrumKitInstrumentList.DrumInstruments[data[12] * 256 + data[13] * 16 + data[14]].Name);
+                                //try
+                                //{
+                                //    commonState.DrumKeyAssignLists.ToneNames[commonState.DrumKeyAssignLists.ToneNames.Count - 1]
+                                //        .Add(superNATURALDrumKitInstrumentList.DrumInstruments[data[12] * 256 + data[13] * 16 + data[14]].Name);
+                                //}
+                                //catch { }
                                 // Query next if more is expected:
                                 key++;
                                 if (key < 61)
@@ -1175,6 +1196,7 @@ namespace INTEGRA_7
                                 }
                                 else
                                 {
+                                    commonState.DrumKeyAssignLists.Add(temporaryDrumListEntry);
                                     // Query next SN Drum Kit:
                                     pc++;
                                     if (pc > 64 || (!scanAll && emptySlots > 10))
@@ -2423,31 +2445,35 @@ namespace INTEGRA_7
             }
             // Search drum sounds:
             Librarian_ocToneNames.Add("=== Drums ==============");
-            Boolean first = true; // To skip the key number column
-            foreach (List<String> toneNames in commonState.DrumKeyAssignLists.ToneNames)
+            //Boolean first = true; // To skip the key number column
+            for (int i = 1; i < commonState.DrumKeyAssignLists.ToneNames.Length; i++)
+            //foreach (List<String> toneNames in commonState.DrumKeyAssignLists.ToneNames)
             {
-                if (first)
-                {
-                    first = false;
-                }
-                else
-                {
-                    int skip = 2; // To skip the Group and Category names
-                    foreach (String toneName in toneNames)
+                //if (first)
+                //{
+                //    first = false;
+                //}
+                //else
+                //{
+                    //int skip = 2; // To skip the Group and Category names
+                    for (int j = 2; j < commonState.DrumKeyAssignLists.ToneNames[i].Length; j++)
+                    //foreach (String toneName in toneNames)
                     {
-                        if (skip > 0)
-                        {
-                            skip--;
-                        }
-                        else
-                        {
-                            if (toneName.ToLower().Contains(searchString))
+                        //if (skip > 0)
+                        //{
+                        //    skip--;
+                        //}
+                        //else
+                        //{
+                            if (commonState.DrumKeyAssignLists.ToneNames[i][j].ToLower().Contains(searchString))
                             {
-                                Librarian_ocToneNames.Add(toneName + ", " + toneNames[0] + ", " + toneNames[1] + "\t");
+                                Librarian_ocToneNames.Add(commonState.DrumKeyAssignLists.ToneNames[i][j] + ", " 
+                                    + commonState.DrumKeyAssignLists.ToneNames[i][j][0] + ", " 
+                                    + commonState.DrumKeyAssignLists.ToneNames[i][j][1] + "\t");
                             }
-                        }
+                        //}
                     }
-                }
+                //}
             }
             Librarian_lvToneNames.ItemsSource = Librarian_ocToneNames;
         }

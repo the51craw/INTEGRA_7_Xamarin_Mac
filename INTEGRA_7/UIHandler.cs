@@ -56,6 +56,8 @@ namespace INTEGRA_7
         public enum QueryType
         {
             NONE,
+            STARTING_UP,
+            STARTUP_DONE,
             CHECKING_FOR_I7_RESPONSE,
             PCM_SYNTH_TONE_COMMON,
             PCM_SYNTH_TONE_COMMON2,
