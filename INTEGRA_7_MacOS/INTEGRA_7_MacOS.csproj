@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Xamarin.Forms.3.6.0.344457\build\Xamarin.Forms.props" Condition="Exists('..\packages\Xamarin.Forms.3.6.0.344457\build\Xamarin.Forms.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0E1F3AF1-4E4E-4ED7-B4FB-6563DC39B9A2}</ProjectGuid>
+    <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>INTEGRA_7_MacOS</RootNamespace>
+    <AssemblyName>INTEGRA_7_MacOS</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>	
+    <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
+    <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CodeSigningKey>Mac Developer</CodeSigningKey>
+    <CreatePackage>false</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <UseSGen>true</UseSGen>
+    <UseRefCounting>true</UseRefCounting>
+    <HttpClientHandler></HttpClientHandler>
+    <LinkMode></LinkMode>
+    <XamMacArch></XamMacArch>
+    <AOTMode>None</AOTMode>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CreatePackage>true</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>true</IncludeMonoRuntime>
+    <UseSGen>true</UseSGen>
+    <UseRefCounting>true</UseRefCounting>
+    <LinkMode>SdkOnly</LinkMode>
+    <HttpClientHandler></HttpClientHandler>
+    <XamMacArch></XamMacArch>
+    <AOTMode>None</AOTMode>
+    <PlatformTarget>x64</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.Mac" />
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\packages\Xamarin.Forms.3.6.0.344457\lib\Xamarin.Mac\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform">
+      <HintPath>..\packages\Xamarin.Forms.3.6.0.344457\lib\Xamarin.Mac\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform.macOS">
+      <HintPath>..\packages\Xamarin.Forms.3.6.0.344457\lib\Xamarin.Mac\Xamarin.Forms.Platform.macOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>..\packages\Xamarin.Forms.3.6.0.344457\lib\Xamarin.Mac\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Clipboard.Abstractions">
+      <HintPath>..\packages\Xamarin.Plugins.Clipboard.2.2.1\lib\Xamarin.Mac20\Plugin.Clipboard.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Clipboard">
+      <HintPath>..\packages\Xamarin.Plugins.Clipboard.2.2.1\lib\Xamarin.Mac20\Plugin.Clipboard.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-128.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-128%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-16.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-16%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-256.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-256%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-32.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-32%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-512.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIcon-512%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="ViewController.cs" />
+    <Compile Include="ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MIDI.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\INTEGRA_7\INTEGRA_7.csproj">
+      <Project>{F506EE94-426C-43CA-9DB6-B58D8E105EFB}</Project>
+      <Name>INTEGRA_7</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="__PCM_Common_01.png" />
+    <BundleResource Include="__PCM_CutOffFreqEnv_02.png" />
+    <BundleResource Include="__PCM_Pitch_01.png" />
+    <BundleResource Include="__PCM_Pitch_Pan_01.png" />
+    <BundleResource Include="__PCM_Pitch_Time_01.png" />
+    <BundleResource Include="__PCM_PitchEnv_01.png" />
+    <BundleResource Include="__PCM_PitchEnv_02.png" />
+    <BundleResource Include="__PCM_TVALevelEnv_02.png" />
+    <BundleResource Include="__PCM_TVF_00.png" />
+    <BundleResource Include="__PCM_TVF_01.png" />
+    <BundleResource Include="__PCM_TVF_02.png" />
+    <BundleResource Include="__PCM_TVF_03.png" />
+    <BundleResource Include="__PCM_TVF_04.png" />
+    <BundleResource Include="__PCM_TVF_05.png" />
+    <BundleResource Include="__PCM_TVF_06.png" />
+    <BundleResource Include="__PCM_Wave_01.png" />
+    <BundleResource Include="__PCM_Wave_02.png" />
+    <BundleResource Include="__PCM_Wave_03.png" />
+    <BundleResource Include="__PCM_Wave_04.png" />
+    <BundleResource Include="__PMT_11.png" />
+    <BundleResource Include="__SNS_Filter_01.png" />
+    <BundleResource Include="__SNS_Filter_02.png" />
+    <BundleResource Include="__SNS_Misc_01.png" />
+    <BundleResource Include="__SNS_Osc_08.png" />
+    <BundleResource Include="_MFX_01_Eqalizer_00_.png" />
+    <BundleResource Include="_MFX_01_Eqalizer_00.png" />
+    <BundleResource Include="_MFX_2VoicePitchShifter.png" />
+    <BundleResource Include="_MFX_3TapPanDelay.png" />
+    <BundleResource Include="_MFX_4TapPanDelay.png" />
+    <BundleResource Include="_MFX_AutoPan.png" />
+    <BundleResource Include="_MFX_AutoWah.png" />
+    <BundleResource Include="_MFX_BitCrasher.png" />
+    <BundleResource Include="_MFX_Chorus.png" />
+    <BundleResource Include="_MFX_ChorusToDelay.png" />
+    <BundleResource Include="_MFX_ChorusToFlanger.png" />
+    <BundleResource Include="_MFX_Common_01.png" />
+    <BundleResource Include="_MFX_Common_02.png" />
+    <BundleResource Include="_MFX_Common_03.png" />
+    <BundleResource Include="_MFX_Compressor.png" />
+    <BundleResource Include="_MFX_Delay.png" />
+    <BundleResource Include="_MFX_Distorsion.png" />
+    <BundleResource Include="_MFX_DistorsionToChorus.png" />
+    <BundleResource Include="_MFX_DistorsionToDelay.png" />
+    <BundleResource Include="_MFX_DistortionToFlanger.png" />
+    <BundleResource Include="_MFX_EnhancerToChorus.png" />
+    <BundleResource Include="_MFX_EnhancerToDelay.png" />
+    <BundleResource Include="_MFX_EnhancerToFlanger.png" />
+    <BundleResource Include="_MFX_EpAmpSimToChorus.png" />
+    <BundleResource Include="_MFX_EpAmpSimToDelay.png" />
+    <BundleResource Include="_MFX_EpAmpSimToFlanger.png" />
+    <BundleResource Include="_MFX_EpAmpSimToPhaser.png" />
+    <BundleResource Include="_MFX_EpAmpSimToTremolo.png" />
+    <BundleResource Include="_MFX_Flanger.png" />
+    <BundleResource Include="_MFX_FlangerToDelay.png" />
+    <BundleResource Include="_MFX_Gate.png" />
+    <BundleResource Include="_MFX_GuitarAmpSimToChorus.png" />
+    <BundleResource Include="_MFX_GuitarAmpSimToDelay.png" />
+    <BundleResource Include="_MFX_GuitarAmpSimToFhaser.png" />
+    <BundleResource Include="_MFX_GuitarAmpSimToFlanger.png" />
+    <BundleResource Include="_MFX_GuitarAmpSimulator.png" />
+    <BundleResource Include="_MFX_HexaChorus.png" />
+    <BundleResource Include="_MFX_Humanizer.png" />
+    <BundleResource Include="_MFX_InfinitePhaser.png" />
+    <BundleResource Include="_MFX_Limiter.png" />
+    <BundleResource Include="_MFX_LoFiCompress.png" />
+    <BundleResource Include="_MFX_MFX.png" />
+    <BundleResource Include="_MFX_ModulationDelay.png" />
+    <BundleResource Include="_MFX_MultiStagePhaser.png" />
+    <BundleResource Include="_MFX_MultiTapDelay.png" />
+    <BundleResource Include="_MFX_OdDsToAutoWah.png" />
+    <BundleResource Include="_MFX_OdDsToTouchWah.png" />
+    <BundleResource Include="_MFX_Overdrive.png" />
+    <BundleResource Include="_MFX_OverdriveToChorus.png" />
+    <BundleResource Include="_MFX_OverdriveToDelay.png" />
+    <BundleResource Include="_MFX_OverdriveToFlanger.png" />
+    <BundleResource Include="_MFX_Phaser1.png" />
+    <BundleResource Include="_MFX_Phaser2And3.png" />
+    <BundleResource Include="_MFX_PitchShifter.png" />
+    <BundleResource Include="_MFX_ReverseDelay.png" />
+    <BundleResource Include="_MFX_RingModulator.png" />
+    <BundleResource Include="_MFX_Rotary1.png" />
+    <BundleResource Include="_MFX_Rotary2.png" />
+    <BundleResource Include="_MFX_Rotary3.png" />
+    <BundleResource Include="_MFX_Slicer.png" />
+    <BundleResource Include="_MFX_SpaceD.png" />
+    <BundleResource Include="_MFX_SpeakerSimulator.png" />
+    <BundleResource Include="_MFX_Spectrum.png" />
+    <BundleResource Include="_MFX_StepFlanger.png" />
+    <BundleResource Include="_MFX_StepPhaser.png" />
+    <BundleResource Include="_MFX_TimeCtrlDelay.png" />
+    <BundleResource Include="_MFX_Tremolo.png" />
+    <BundleResource Include="_MFX_TremoloChorus.png" />
+    <BundleResource Include="_MissingImage.png" />
+    <BundleResource Include="_PCM_01.png" />
+    <BundleResource Include="_PCM_LFO_01.png" />
+    <BundleResource Include="_PCM_TVF_10.png" />
+    <BundleResource Include="_PCM_TVF_11.png" />
+    <BundleResource Include="_PCM_TVF_12.png" />
+    <BundleResource Include="_PCM_TVF_13.png" />
+    <BundleResource Include="_PCM_TVF_14.png" />
+    <BundleResource Include="_PCM_TVF_15.png" />
+    <BundleResource Include="_PCM_TVF_16.png" />
+    <BundleResource Include="_PCM_TVF_17.png" />
+    <BundleResource Include="_PCM-D_01.png" />
+    <BundleResource Include="_PCM-D_WMT_01.png" />
+    <BundleResource Include="_PCM-D_WMT_02.png" />
+    <BundleResource Include="_PCM-D_WMT_03.png" />
+    <BundleResource Include="_PCM-D_WMT_04.png" />
+    <BundleResource Include="_PMT_01.png" />
+    <BundleResource Include="_PMT_02.png" />
+    <BundleResource Include="_PMT_03.png" />
+    <BundleResource Include="_PMT_04.png" />
+    <BundleResource Include="_PMT_05.png" />
+    <BundleResource Include="_PMT_06.png" />
+    <BundleResource Include="_PMT_07.png" />
+    <BundleResource Include="_PMT_08.png" />
+    <BundleResource Include="_PMT_09.png" />
+    <BundleResource Include="_PMT_10.png" />
+    <BundleResource Include="_Settings.png" />
+    <BundleResource Include="_SN-A_01.png" />
+    <BundleResource Include="_SN-D_01.png" />
+    <BundleResource Include="_SNS_01.png" />
+    <BundleResource Include="_SNS_Filter_00.png" />
+    <BundleResource Include="_SNS_Filter_03.png" />
+    <BundleResource Include="_SNS_Filter_04.png" />
+    <BundleResource Include="_SNS_Osc_01.png" />
+    <BundleResource Include="_SNS_Osc_02.png" />
+    <BundleResource Include="_SNS_Osc_03.png" />
+    <BundleResource Include="_SNS_Osc_04.png" />
+    <BundleResource Include="_SNS_Osc_05.png" />
+    <BundleResource Include="_SNS_Osc_06.png" />
+    <BundleResource Include="_SNS_Osc_07.png" />
+    <BundleResource Include="_SNS_Osc_09.png" />
+    <BundleResource Include="_SNS_Osc_10.png" />
+    <BundleResource Include="_SNS_Osc_11.png" />
+    <BundleResource Include="_SNS_Osc_12.png" />
+    <BundleResource Include="Center.png" />
+    <BundleResource Include="DoubleDownArrow.png" />
+    <BundleResource Include="DoubleDownLeftArrow.png" />
+    <BundleResource Include="DoubleDownLeftDownArrow.png" />
+    <BundleResource Include="DoubleDownLeftLeftArrow.png" />
+    <BundleResource Include="DoubleDownRightArrow.png" />
+    <BundleResource Include="DoubleDownRightDownArrow.png" />
+    <BundleResource Include="DoubleDownRightRightArrow.png" />
+    <BundleResource Include="DoubleLeftArrow.png" />
+    <BundleResource Include="DoubleRightArrow.png" />
+    <BundleResource Include="DoubleUpArrow.png" />
+    <BundleResource Include="DoubleUpLeftArrow.png" />
+    <BundleResource Include="DoubleUpLeftLeftArrow.png" />
+    <BundleResource Include="DoubleUpLeftTopArrow.png" />
+    <BundleResource Include="DoubleUpRightArrow.png" />
+    <BundleResource Include="DoubleUpRightRightArrow.png" />
+    <BundleResource Include="DoubleUpRightTopArrow.png" />
+    <BundleResource Include="DownArrow.png" />
+    <BundleResource Include="DownLeftArrow.png" />
+    <BundleResource Include="DownRightArrow.png" />
+    <BundleResource Include="LeftArrow.png" />
+    <BundleResource Include="MissingImage.png" />
+    <BundleResource Include="MotionalSurround.png" />
+    <BundleResource Include="MotionalSurroundWithButtons.png" />
+    <BundleResource Include="Nok.png" />
+    <BundleResource Include="Ok.png" />
+    <BundleResource Include="RightArrow.png" />
+    <BundleResource Include="Settings.png" />
+    <BundleResource Include="UpArrow.png" />
+    <BundleResource Include="UpLeftArrow.png" />
+    <BundleResource Include="UpRightArrow.png" />
+    <BundleResource Include="VelocityCurve0Off.png" />
+    <BundleResource Include="VelocityCurve0On.png" />
+    <BundleResource Include="VelocityCurve1Off.png" />
+    <BundleResource Include="VelocityCurve1On.png" />
+    <BundleResource Include="VelocityCurve2Off.png" />
+    <BundleResource Include="VelocityCurve2On.png" />
+    <BundleResource Include="VelocityCurve3Off.png" />
+    <BundleResource Include="VelocityCurve3On.png" />
+    <BundleResource Include="VelocityCurve4Off.png" />
+    <BundleResource Include="VelocityCurve4On.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
+  <Import Project="..\packages\Xamarin.Forms.3.6.0.344457\build\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.3.6.0.344457\build\Xamarin.Forms.targets')" />
+</Project>
