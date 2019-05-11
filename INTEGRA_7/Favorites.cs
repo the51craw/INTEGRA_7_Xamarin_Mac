@@ -279,8 +279,8 @@ namespace INTEGRA_7
             }
             else
             {
-                GridRow.CreateRow(Favorites_grRightColumn, 8, new View[] {  Favorites_btnBackup });
-                GridRow.CreateRow(Favorites_grRightColumn, 9, new View[] {  Favorites_btnRestore });
+                GridRow.CreateRow(Favorites_grRightColumn, 8, new View[] {  /*->Favorites_btnBackup*/ null });
+                GridRow.CreateRow(Favorites_grRightColumn, 9, new View[] {  /*>Favorites_btnRestore*/ null });
                 GridRow.CreateRow(Favorites_grRightColumn, 10, new View[] {  Favorites_btnReturn });
             }
 
@@ -329,7 +329,7 @@ namespace INTEGRA_7
         {
             if (commonState.CurrentTone != null && Favorites_lvFolderList.SelectedItem != null)
             {
-                ////t.Trace("private void lvFolders_DoubleTapped(" + ((ListView)sender).SelectedIndex.ToString() + ")");
+                t.Trace("private void lvFolders_DoubleTapped("/* + ((ListView)sender).SelectedIItem*/ + ")");
                 //ListViewItem item = (ListViewItem)Favorites_lvFolderList.ContainerFromItem(Favorites_lvFolderList.SelectedItem);
                 String selectedFolder = ((String)Favorites_lvFolderList.SelectedItem).TrimEnd('*');
                 if (favoritesAction == FavoritesAction.ADD 
@@ -448,7 +448,7 @@ namespace INTEGRA_7
         // Add/delete folder controls handlers --------------------------------------------------------------------------
         private void Favorites_edNewFolderName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ////t.Trace("private void tbNewFolder_KeyUp (" + "object" + sender + ", " + "KeyRoutedEventArgs" + e + ", " + ")");
+            t.Trace("private void tbNewFolder_KeyUp (" + "object" + sender + ", " + "KeyRoutedEventArgs" + e + ", " + ")");
             if (!String.IsNullOrEmpty(Favorites_edNewFolderName.Text))
             {
                 Boolean found = false;
@@ -481,6 +481,10 @@ namespace INTEGRA_7
                     {
                         Favorites_btnAddFolder.IsEnabled = false;
                     }
+                }
+                else
+                {
+                    Favorites_btnAddFolder.IsEnabled = true;
                 }
             }
             else
@@ -554,7 +558,7 @@ namespace INTEGRA_7
         {
             if (commonState.CurrentTone != null && Favorites_lvFolderList.SelectedItem != null)
             {
-                ////t.Trace("private void btnContext_Click (" + "object" + sender + ", " + "RoutedEventArgs" + e + ", " + ")");
+                t.Trace("private void btnContext_Click (" + "object" + sender + ", " + "RoutedEventArgs" + e + ", " + ")");
                 //ListViewItem item = (ListViewItem)lvFolders.ContainerFromItem(lvFolders.Items[lvFolders.SelectedIndex]);
                 if (favoritesAction == FavoritesAction.ADD/* && ((String)Favorites_lvFolderList.SelectedItem).StartsWith("*")*/)
                 {
@@ -820,7 +824,7 @@ namespace INTEGRA_7
 
         private void DeleteFavorite(FavoriteTone Tone)
         {
-            //t.Trace("private void DeleteFavorite (" + Tone.Name + ")");
+            t.Trace("private void DeleteFavorite (" + Tone.Name + ")");
             UInt16 i = 0;
             Int32 index = 0;
             Int32 folderIndex = Favorites_ocFolderList.IndexOf(Favorites_lvFolderList.SelectedItem);
@@ -844,7 +848,7 @@ namespace INTEGRA_7
 
         private void SelectFolder(String folderName)
         {
-            //t.Trace("private void SelectFolder (" + "String" + folderName + ", " + ")");
+            t.Trace("private void SelectFolder (" + "String" + folderName + ", " + ")");
             try
             {
                 foreach (String item in Favorites_ocFolderList.AsQueryable())
@@ -861,7 +865,7 @@ namespace INTEGRA_7
 
         private void UnpackFoldersWithFavoritesString(String foldersWithFavorites)
         {
-            //t.Trace("private void UnpackFoldersWithFavoritesString (" + "String" + foldersWithFavorites + ", " + ")");
+            t.Trace("private void UnpackFoldersWithFavoritesString (" + "String" + foldersWithFavorites + ", " + ")");
             // Format: [Folder name\v[Group index\tCategory index\tTone index\tGroup\tCategory\tTone\b]\f...]...
             // I.e. Split all by \f to get all folders with content.
             // Split each folder by \v to get folder name and all favorites together.
@@ -899,7 +903,7 @@ namespace INTEGRA_7
 
         private void SaveToLocalSettings()
         {
-            //t.Trace("private void SaveToLocalSettings()");
+            t.Trace("private void SaveToLocalSettings()");
             // Format: [Folder name\v[Group index\tCategory index\tTone index\tGroup\tCategory\tTone\b]\f...]...
             // I.e. Loop all folders, loop all favorites.
             // Pack the 6 parts of the favorite as strings separated by \t.
@@ -929,7 +933,7 @@ namespace INTEGRA_7
         {
             if (handleControlEvents)
             {
-                //t.Trace("private void UpdateFoldersList(SelectedIndex = " + SelectedFolderIndex.ToString() + ")");
+                t.Trace("private void UpdateFoldersList(SelectedIndex = " + SelectedFolderIndex.ToString() + ")");
                 PushHandleControlEvents();
                 if (Favorites_ocFavoriteList != null)
                 {

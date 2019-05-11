@@ -41,6 +41,21 @@ namespace INTEGRA_7_MacOS
             base.DidFinishLaunching(notification);
         }
 
+        public override void DidBecomeActive(NSNotification notification)
+        {
+            base.DidBecomeActive(notification);
+        }
+
+        public override void DidHide(NSNotification notification)
+        {
+            base.DidHide(notification);
+        }
+
+        public override void DidUnhide(NSNotification notification)
+        {
+            base.DidUnhide(notification);
+        }
+
         public override void WillTerminate(NSNotification notification)
         {
         }

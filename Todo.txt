@@ -1,0 +1,58 @@
+﻿Bugs:
+
+* Grouplist has an empty entry before Studio Sets.
+
+* Add favorites: create folder button stays disabled.
+
+* Edit tone is still enabled when a module tone is selected. (Module tones cannot be edited.)
+
+* User color settings are not restored when re-entering settings.
+
+* Wrong background color when entering settings.
+
+* Labels for scheme and type are interchanged.
+
+? Saving a tone (PCM tested) -> ‘Sorry, that name already exists…’ and the dialog has two Ok buttons.
+
+* Studio set editor: search tone has always zero hits.
+
+* After selecting studio set: column label for categories still show ‘Studio sets’.
+
+* Enable the column 'lable' button, it looks better.
+
+Why does it take so long to find I-7?
+
+* Hide file save/load buttons and selections.
+    They may lager be implemented again.
+
+* Save in tone edit has very high controls. Fix height in all edit pages (add rowdefinitions).
+
+* SN-D cannot be edited! This fix probably explained some spurious crashes.
+
+* Check/fix height of controls in SN-D edit pages.
+
+* Add store images!
+
+Edit tone takes long time when selecting wave page. (Probably filling out wave list takes too long.)
+    Remove possibility to change type!
+    Add 'please wait' while filling out wave list at first edit of respective types.
+    Keep wave lists for all types.
+
+Height of MFX pages are not all same.
+
+* Selecting MFX control after MFX in PCM-D made app crash (happened once).
+
+* Changing synth type in edit did not reset edit page. Remove possibility to change type.
+    Control is just disabled. Future versions may have this back.
+
+* User tones not found from librarian search!
+
+* After a search in librarian, changing tone no longer works.
+
+
+Features to add:
+
+Add play button in studio set editor.
+
+Add sustain pedal.
+

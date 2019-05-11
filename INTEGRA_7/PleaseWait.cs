@@ -719,7 +719,7 @@ namespace INTEGRA_7
             byte[] address = new byte[] { 0x01, 0x00, 0x00, 0x00 };
             byte[] length = new byte[] { 0x00, 0x00, 0x00, 0x01 };
             byte[] message = commonState.Midi.SystemExclusiveRQ1Message(address, length);
-            waitCount = 100;
+            waitCount = 10;
             waitingFor = WaitingFor.WAITING_FOR_INTEGRA_7;
             commonState.Midi.SendSystemExclusive(message);
         }

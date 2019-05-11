@@ -25,6 +25,6 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>XSAppIconAssets</key>
-	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<string>Assets.xcassets/AppIcons.appiconset</string>
 </dict>
 </plist>

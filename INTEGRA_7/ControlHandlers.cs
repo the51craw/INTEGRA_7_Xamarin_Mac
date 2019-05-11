@@ -14,7 +14,7 @@ namespace INTEGRA_7
     {
         private async void cbEditTone_SynthesizerType_SelectionChanged(object sender, EventArgs e)
         {
-            ////t.Trace("private void cbEditTone_SynthesizerType_SelectionChanged (" + "object" + sender + ", " + "SelectionChangedEventArgs" + e + ", " + ")");
+            t.Trace("private void cbEditTone_SynthesizerType_SelectionChanged (" + "object" + sender + ", " + "SelectionChangedEventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 if (cbEditTone_SynthesizerType.SelectedIndex != currentProgramIndex)
@@ -42,7 +42,7 @@ namespace INTEGRA_7
 
         private void cbEditTone_PartSelector_SelectionChanged(object sender, EventArgs e)
         {
-            ////t.Trace("private void cbEditTone_PartSelector_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbEditTone_PartSelector_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 Waiting(true, "Working...", Edit_StackLayout);
@@ -58,7 +58,7 @@ namespace INTEGRA_7
         // When changing partial, partial needs to be re-read
         private void cbEditTone_PartialSelector_SelectionChanged(object sender, EventArgs e)
         {
-            ////t.Trace("private void cbEditTone_PartialSelector_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbEditTone_PartialSelector_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
 
             if (initDone && handleControlEvents)
             {
@@ -116,7 +116,7 @@ namespace INTEGRA_7
         // NO! All keys are now initially read in!
         private void cbEditTone_KeySelector_SelectionChanged(object sender, EventArgs e)
         {
-            ////t.Trace("private void cbEditTone_KeySelector_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbEditTone_KeySelector_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 Waiting(true, "Working...", Edit_StackLayout);
@@ -142,7 +142,7 @@ namespace INTEGRA_7
 
         private void cbEditTone_ParameterPages_SelectionChanged(object sender, EventArgs e)
         {
-            ////t.Trace("private void cbEditTone_ParameterPages_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbEditTone_ParameterPages_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 Waiting(true, "Working...", Edit_StackLayout);
@@ -407,7 +407,7 @@ namespace INTEGRA_7
 
         private void cbEditTone_InstrumentCategorySelector_SelectionChanged(object sender, EventArgs e)
         {
-            ////t.Trace("private void cbEditTone_InstrumentCategorySelector_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbEditTone_InstrumentCategorySelector_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone)
             {
                 switch (currentProgramType)
@@ -608,7 +608,7 @@ namespace INTEGRA_7
                             {
                                 // This should never happen!
                                 commonState.ToneList.Add(tone);
-                                ////t.Trace("Save PCM Synth Tone did not find expected tone! Tone was added instead.");
+                                t.Trace("Save PCM Synth Tone did not find expected tone! Tone was added instead.");
                             }
                         }
                         
@@ -720,7 +720,7 @@ namespace INTEGRA_7
                             {
                                 // This should never happen!
                                 commonState.ToneList.Add(tone);
-                                ////t.Trace("Save PCM Drum Kit did not find expected tone! Tone was added instead.");
+                                t.Trace("Save PCM Drum Kit did not find expected tone! Tone was added instead.");
                             }
                         }
                         
@@ -787,7 +787,7 @@ namespace INTEGRA_7
                             {
                                 // This should never happen!
                                 commonState.ToneList.Add(tone);
-                                ////t.Trace("Save SuperNATURAL Acoustic Tone did not find expected tone! Tone was added instead.");
+                                t.Trace("Save SuperNATURAL Acoustic Tone did not find expected tone! Tone was added instead.");
                             }
                         }
                         
@@ -855,7 +855,7 @@ namespace INTEGRA_7
                             {
                                 // This should never happen!
                                 commonState.ToneList.Add(tone);
-                                ////t.Trace("Save SuperNATURAL Synth Tone did not find expected tone! Tone was added instead.");
+                                t.Trace("Save SuperNATURAL Synth Tone did not find expected tone! Tone was added instead.");
                             }
                         }
                         // Also update in toneNames:
@@ -947,7 +947,7 @@ namespace INTEGRA_7
                             {
                                 // This should never happen!
                                 commonState.ToneList.Add(tone);
-                                ////t.Trace("Save SuperNATURAL Drum Kit did not find expected tone! Tone was added instead.");
+                                t.Trace("Save SuperNATURAL Drum Kit did not find expected tone! Tone was added instead.");
                             }
                         }
                         // Also update in toneNames:
@@ -1039,7 +1039,7 @@ namespace INTEGRA_7
                         else
                         {
                             // This should never happen!
-                            ////t.Trace("Save PCM Synth Tone did not find expected tone! Tone was not deleted.");
+                            t.Trace("Save PCM Synth Tone did not find expected tone! Tone was not deleted.");
                         }
                         // Also clear in toneNames and back-up current tone:
                         commonState.ToneNames[0][cbEditTone_SaveTone_SlotNumber.SelectedIndex] = "INIT TONE";
@@ -1082,7 +1082,7 @@ namespace INTEGRA_7
                         else
                         {
                             // This should never happen!
-                            ////t.Trace("Save PCM Synth Tone did not find expected tone! Tone was not deleted.");
+                            t.Trace("Save PCM Synth Tone did not find expected tone! Tone was not deleted.");
                         }
                         // Also clear in toneNames and back-up current tone:
                         commonState.ToneNames[1][cbEditTone_SaveTone_SlotNumber.SelectedIndex] = "INIT KIT";
@@ -1145,7 +1145,7 @@ namespace INTEGRA_7
                         else
                         {
                             // This should never happen!
-                            ////t.Trace("Save SuperNATURAL Acoustic Tone did not find expected tone! Tone was not deleted.");
+                            t.Trace("Save SuperNATURAL Acoustic Tone did not find expected tone! Tone was not deleted.");
                         }
                         // Also clear in toneNames and back-up current tone:
                         commonState.ToneNames[2][cbEditTone_SaveTone_SlotNumber.SelectedIndex] = "INIT TONE";
@@ -1188,7 +1188,7 @@ namespace INTEGRA_7
                         else
                         {
                             // This should never happen!
-                            ////t.Trace("Save SuperNATURAL Synth Tone did not find expected tone! Tone was not deleted.");
+                            t.Trace("Save SuperNATURAL Synth Tone did not find expected tone! Tone was not deleted.");
                         }
                         // Also clear in toneNames and back-up current tone:
                         commonState.ToneNames[3][cbEditTone_SaveTone_SlotNumber.SelectedIndex] = "INIT TONE";
@@ -1231,7 +1231,7 @@ namespace INTEGRA_7
                         else
                         {
                             // This should never happen!
-                            ////t.Trace("Save SuperNATURAL Drum Kit did not find expected tone! Tone was not deleted.");
+                            t.Trace("Save SuperNATURAL Drum Kit did not find expected tone! Tone was not deleted.");
                         }
                         // Also clear in toneNames and back-up current tone:
                         commonState.ToneNames[4][cbEditTone_SaveTone_SlotNumber.SelectedIndex] = "INIT KIT";
@@ -1289,7 +1289,7 @@ namespace INTEGRA_7
 
         private void Reset()
         {
-            ////t.Trace("Reset()");
+            t.Trace("Reset()");
             Waiting(true, "Working...", Edit_StackLayout);
             DrumKit_WaveOff();
             // Set the I-7 to a default sound. It always does that when initialized.
@@ -1327,7 +1327,7 @@ namespace INTEGRA_7
 
         //private void btnEditTone_Return_Click(object sender, EventArgs e)
         //{
-        //    ////t.Trace("private void btnEditTone_Return_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+        //    t.Trace("private void btnEditTone_Return_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
         //    if (initDone && handleControlEvents)
         //    {
         //        RemoveControls(ControlsGrid);
@@ -1345,12 +1345,12 @@ namespace INTEGRA_7
 
         private void GenericCombobox_SelectionChanged(object sender, EventArgs e)
         {
-            ////t.Trace("private void GenericCombobox_SelectionChanged ()");
+            t.Trace("private void GenericCombobox_SelectionChanged ()");
             if (initDone && handleControlEvents)
             {
                 Waiting(true, "Working...", Edit_StackLayout);
                 ComboBox cb = (ComboBox)sender;
-                ////t.Trace("cb.Name = " + cb.Name);
+                t.Trace("cb.Name = " + cb.Name);
                 if (cb.Tag != null && cb.Tag.GetType() == typeof(Buddy))
                 {
                     UInt16 tempAddress = (UInt16)(((Buddy)cb.Tag).Offset + 4 * ((Buddy)cb.Tag).ParameterNumber);
@@ -1397,7 +1397,7 @@ namespace INTEGRA_7
 
         private void slEditToneChorusSendLevel_ValueChanged(object sender, EventArgs e)
         {
-            ////t.Trace("slEditToneChorusSendLevel_ValueChanged()");
+            t.Trace("slEditToneChorusSendLevel_ValueChanged()");
             if (initDone && handleControlEvents)
             {
                 byte sliderValue = (byte)slEditToneChorusSendLevel.Value;
@@ -1411,7 +1411,7 @@ namespace INTEGRA_7
 
         private void slEditToneReverbSendLevel_ValueChanged(object sender, EventArgs e)
         {
-            ////t.Trace("slEditToneReverbSendLevel_ValueChanged()");
+            t.Trace("slEditToneReverbSendLevel_ValueChanged()");
             if (initDone && handleControlEvents)
             {
                 //byte[] address = MakeAddress(currentProgramType, ParameterPage.COMMONMFX, new byte[] { 0x03 });
@@ -1424,7 +1424,7 @@ namespace INTEGRA_7
 
         private void GenericSlider_ValueChanged(object sender, EventArgs e)
         {
-            ////t.Trace("private void GenericSlider_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void GenericSlider_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 Slider sl = (Slider)sender;
@@ -1460,7 +1460,7 @@ namespace INTEGRA_7
 
         private void GenericCheckBox_Click(object sender, EventArgs e)
         {
-            ////t.Trace("private void GenericCheckBox_Click (" + "object" + sender + ", " + ")");
+            t.Trace("private void GenericCheckBox_Click (" + "object" + sender + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 object tag = null;
@@ -1548,7 +1548,7 @@ namespace INTEGRA_7
 
         private void GenericHandler(object sender)
         {
-            ////t.Trace("private void GenericHandler (" + "object" + sender + ", " + ")");
+            t.Trace("private void GenericHandler (" + "object" + sender + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 ComboBox comboBox = null;
@@ -1572,7 +1572,7 @@ namespace INTEGRA_7
                 }
                 //Control control = (Control)sender;
 
-                ////t.Trace("switch (currentProgramType = " + currentProgramType.ToString() + ")");
+                t.Trace("switch (currentProgramType = " + currentProgramType.ToString() + ")");
                 switch (currentProgramType)
                 {
                     case ProgramType.PCM_SYNTH_TONE:
@@ -2978,7 +2978,7 @@ namespace INTEGRA_7
                                 SendParameter(address, value);
                                 break;
                             default:
-                                //t.Trace("Missing case for \"" + name + "\"!");
+                                t.Trace("Missing case for \"" + name + "\"!");
                                 break;
                         }
                         break;
@@ -4106,7 +4106,7 @@ namespace INTEGRA_7
                                 SendParameter(address, (byte)((commonMFX.MFXControlSens[3])));
                                 break;
                             default:
-                                //t.Trace("Missing case for \"" + name + "\"!");
+                                t.Trace("Missing case for \"" + name + "\"!");
                                 break;
                         }
                         break;
@@ -4627,7 +4627,7 @@ namespace INTEGRA_7
                                 SendParameter(address, (byte)((commonMFX.MFXControlSens[3])));
                                 break;
                             default:
-                                //t.Trace("Missing case for \"" + name + "\"!");
+                                t.Trace("Missing case for \"" + name + "\"!");
                                 break;
                         }
                         break;
@@ -5214,7 +5214,7 @@ namespace INTEGRA_7
                                 SendParameter(address, (byte)((commonMFX.MFXControlSens[3])));
                                 break;
                             default:
-                                //t.Trace("Missing case for \"" + name + "\"!");
+                                t.Trace("Missing case for \"" + name + "\"!");
                                 break;
                         }
                         break;
@@ -6001,7 +6001,7 @@ namespace INTEGRA_7
                                 SendParameter(address, (byte)((commonMFX.MFXControlSens[3])));
                                 break;
                             default:
-                                //t.Trace("Missing case for \"" + name + "\"!");
+                                t.Trace("Missing case for \"" + name + "\"!");
                                 break;
                         }
                         break;
@@ -6180,7 +6180,7 @@ namespace INTEGRA_7
 
         //private void UpdateDrumNames()
         //{
-        //    //t.Trace("private void UpdateDrumNames()");
+        //    t.Trace("private void UpdateDrumNames()");
         //    //if (commonState.currentTone.Category == "Drum" && commonState.drumKeyAssignLists.KeyboardNameList(commonState.currentTone.Group, commonState.currentTone.Name) != null)
         //    Int32 drumSetIndex = commonState.drumKeyAssignLists.Drumset(commonState.currentTone.Group, commonState.currentTone.Name);
         //    commonState.keyNames = new List<String>();

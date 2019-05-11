@@ -18,7 +18,7 @@ namespace INTEGRA_7
      */
     public partial class UIHandler
     {
-        private //HBTrace t = new //HBTrace("UIHandler public sealed partial class MainPage : Page");
+        private HBTrace t = new HBTrace("UIHandler public sealed partial class MainPage : Page");
         Boolean handleControlEvents = true;            // Some control events re-creates the control, and that will cause a loop. Use handleControlEvents to prevent that.
         List<Boolean> previousHandleControlEvents = new List<Boolean>();
 
@@ -436,13 +436,13 @@ namespace INTEGRA_7
             }
             else
             {
-                //t.Trace("UIHandler line 309, missing type: " + view.GetType().ToString());
+                t.Trace("UIHandler line 309, missing type: " + view.GetType().ToString());
             }
         }
 
         private void SetStudioSet(byte number)
         {
-            //t.Trace("private void SetStudioSet (" + "byte[]" + number + ", " + ")");
+            t.Trace("private void SetStudioSet (" + "byte[]" + number + ", " + ")");
             commonState.Midi.ProgramChange((byte)15, (byte)85, (byte)0, (byte)(number + 1));
         }
 
@@ -452,7 +452,7 @@ namespace INTEGRA_7
         // This is platform dependent! UWP and MacOS definitely can show a waitcursor.
         private void Waiting(Boolean on, String WaitText = "", StackLayout stackLayout = null)
         {
-            ////t.Trace("private void Waiting(" + on.ToString() + ")");
+            t.Trace("private void Waiting(" + on.ToString() + ")");
             // Maybe also test for platform and use different methods?
             //if (stackLayout != null && PleaseWait_StackLayout != null)
             //{

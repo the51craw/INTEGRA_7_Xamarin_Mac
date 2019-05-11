@@ -776,6 +776,7 @@ namespace INTEGRA_7
             cbEditTone_SynthesizerType.Items.Add("SuperNATURAL acoustic tone");
             cbEditTone_SynthesizerType.Items.Add("SuperNATURAL synth tone");
             cbEditTone_SynthesizerType.Items.Add("SuperNATURAL drum kit");
+            cbEditTone_SynthesizerType.IsEnabled = false;
             tbEditTone_Instrument.IsEnabled = false;
             tbEditToneChorusSendLevel.Text = "Chorus send level";
             slEditToneChorusSendLevel.Minimum = 0;
@@ -1033,7 +1034,7 @@ namespace INTEGRA_7
 
         //private async void cbEditTone_SynthesizerType_SelectionChangedAsync(object sender, EventArgs e)
         //{
-        //    ////t.Trace("private void cbEditTone_SynthesizerType_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+        //    t.Trace("private void cbEditTone_SynthesizerType_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
         //    if (initDone && handleControlEvents)
         //    {
         //        if (cbEditTone_SynthesizerType.SelectedIndex != currentProgramIndex)
@@ -1161,7 +1162,7 @@ namespace INTEGRA_7
 
         //private void Waiting(Boolean on)
         //{
-        //    //t.Trace("private void Waiting(" + on.ToString() + ")");
+        //    t.Trace("private void Waiting(" + on.ToString() + ")");
         //    if (on)
         //    {
         //        Window.Current.CoreWindow.PointerCursor =
@@ -1178,7 +1179,7 @@ namespace INTEGRA_7
 
         //public Edit()
         //{
-        //    //t.Trace("public Edit()");
+        //    t.Trace("public Edit()");
         //    this.InitializeComponent();
         //    edit_State = Edit_State.INIT;
         //    timer = new DispatcherTimer();
@@ -1210,7 +1211,7 @@ namespace INTEGRA_7
 
         private void Edit_Init()
         {
-            //t.Trace("private void Edit_Init()");
+            t.Trace("private void Edit_Init()");
             try
             {
                 //commonState = (CommonState)e.Parameter;
@@ -1265,7 +1266,7 @@ namespace INTEGRA_7
         //        //{
         //        //    return;
         //        //}
-        //        ////t.Trace("private void Timer_Tick (" + "object" + sender + ", " + "object" + e + ", " + ")");
+        //        t.Trace("private void Timer_Tick (" + "object" + sender + ", " + "object" + e + ", " + ")");
         //        if (stopEditTimer)
         //        {
         //            return false;
@@ -1476,7 +1477,7 @@ namespace INTEGRA_7
 
         private void QueryIntegra7()
         {
-            //t.Trace("private void QueryIntegra7()");
+            t.Trace("private void QueryIntegra7()");
             switch (currentProgramType)
             {
                 case ProgramType.PCM_SYNTH_TONE:
@@ -1499,7 +1500,7 @@ namespace INTEGRA_7
 
         private void EditTone_UpdateControls()
         {
-            //t.Trace("private void EditTone_UpdateControls()");
+            t.Trace("private void EditTone_UpdateControls()");
             //currentHandleControlEvents = handleControlEvents;
             //PushHandleControlEvents();
             if (!initDone)
@@ -1622,7 +1623,7 @@ namespace INTEGRA_7
             //}
             //else
             //{
-            //    //t.Trace("Could not find type on line 1617");
+            //    t.Trace("Could not find type on line 1617");
             //}
             //try
             //{
@@ -1714,7 +1715,7 @@ namespace INTEGRA_7
             //                                                        }
             //                                                        catch
             //                                                        {
-            //                                                            //t.Trace("Could not find type on line 1646");
+            //                                                            t.Trace("Could not find type on line 1646");
             //                                                        }
             //                                                    }
             //                                                }
@@ -1740,7 +1741,7 @@ namespace INTEGRA_7
             //{
             //    return;
             //}
-            //t.Trace("private void Edit_MidiInPort_MessageReceived ()");
+            t.Trace("private void Edit_MidiInPort_MessageReceived ()");
             byte temp = currentKey;
             //IMidiMessage receivedMidiMessage = args.Message;
             //rawData = receivedMidiMessage.RawData.ToArray();
@@ -1857,9 +1858,9 @@ namespace INTEGRA_7
                         if (currentKey < 88)
                         {
                             waitingForResponseFromIntegra7 = 0;
-                            ////t.Trace("*** " + DateTime.Now.TimeOfDay.Milliseconds.ToString());
+                            t.Trace("*** " + DateTime.Now.TimeOfDay.Milliseconds.ToString());
                             QueryPCMDrumKitPartial();
-                            ////t.Trace("*** " + DateTime.Now.TimeOfDay.Milliseconds.ToString());
+                            t.Trace("*** " + DateTime.Now.TimeOfDay.Milliseconds.ToString());
                         }
                         else
                         {
@@ -1950,6 +1951,14 @@ namespace INTEGRA_7
                     }
                     else if (edit_State == Edit_State.WAITING && currentEditMidiRequest == Edit_CurrentMidiRequest.QUERYING_SUPERNATURAL_DRUM_KIT_PARTIAL)
                     {
+                        string tmp = "rawData: ";
+                        for (int i = 0; i < rawData.Length; i++)
+                        {
+                            tmp += ByteToHexString(rawData[i]) + " ";
+                        }
+                        t.Trace("*** currentKey = " + currentKey.ToString());
+                        t.Trace(tmp);
+
                         superNATURALDrumKit.superNATURALDrumKitKey[currentKey] = new SuperNATURALDrumKitKey(new ReceivedData(rawData));
                         currentKey++;
                         if (currentKey < 62)
@@ -2056,7 +2065,7 @@ namespace INTEGRA_7
         /// </summary>
         private void QueryToneType()
         {
-            //t.Trace("private void QueryToneType()");
+            t.Trace("private void QueryToneType()");
             initDone = false;
             edit_State = Edit_State.WAITING;
             currentEditMidiRequest = Edit_CurrentMidiRequest.QUERYING_TONE_TYPE;
@@ -2064,6 +2073,7 @@ namespace INTEGRA_7
             byte[] address = { 0x18, 0x00, (byte)(0x20 + commonState.CurrentPart), 0x00 };
             byte[] length = { 0x00, 0x00, 0x00, 0x09 };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
         }
 
@@ -2099,6 +2109,7 @@ namespace INTEGRA_7
             address = AddBytes128(address, partOffset);
             byte[] length = { 0x00, 0x00, 0x01, 0x11 };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
         }
 
@@ -2111,12 +2122,13 @@ namespace INTEGRA_7
             address = AddBytes128(address, partOffset);
             byte[] length = { 0x00, 0x00, 0x01, 0x11 };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
         }
 
         private void QueryPCMSynthTonePMT()
         {
-            //t.Trace("private void QueryPCMSynthTonePMT()");
+            t.Trace("private void QueryPCMSynthTonePMT()");
             edit_State = Edit_State.WAITING;
             currentEditMidiRequest = Edit_CurrentMidiRequest.QUERYING_PCM_SYNTH_TONE_PMT;
             byte[] address = { 0x19, 0x00, 0x10, 0x00 };
@@ -2124,12 +2136,13 @@ namespace INTEGRA_7
             address = AddBytes128(address, partOffset);
             byte[] length = { 0x00, 0x00, 0x00, 0x29 };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
         }
 
         private void QueryPCMSynthTonePartial()
         {
-            //t.Trace("private void QueryPCMSynthTonePartial()");
+            t.Trace("private void QueryPCMSynthTonePartial()");
             edit_State = Edit_State.WAITING;
             currentEditMidiRequest = Edit_CurrentMidiRequest.QUERYING_PCM_SYNTH_TONE_PARTIAL;
             byte[] address = { 0x19, 0x00, 0x00, 0x00 };
@@ -2139,12 +2152,13 @@ namespace INTEGRA_7
             address = AddBytes128(address, partialOffset);
             byte[] length = { 0x00, 0x00, 0x01, 0x1a };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
         }
 
         private void QueryPCMSynthToneCommon2()
         {
-            //t.Trace("private void QueryPCMSynthToneCommon2()");
+            t.Trace("private void QueryPCMSynthToneCommon2()");
             edit_State = Edit_State.WAITING;
             currentEditMidiRequest = Edit_CurrentMidiRequest.QUERYING_PCM_SYNTH_TONE_COMMON2;
             byte[] address = { 0x19, 0x00, 0x30, 0x00 };
@@ -2152,12 +2166,13 @@ namespace INTEGRA_7
             address = AddBytes128(address, partOffset);
             byte[] length = { 0x00, 0x00, 0x00, 0x3c };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
         }
 
         private void QueryPCMDrumKitCommon()
         {
-            //t.Trace("private void QueryPCMDrumKitCommon()");
+            t.Trace("private void QueryPCMDrumKitCommon()");
             edit_State = Edit_State.WAITING;
             currentEditMidiRequest = Edit_CurrentMidiRequest.QUERYING_PCM_DRUM_KIT_COMMON;
             byte[] address = { 0x19, 0x10, 0x00, 0x00 };
@@ -2165,12 +2180,13 @@ namespace INTEGRA_7
             address = AddBytes128(address, partOffset);
             byte[] length = { 0x00, 0x00, 0x00, 0x12 };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
         }
 
         private void QueryPCMDrumKitCommonMFX()
         {
-            //t.Trace("private void QueryPCMDrumKitCommonMFX()");
+            t.Trace("private void QueryPCMDrumKitCommonMFX()");
             edit_State = Edit_State.WAITING;
             currentEditMidiRequest = Edit_CurrentMidiRequest.QUERYING_PCM_DRUM_KIT_COMMON_MFX;
             byte[] address = { 0x19, 0x10, 0x02, 0x00 };
@@ -2178,12 +2194,13 @@ namespace INTEGRA_7
             address = AddBytes128(address, partOffset);
             byte[] length = { 0x00, 0x00, 0x01, 0x11 };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
         }
 
         private void QueryPCMDrumKitCommonCompEq()
         {
-            //t.Trace("private void QueryPCMDrumKitCommonCompEq()");
+            t.Trace("private void QueryPCMDrumKitCommonCompEq()");
             edit_State = Edit_State.WAITING;
             currentEditMidiRequest = Edit_CurrentMidiRequest.QUERYING_PCM_DRUM_KIT_COMMON_COMP_EQ;
             byte[] address = { 0x19, 0x10, 0x08, 0x00 };
@@ -2191,15 +2208,17 @@ namespace INTEGRA_7
             address = AddBytes128(address, partOffset);
             byte[] length = { 0x00, 0x00, 0x00, 0x54 };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
         }
 
         private void QueryPCMDrumKitPartial() // Read for a current key, 21 - 108!
         {
-            //t.Trace("private void QueryPCMDrumKitPartial (" + ")");
+            t.Trace("private void QueryPCMDrumKitPartial (" + ")");
             byte[] address = MakeAddress(ProgramType.PCM_DRUM_KIT, ParameterPage.PARTIAL, 0x00);
             byte[] length = { 0x00, 0x00, 0x01, 0x43 };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
             edit_State = Edit_State.WAITING;
             currentEditMidiRequest = Edit_CurrentMidiRequest.QUERYING_PCM_DRUM_KIT_PARTIAL;
@@ -2207,7 +2226,7 @@ namespace INTEGRA_7
 
         private void QueryPCMDrumKitCommon2()
         {
-            //t.Trace("private void QueryPCMDrumKitCommon2()");
+            t.Trace("private void QueryPCMDrumKitCommon2()");
             edit_State = Edit_State.WAITING;
             currentEditMidiRequest = Edit_CurrentMidiRequest.QUERYING_PCM_DRUM_KIT_COMMON2;
             byte[] address = { 0x19, 0x12, 0x00, 0x00 };
@@ -2215,12 +2234,13 @@ namespace INTEGRA_7
             address = AddBytes128(address, partOffset);
             byte[] length = { 0x00, 0x00, 0x00, 0x32 };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
         }
 
         private void QuerySuperNATURALAcousticTone()
         {
-            //t.Trace("private void QuerySuperNATURALAcousticTone()");
+            t.Trace("private void QuerySuperNATURALAcousticTone()");
             edit_State = Edit_State.WAITING;
             currentEditMidiRequest = Edit_CurrentMidiRequest.QUERYING_SUPERNATURAL_ACOUSTIC_TONE_COMMON;
             byte[] address = { 0x19, 0x02, 0x00, 0x00 };
@@ -2228,12 +2248,13 @@ namespace INTEGRA_7
             address = AddBytes128(address, partOffset);
             byte[] length = { 0x00, 0x00, 0x00, 0x46 };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
         }
 
         private void QuerySuperNATURALAcousticToneCommonMFX()
         {
-            //t.Trace("private void QuerySuperNATURALAcousticToneMFX()");
+            t.Trace("private void QuerySuperNATURALAcousticToneMFX()");
             edit_State = Edit_State.WAITING;
             currentEditMidiRequest = Edit_CurrentMidiRequest.QUERYING_SUPERNATURAL_ACOUSTIC_TONE_COMMON_MFX;
             byte[] address = { 0x19, 0x02, 0x02, 0x00 };
@@ -2241,23 +2262,25 @@ namespace INTEGRA_7
             address = AddBytes128(address, partOffset);
             byte[] length = { 0x00, 0x00, 0x01, 0x11 };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
         }
 
         private void QuerySuperNATURALSynthToneUndocumentedParameters()
         {
-            //t.Trace("private void QuerySuperNATURALSynthToneUndocumentedParameters()");
+            t.Trace("private void QuerySuperNATURALSynthToneUndocumentedParameters()");
             edit_State = Edit_State.WAITING;
             currentEditMidiRequest = Edit_CurrentMidiRequest.QUERYING_SUPERNATURAL_SYNTH_TONE_UNDOCUMENTED_PARAMETERS;
             byte[] address = { 0x19, 0x01, 0x50, 0x00 };
             byte[] length = { 0x00, 0x00, 0x00, 0x25 };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
         }
 
         private void QuerySuperNATURALSynthToneCommon()
         {
-            //t.Trace("private void QuerySuperNATURALSynthToneCommon()");
+            t.Trace("private void QuerySuperNATURALSynthToneCommon()");
             edit_State = Edit_State.WAITING;
             currentEditMidiRequest = Edit_CurrentMidiRequest.QUERYING_SUPERNATURAL_SYNTH_TONE_COMMON;
             byte[] address = { 0x19, 0x01, 0x00, 0x00 };
@@ -2265,12 +2288,13 @@ namespace INTEGRA_7
             address = AddBytes128(address, partOffset);
             byte[] length = { 0x00, 0x00, 0x00, 0x40 };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
         }
 
         private void QuerySuperNATURALSynthToneCommonMFX()
         {
-            //t.Trace("private void QuerySuperNATURALSynthToneCommonMFX()");
+            t.Trace("private void QuerySuperNATURALSynthToneCommonMFX()");
             edit_State = Edit_State.WAITING;
             currentEditMidiRequest = Edit_CurrentMidiRequest.QUERYING_SUPERNATURAL_SYNTH_TONE_COMMON_MFX;
             byte[] address = { 0x19, 0x01, 0x02, 0x00 };
@@ -2278,12 +2302,13 @@ namespace INTEGRA_7
             address = AddBytes128(address, partOffset);
             byte[] length = { 0x00, 0x00, 0x01, 0x11 };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
         }
 
         private void QuerySuperNATURALSynthTonePartial()
         {
-            //t.Trace("private void QuerySuperNATURALSynthTonePartial()");
+            t.Trace("private void QuerySuperNATURALSynthTonePartial()");
             edit_State = Edit_State.WAITING;
             currentEditMidiRequest = Edit_CurrentMidiRequest.QUERYING_SUPERNATURAL_SYNTH_TONE_PARTIAL;
             byte[] address = { 0x19, 0x01, 0x20, 0x00 };
@@ -2293,23 +2318,25 @@ namespace INTEGRA_7
             address = AddBytes128(address, partialOffset);
             byte[] length = { 0x00, 0x00, 0x00, 0x3d };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
         }
 
         private void QuerySuperNATURALSynthToneMisc()
         {
-            //t.Trace("private void QuerySuperNATURALSynthToneMisc()");
+            t.Trace("private void QuerySuperNATURALSynthToneMisc()");
             edit_State = Edit_State.WAITING;
             currentEditMidiRequest = Edit_CurrentMidiRequest.QUERYING_SUPERNATURAL_SYNTH_TONE_MISC;
             byte[] address = { 0x19, 0x01, 0x50, 0x00 };
             byte[] length = { 0x00, 0x00, 0x00, 0x06 };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
         }
 
         private void QuerySuperNATURALDrumKit()
         {
-            //t.Trace("private void QuerySuperNATURALDrumKit()");
+            t.Trace("private void QuerySuperNATURALDrumKit()");
             edit_State = Edit_State.WAITING;
             currentEditMidiRequest = Edit_CurrentMidiRequest.QUERYING_SUPERNATURAL_DRUM_KIT_COMMON;
             byte[] address = { 0x19, 0x03, 0x00, 0x00 };
@@ -2317,12 +2344,13 @@ namespace INTEGRA_7
             address = AddBytes128(address, partOffset);
             byte[] length = { 0x00, 0x00, 0x00, 0x14 };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
         }
 
         private void QuerySuperNATURALDrumKitCommonMFX()
         {
-            //t.Trace("private void QuerySuperNATURALDrumKitMFX()");
+            t.Trace("private void QuerySuperNATURALDrumKitMFX()");
             edit_State = Edit_State.WAITING;
             currentEditMidiRequest = Edit_CurrentMidiRequest.QUERYING_SUPERNATURAL_DRUM_KIT_COMMON_MFX;
             byte[] address = { 0x19, 0x03, 0x02, 0x00 };
@@ -2330,12 +2358,13 @@ namespace INTEGRA_7
             address = AddBytes128(address, partOffset);
             byte[] length = { 0x00, 0x00, 0x01, 0x11 };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
         }
 
         private void QuerySuperNATURALDrumKitCommonCompEQ()
         {
-            //t.Trace("private void QuerySuperNATURALDrumKitCommonCompEQ()");
+            t.Trace("private void QuerySuperNATURALDrumKitCommonCompEQ()");
             edit_State = Edit_State.WAITING;
             currentEditMidiRequest = Edit_CurrentMidiRequest.QUERYING_SUPERNATURAL_DRUM_KIT_COMMON_COMP_EQ;
             byte[] address = { 0x19, 0x03, 0x08, 0x00 };
@@ -2343,28 +2372,32 @@ namespace INTEGRA_7
             address = AddBytes128(address, partOffset);
             byte[] length = { 0x00, 0x00, 0x00, 0x54 };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
         }
 
         private void QuerySuperNATURALDrumKitPartial()
         {
-            //t.Trace("private void QuerySuperNATURALDrumKitNote()");
+            t.Trace("private void QuerySuperNATURALDrumKitNote()");
             edit_State = Edit_State.WAITING;
             currentEditMidiRequest = Edit_CurrentMidiRequest.QUERYING_SUPERNATURAL_DRUM_KIT_PARTIAL;
             byte[] address = MakeAddress(ProgramType.SUPERNATURAL_DRUM_KIT, ParameterPage.PARTIAL, new byte[] { 0x00 });
             byte[] length = { 0x00, 0x00, 0x00, 0x13 };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
         }
 
         private void QueryStudioSetSendParameters()
         {
-            //t.Trace("private void QueryStudioSetSendParameters()");
+            t.Trace("private void QueryStudioSetSendParameters()");
             edit_State = Edit_State.WAITING;
             currentEditMidiRequest = Edit_CurrentMidiRequest.QUERYING_STUDIO_SET_SEND_PARAMETERS;
             byte[] address = new byte[] { 0x18, 0x00, (byte)(0x20 + commonState.CurrentPart), 0x27 };
             byte[] length = { 0x00, 0x00, 0x00, 0x02 };
             byte[] bytes = commonState.Midi.SystemExclusiveRQ1Message(address, length);
+            waitingForResponseFromIntegra7 = 0;
             commonState.Midi.SendSystemExclusive(bytes); // This will be caught in MidiInPort_MessageReceived
         }
 
@@ -2373,25 +2406,25 @@ namespace INTEGRA_7
         #region build controls
         private void BuildComboBox(String Name, Object Parent)
         {
-            //t.Trace("private void BuildComboBox (" + "String" + Name + ", " + "Control" + Parent + ", " + ")");
+            t.Trace("private void BuildComboBox (" + "String" + Name + ", " + "Control" + Parent + ", " + ")");
 
         }
 
         private void BuildSlider(String Name, Object Parent)
         {
-            //t.Trace("private void BuildSlider (" + "String" + Name + ", " + "Control" + Parent + ", " + ")");
+            t.Trace("private void BuildSlider (" + "String" + Name + ", " + "Control" + Parent + ", " + ")");
 
         }
 
         private void BuildCheckBox(String Name, Object Parent)
         {
-            //t.Trace("private void BuildCheckBox (" + "String" + Name + ", " + "Control" + Parent + ", " + ")");
+            t.Trace("private void BuildCheckBox (" + "String" + Name + ", " + "Control" + Parent + ", " + ")");
 
         }
 
         private void BuildPCMSynthToneCommonControls()
         {
-            //t.Trace("private void BuildPCMSynthToneCommonControls()");
+            t.Trace("private void BuildPCMSynthToneCommonControls()");
 
         }
         #endregion
@@ -2488,10 +2521,10 @@ namespace INTEGRA_7
                 }
                 catch (Exception e2)
                 {
-                    //t.Trace("Error in Generic_GotFocus: " + e2.Message);
+                    t.Trace("Error in Generic_GotFocus: " + e2.Message);
                     if (e2.InnerException != null)
                     {
-                        //t.Trace("Inner exception: " + e2.InnerException.Message);
+                        t.Trace("Inner exception: " + e2.InnerException.Message);
                     }
                 }
             }
@@ -2586,7 +2619,7 @@ namespace INTEGRA_7
         /// <returns>A byte containing the decucted MFX type.</returns>
         public byte SetMFXTypeAndOffset(byte ComboBoxIndex)
         {
-            //t.Trace("public byte SetMFXTypeAndOffset (" + "byte" + ComboBoxIndex + ", " + ")");
+            t.Trace("public byte SetMFXTypeAndOffset (" + "byte" + ComboBoxIndex + ", " + ")");
             currentMFXTypeOffset = numberedParametersContent.MFXTypeOffset[ComboBoxIndex];
             currentMFXTypePageParameterOffset = numberedParametersContent.MFXPageParameterOffset[ComboBoxIndex];
             currentMFXTypePageAddressOffset = (byte)(4 * currentMFXTypePageParameterOffset);
@@ -2603,7 +2636,7 @@ namespace INTEGRA_7
 
         //private Double AdjustSliderStep(Double value, Double step, Double lastValue)
         //{
-        //    //t.Trace("private Double AdjustSliderStep (" + "Double" + value + ", " + "Double" + step + ", " + "Double" + lastValue + ", " + ")");
+        //    t.Trace("private Double AdjustSliderStep (" + "Double" + value + ", " + "Double" + step + ", " + "Double" + lastValue + ", " + ")");
         //    if (value > 0)
         //    {
         //        if (value - lastValue > 0) // Increasing
@@ -2627,7 +2660,7 @@ namespace INTEGRA_7
 
         private Double AdjustSliderStep(Double value, Double step)
         {
-            //t.Trace("private Double AdjustSliderStep (" + "Double" + value + ", " + "Double" + step + ", " + ")");
+            t.Trace("private Double AdjustSliderStep (" + "Double" + value + ", " + "Double" + step + ", " + ")");
             if (value > 0)
             {
                 if (value % step == 1)
@@ -2680,8 +2713,8 @@ namespace INTEGRA_7
         /// <param name="FirstAddressByteIs0x08">Some 4-byte addressed parameters are sent as msb, ... , lsb (4 bytes) but some as 0x08, 0x00, msb/0x00, lsb</param>
         private void SendParameter(byte[] Address, UInt16 Data, Boolean UsePartialOffset = false, byte[] Index = null, byte[] ObjectIndex = null, Boolean FirstAddressByteIs0x08 = false)
         {
-            //t.Trace("private void SendParameter (" + "byte[]" + Address + ", " + "UInt16" + Data + ", " + "Boolean" + UsePartialOffset + ", " + 
-            //    "byte[]" + Index + ", " + "byte[]" + ObjectIndex + ", " + "Boolean" + FirstAddressByteIs0x08 + ", " + ")");
+            t.Trace("private void SendParameter (" + "byte[]" + Address + ", " + "UInt16" + Data + ", " + "Boolean" + UsePartialOffset + ", " + 
+                "byte[]" + Index + ", " + "byte[]" + ObjectIndex + ", " + "Boolean" + FirstAddressByteIs0x08 + ", " + ")");
             byte[] data = new byte[4];
             data[0] = (byte)((Data & 0xf000) >> 12);
             data[1] = (byte)((Data & 0x0f00) >> 8);
@@ -2692,8 +2725,8 @@ namespace INTEGRA_7
 
         private void SendParameter(byte[] Address, byte Data, Boolean UsePartialOffset = false, byte[] Index = null, byte[] ObjectIndex = null, Boolean FirstAddressByteIs0x08 = false)
         {
-            //t.Trace("private void SendParameter (" + "byte[]" + Address + ", " + "byte" + Data + ", " + "Boolean" + UsePartialOffset + ", " + 
-            //    "byte[]" + Index + ", " + "byte[]" + ObjectIndex + ", " + "Boolean" + FirstAddressByteIs0x08 + ", " + ")");
+            t.Trace("private void SendParameter (" + "byte[]" + Address + ", " + "byte" + Data + ", " + "Boolean" + UsePartialOffset + ", " + 
+                "byte[]" + Index + ", " + "byte[]" + ObjectIndex + ", " + "Boolean" + FirstAddressByteIs0x08 + ", " + ")");
             byte[] data = new byte[1];
             data[0] = Data;
             SendParameter(Address, data, UsePartialOffset, Index, ObjectIndex, FirstAddressByteIs0x08);
@@ -2701,8 +2734,8 @@ namespace INTEGRA_7
 
         private void SendParameter(byte[] Address, String Data, Boolean UsePartialOffset = false, byte[] Index = null, byte[] ObjectIndex = null, Boolean FirstAddressByteIs0x08 = false)
         {
-            //t.Trace("private void SendParameter (" + "byte[]" + Address + ", " + "byte" + Data + ", " + "Boolean" + UsePartialOffset + ", " +
-            //    "byte[]" + Index + ", " + "byte[]" + ObjectIndex + ", " + "Boolean" + FirstAddressByteIs0x08 + ", " + ")");
+            t.Trace("private void SendParameter (" + "byte[]" + Address + ", " + "byte" + Data + ", " + "Boolean" + UsePartialOffset + ", " +
+                "byte[]" + Index + ", " + "byte[]" + ObjectIndex + ", " + "Boolean" + FirstAddressByteIs0x08 + ", " + ")");
             byte[] data = new byte[Data.Length];
             byte i = 0;
             foreach (char c in Data)
@@ -2715,8 +2748,8 @@ namespace INTEGRA_7
         // NOTE! UsePartialOffset is no longer used. MakeAddress takes care of both partial offset and key offset.
         private void SendParameter(byte[] Address, byte[] Data, Boolean UsePartialOffset = false, byte[] Index = null, byte[] ObjectIndex = null, Boolean FirstAddressByteIs0x08 = false)
         {
-            //t.Trace("private void SendParameter (" + "byte[]" + Address + ", " + "byte[]" + Data + ", " + "Boolean" + UsePartialOffset + ", " + 
-            //    "byte[]" + Index + ", " + "byte[]" + ObjectIndex + ", " + "Boolean" + FirstAddressByteIs0x08 + ", " + ")");
+            t.Trace("private void SendParameter (" + "byte[]" + Address + ", " + "byte[]" + Data + ", " + "Boolean" + UsePartialOffset + ", " + 
+                "byte[]" + Index + ", " + "byte[]" + ObjectIndex + ", " + "Boolean" + FirstAddressByteIs0x08 + ", " + ")");
             if (ObjectIndex != null)
             {
                 Address = AddBytes128(Address, ObjectIndex);
@@ -2739,7 +2772,7 @@ namespace INTEGRA_7
 
         private byte[] MakeAddress(ProgramType Type, ParameterPage Page, byte ParameterAddressByte, Boolean PartialOrKeyDependent = false)
         {
-            //t.Trace("private byte[] MakeAddress (" + "ProgramType" + Type + ", " + "ParameterPage" + Page + ", " + "byte" + ParameterAddressByte + ", " + ")");
+            t.Trace("private byte[] MakeAddress (" + "ProgramType" + Type + ", " + "ParameterPage" + Page + ", " + "byte" + ParameterAddressByte + ", " + ")");
             byte[] bytes = new byte[1];
             bytes[0] = ParameterAddressByte;
             return MakeAddress(Type, Page, bytes, PartialOrKeyDependent);
@@ -2747,11 +2780,11 @@ namespace INTEGRA_7
 
         private byte[] MakeAddress(ProgramType Type, ParameterPage Page, byte[] ParameterAddressBytes, Boolean PartialOrKeyDependent = false)
         {
-            //t.Trace("private byte[] MakeAddress (" + "ProgramType" + Type + ", " + "ParameterPage" + Page + ", " + "byte[]" + ParameterAddressBytes);
-            //t.Trace("currentProgramType: " + currentProgramType.ToString());
-            //t.Trace("commonState.CurrentPart.......: " + commonState.CurrentPart.ToString());
-            //t.Trace("currentPartial....: " + currentPartial.ToString());
-            ////t.Trace("currentKey........: " + currentKey.ToString());
+            t.Trace("private byte[] MakeAddress (" + "ProgramType" + Type + ", " + "ParameterPage" + Page + ", " + "byte[]" + ParameterAddressBytes);
+            t.Trace("currentProgramType: " + currentProgramType.ToString());
+            t.Trace("commonState.CurrentPart.......: " + commonState.CurrentPart.ToString());
+            t.Trace("currentPartial....: " + currentPartial.ToString());
+            t.Trace("currentKey........: " + currentKey.ToString());
             //try
             //{ 
             //    tbEditToneHelpsText.Text =
@@ -2952,7 +2985,7 @@ namespace INTEGRA_7
 
         public void SetLabelProperties(ref TextBox tb) // TODO: Take a look at this!
         {
-            //t.Trace("public void SetLabelProperties (" + "ref TextBox" + tb.Text + ", " + ")");
+            t.Trace("public void SetLabelProperties (" + "ref TextBox" + tb.Text + ", " + ")");
             //tb.TextAlignment = TextAlignment.Right;
             //tb.VerticalContentAlignment = VerticalAlignment.Bottom;
             //tb.BorderThickness = new Thickness(0);
@@ -2961,7 +2994,7 @@ namespace INTEGRA_7
 
         public void SetFirstSoundOfCurrentType()
         {
-            //t.Trace("public void SetFirstSoundOfCurrentType()");
+            t.Trace("public void SetFirstSoundOfCurrentType()");
             byte msb = 0;
             byte lsb = 0;
             byte pc = 0;
@@ -3003,7 +3036,17 @@ namespace INTEGRA_7
         /// <returns></returns>
         public byte[] AddBytes128(byte[] arg1, byte[] arg2)
         {
-            //t.Trace("public byte[] AddBytes128 (" + "byte[]" + arg1 + ", " + "byte[]" + arg2 + ", " + ")");
+            string tmp = "public byte[] AddBytes128 (";
+            for (int i = 0; i < arg1.Length; i++)
+            {
+                tmp += ByteToHexString(arg1[i]) + " ";
+            }
+            tmp += "- ";
+            for (int i = 0; i < arg2.Length; i++)
+            {
+                tmp += ByteToHexString(arg2[i]) + " ";
+            }
+            t.Trace(tmp.Trim() + ")");
             if (arg1.Length < arg2.Length)
             {
                 return null;

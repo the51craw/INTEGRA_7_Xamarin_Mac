@@ -99,7 +99,7 @@ namespace INTEGRA_7
 
         private void Librarian_Init()
         {
-            //t.Trace("private void Librarian_Init()");
+            t.Trace("private void Librarian_Init()");
             try
             {
                 // ToDo: Is this really needed? It is taken care of in OnNavigatedTo, or...
@@ -141,14 +141,15 @@ namespace INTEGRA_7
                 //ReadSettings(); // Already done in UIHandler
 
                 // Populate lvGroups:
-                for (int i = 0; i < commonState.ToneList.Tones.Length; i++)
-                {
-                    if (!Librarian_ocGroups.Contains(commonState.ToneList.Tones[i][0]))
-                    {
-                        Librarian_ocGroups.Add(commonState.ToneList.Tones[i][0]);
-                    }
-                }
-                Librarian_ocGroups.Add("Studio sets");
+                PopulateGroups();
+                //for (int i = 0; i < commonState.ToneList.Tones.Length; i++)
+                //{
+                //    if (!Librarian_ocGroups.Contains(commonState.ToneList.Tones[i][0]))
+                //    {
+                //        Librarian_ocGroups.Add(commonState.ToneList.Tones[i][0]);
+                //    }
+                //}
+                //Librarian_ocGroups.Add("Studio sets");
 
                 // Populate lvCategories and tone names:
                 //PopulateCategories();
@@ -208,7 +209,7 @@ namespace INTEGRA_7
 
         private void ReadSettings()
         {
-            //t.Trace("private void ReadSettings()");
+            t.Trace("private void ReadSettings()");
         //private String PreferredConnection; // Preffered midi device name or "USB" to use to connect to I-7
         //private Boolean AutomaticSelectConnection; // Allows user to select connection when multiple connections are available.
             if (mainPage.LoadLocalValue("PreferredConnection") != null)
@@ -318,7 +319,7 @@ namespace INTEGRA_7
 
         public void DrawLibrarianPage()
         {
-            //HBTrace t = new //HBTrace("DrawLibrarianPage");
+            HBTrace t = new HBTrace("DrawLibrarianPage");
 
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             // Librarian 
@@ -357,7 +358,7 @@ namespace INTEGRA_7
             // Make a listview lvGroups for column 0:
             Librarian_lblGroups = new Button();
             Librarian_lblGroups.Text = "Synth types & Expansion slots";
-            Librarian_lblGroups.IsEnabled = false;
+            //Librarian_lblGroups.IsEnabled = false;
             Librarian_lvGroups = new ListView();
             Librarian_ocGroups = new ObservableCollection<String>();
             Librarian_lvGroups.ItemsSource = Librarian_ocGroups;
@@ -365,7 +366,7 @@ namespace INTEGRA_7
 
             // Make a listview lvCategories for column 1:
             Librarian_lblCategories = new Button();
-            Librarian_lblCategories.Text = "Sound categories";
+            Librarian_lblCategories.Text = "Tone categories";
             Librarian_lvCategories = new ListView();
             Librarian_ocCategories = new ObservableCollection<String>();
             Librarian_lvCategories.ItemsSource = Librarian_ocCategories;
@@ -699,7 +700,7 @@ namespace INTEGRA_7
             Librarian_gridTones.ColumnSpacing = Margins;
 
             SetStackLayoutColors(Librarian_StackLayout);
-            //t.Trace("Librarian created ");
+            t.Trace("Librarian created ");
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -789,7 +790,7 @@ namespace INTEGRA_7
                 needToSetFontSize = false;
             }
 
-            ////t.Trace("private void MainPage_MidiInPort_MessageReceived");
+            t.Trace("private void MainPage_MidiInPort_MessageReceived");
             if (initDone || scanning)
             {
                 try
@@ -1320,6 +1321,7 @@ namespace INTEGRA_7
                         commonState.CurrentTone.Category = Librarian_ocCategories[0];
                         PopulateToneNames();
                     }
+                    EnableOrDisableEditButton();
                     PopHandleControlEvents();
                 }
             }
@@ -1368,6 +1370,7 @@ namespace INTEGRA_7
                         ////Librarian_lvStudioSets.IsVisible = false;
                         //PopulateCategories();
                         Librarian_lvToneNames.IsEnabled = true;
+                        Librarian_lblCategories.Text = "Tone categories";
                     }
                 }
             }
@@ -1395,7 +1398,7 @@ namespace INTEGRA_7
 
         //private void UpdateLvToneNames()
         //{
-        //    //t.Trace("private void UpdateLvToneNames()");
+        //    t.Trace("private void UpdateLvToneNames()");
         //    if (initDone && !scanning)
         //    {
         //        if (!String.IsNullOrEmpty(commonState.currentTone.Category))
@@ -1443,7 +1446,8 @@ namespace INTEGRA_7
             {
                 if (usingSearchResults)
                 {
-                    ////t.Trace("private void lvSearchResults_SelectionChanged (" + "object" + sender + ", " + "SelectionChangedEventArgs" + e + ", " + ")");
+                    usingSearchResults = false;
+                    t.Trace("private void lvSearchResults_SelectionChanged (" + "object" + sender + ", " + "SelectionChangedEventArgs" + e + ", " + ")");
                     String soundName = (String)((ListView)sender).SelectedItem;
                     Boolean drumMap = false;
                     if (!String.IsNullOrEmpty(soundName))
@@ -1503,7 +1507,7 @@ namespace INTEGRA_7
                 }
                 else
                 {
-                    ////t.Trace("private void lvToneNames_SelectionChanged (" + "object" + sender + ", " + "SelectionChangedEventArgs" + e + ", " + ")");
+                    t.Trace("private void lvToneNames_SelectionChanged (" + "object" + sender + ", " + "SelectionChangedEventArgs" + e + ", " + ")");
                     if (initDone && !scanning)
                     {
                         if (Librarian_lvToneNames.SelectedItem != null && Librarian_lvToneNames.SelectedItem.ToString() != "")
@@ -1566,7 +1570,7 @@ namespace INTEGRA_7
         //{
         //    if (initDone)
         //    {
-        //        ////t.Trace("private void lvSearchResults_SelectionChanged (" + "object" + sender + ", " + "SelectionChangedEventArgs" + e + ", " + ")");
+        //        t.Trace("private void lvSearchResults_SelectionChanged (" + "object" + sender + ", " + "SelectionChangedEventArgs" + e + ", " + ")");
         //        String soundName = (String)((ListView)sender).SelectedItem;
         //        Boolean drumMap = false;
         //        if (!String.IsNullOrEmpty(soundName))
@@ -1665,7 +1669,7 @@ namespace INTEGRA_7
         {
             if (initDone && handleControlEvents)
             {
-                ////t.Trace("private void tbSearch_TextChanged (" + "object" + sender + ", " + "TextChangedEventArgs" + e + ", " + ")");
+                t.Trace("private void tbSearch_TextChanged (" + "object" + sender + ", " + "TextChangedEventArgs" + e + ", " + ")");
                 PushHandleControlEvents();
                 if (!String.IsNullOrEmpty(Librarian_tbSearch.Text) && Librarian_tbSearch.Text.Length > 2)
                 {
@@ -2048,7 +2052,7 @@ namespace INTEGRA_7
 
         private Boolean IsInitTone(byte[] data)
         {
-            ////t.Trace("private Boolean IsInitTone (" + "byte[]" + data + ", " + ")");
+            t.Trace("private Boolean IsInitTone (" + "byte[]" + data + ", " + ")");
             char[] init = "INIT TONE   ".ToCharArray();
             Boolean initTone = true;
             for (byte i = 0; i < 12; i++)
@@ -2064,7 +2068,7 @@ namespace INTEGRA_7
 
         private Boolean IsInitKit(byte[] data)
         {
-            ////t.Trace("private Boolean IsInitKit (" + "byte[]" + data + ", " + ")");
+            t.Trace("private Boolean IsInitKit (" + "byte[]" + data + ", " + ")");
             char[] init = "INIT KIT    ".ToCharArray();
             Boolean initTone = true;
             for (byte i = 0; i < 12; i++)
@@ -2114,7 +2118,7 @@ namespace INTEGRA_7
         {
             if (initDone)// && AutoUpdateChildLists)
             {
-                //t.Trace("private void GetToneFromI7()");
+                t.Trace("private void GetToneFromI7()");
                 // Read MSB, LSB and PC from Studio set at current part:
                 byte[] address = new byte[] { 0x18, 0x00, (byte)(0x20 + commonState.CurrentPart), 0x00 };
                 byte[] length = new byte[] { 0x00, 0x00, 0x00, 0x09 };
@@ -2127,7 +2131,7 @@ namespace INTEGRA_7
         // These 5 functions will change program on channel 16 and query to get the name.
         private void QueryUserPCMSyntTones()
         {
-            ////t.Trace("private void QueryUserPCMSyntTones()");
+            t.Trace("private void QueryUserPCMSyntTones()");
             commonState.Midi.ProgramChange(0x0f, msb, lsb, pc);
             byte[] address = new byte[] { 0x1c, 0x60, 0x00, 0x00 };
             byte[] length = new byte[] { 0x00, 0x00, 0x00, 0x0c };
@@ -2137,7 +2141,7 @@ namespace INTEGRA_7
         }
         private void QueryUserPCMDrumKitTones()
         {
-            ////t.Trace("private void QueryUserPCMDrumKitTones()");
+            t.Trace("private void QueryUserPCMDrumKitTones()");
             commonState.Midi.ProgramChange(0x0f, msb, lsb, pc);
             byte[] address = new byte[] { 0x1c, 0x70, 0x00, 0x00 };
             byte[] length = new byte[] { 0x00, 0x00, 0x00, 0x0c };
@@ -2147,7 +2151,7 @@ namespace INTEGRA_7
         }
         private void QueryPcmDrumKitKeyName(byte Key)
         {
-            ////t.Trace("private void QueryPcmDrumKitKeyName()");
+            t.Trace("private void QueryPcmDrumKitKeyName()");
             byte[] address = new byte[] { 0x1c, 0x70, 0x10, 0x00 };
             address = hex2Midi.AddBytes128(address, new byte[] { 0x00, 0x00, Key, 0x00 });
             address = hex2Midi.AddBytes128(address, new byte[] { 0x00, 0x00, Key, 0x00 });
@@ -2158,7 +2162,7 @@ namespace INTEGRA_7
         }
         private void QueryUserSuperNaturalAcousticTones()
         {
-            ////t.Trace("private void QueryUserSuperNaturalAcousticTones()");
+            t.Trace("private void QueryUserSuperNaturalAcousticTones()");
             commonState.Midi.ProgramChange(0x0f, msb, lsb, pc);
             byte[] address = new byte[] { 0x1c, 0x62, 0x00, 0x00 };
             byte[] length = new byte[] { 0x00, 0x00, 0x00, 0x46 };
@@ -2168,7 +2172,7 @@ namespace INTEGRA_7
         }
         private void QueryUserSuperNaturalSynthTones()
         {
-            ////t.Trace("private void QueryUserSuperNaturalSynthTones()");
+            t.Trace("private void QueryUserSuperNaturalSynthTones()");
             commonState.Midi.ProgramChange(0x0f, msb, lsb, pc);
             byte[] address = new byte[] { 0x1c, 0x61, 0x00, 0x00 };
             byte[] length = new byte[] { 0x00, 0x00, 0x00, 0x40 };
@@ -2178,7 +2182,7 @@ namespace INTEGRA_7
         }
         private void QueryUserSuperNaturalDrumKitTones()
         {
-            ////t.Trace("private void QueryUserSuperNaturalDrumKitTones()");
+            t.Trace("private void QueryUserSuperNaturalDrumKitTones()");
             commonState.Midi.ProgramChange(0x0f, msb, lsb, pc);
             byte[] address = new byte[] { 0x1c, 0x63, 0x00, 0x00 };
             byte[] length = new byte[] { 0x00, 0x00, 0x00, 0x0e };
@@ -2188,7 +2192,7 @@ namespace INTEGRA_7
         }
         private void QuerySnDrumKitKeyName(byte Key)
         {
-            ////t.Trace("private void QuerySnDrumKitKeyName()");
+            t.Trace("private void QuerySnDrumKitKeyName()");
             byte[] address = new byte[] { 0x1c, 0x63, 0x10, 0x00 };
             address = hex2Midi.AddBytes128(address, new byte[] { 0x00, 0x00, Key, 0x00 });
             byte[] length = new byte[] { 0x00, 0x00, 0x00, 0x04 };
@@ -2198,7 +2202,7 @@ namespace INTEGRA_7
         }
         public void QuerySelectedStudioSet()
         {
-            ////t.Trace("private void QuerySelectedStudioSet()");
+            t.Trace("private void QuerySelectedStudioSet()");
             //commonState.midi.ProgramChange(0x0f, msb, lsb, pc);
             byte[] address = new byte[] { 0x01, 0x00, 0x00, 0x00 };
             byte[] length = new byte[] { 0x00, 0x00, 0x00, 0x07 };
@@ -2209,7 +2213,7 @@ namespace INTEGRA_7
 
         private void QuerySelectedTone()
         {
-            ////t.Trace("private void QuerySelectedTone()");
+            t.Trace("private void QuerySelectedTone()");
             //commonState.midi.ProgramChange(0x0f, msb, lsb, pc);
             byte[] address = new byte[] { 0x18, 0x00, (byte)(0x20 + commonState.CurrentPart), 0x00 };
             byte[] length = new byte[] { 0x00, 0x00, 0x00, 0x09 };
@@ -2272,18 +2276,21 @@ namespace INTEGRA_7
             PushHandleControlEvents();
             for (int i = 0; i < commonState.ToneList.Tones.Length; i++)
             {
-                if (!Librarian_ocGroups.Contains(commonState.ToneList.Tones[i][0]))
+                if (!Librarian_ocGroups.Contains(commonState.ToneList.Tones[i][0])
+                    && !String.IsNullOrEmpty(commonState.ToneList.Tones[i][0]))
                 {
                     Librarian_ocGroups.Add(commonState.ToneList.Tones[i][0]);
                 }
             }
+            Librarian_ocGroups.Add("Studio sets");
             Librarian_lvGroups.SelectedItem = "SuperNATURAL Acoustic Tone";
+            //Librarian_lvGroups.SelectedItem = commonState.CurrentTone.Group;
             PopHandleControlEvents();
         }
 
         private void PopulateCategories()
         {
-            ////t.Trace("private void PopulateCategories (" + "String" + group + ", " + ")");
+            t.Trace("private void PopulateCategories (" + "String" + /*group +*/ ", " + ")");
             String lastCategory = "";
             PushHandleControlEvents();
             Librarian_ocCategories.Clear();
@@ -2327,7 +2334,7 @@ namespace INTEGRA_7
 
         private void PopulateToneNames()
         {
-            ////t.Trace("private void PopulateToneNames (" + "String" + category + ", " + ")");
+            t.Trace("private void PopulateToneNames (" + "String" + /*category +*/ ", " + ")");
             if (initDone || !scanning)
             {
                 try
@@ -2480,7 +2487,7 @@ namespace INTEGRA_7
 
         private void PopulateToneData()
         {
-            ////t.Trace("private void PopulateToneData (" + "Int32" + Index + ", " + ")");
+            t.Trace("private void PopulateToneData (" + "Int32" + /*Index +*/ ", " + ")");
             if (commonState.CurrentTone.Index > -1)
             {
                 List<String> tone = commonState.ToneList.Tones[commonState.CurrentTone.Index].ToList();
@@ -2522,7 +2529,7 @@ namespace INTEGRA_7
 
         private void UpdateDrumNames()
         {
-            ////t.Trace("private void UpdateDrumNames()");
+            t.Trace("private void UpdateDrumNames()");
             ClearKeyNames();
             if (commonState.CurrentTone != null && commonState.CurrentTone.Category == "Drum"
                 && commonState.DrumKeyAssignLists.KeyboardNameList(commonState.CurrentTone.Group, commonState.CurrentTone.Name) != null)
@@ -2548,7 +2555,7 @@ namespace INTEGRA_7
 
         private Boolean IsFavorite()
         {
-            ////t.Trace("private Boolean IsFavorite()");
+            t.Trace("private Boolean IsFavorite()");
             if (commonState.FavoritesList != null)
             {
                 foreach (FavoritesFolder folder in commonState.FavoritesList.FavoritesFolders)
@@ -2681,7 +2688,7 @@ namespace INTEGRA_7
 
         private void ClearKeyNames()
         {
-            ////t.Trace("private void ClearKeyNames()");
+            t.Trace("private void ClearKeyNames()");
             for (Int32 key = 0; key < 37; key++)
             {
                 SetKeyText(key, "");
@@ -2690,7 +2697,7 @@ namespace INTEGRA_7
 
         private void SetKeyText(Int32 Key, String Text)
         {
-            ////t.Trace("private void SetKeyText (" + "Int32" + Key + ", " + "String" + Text + ", " + ")");
+            t.Trace("private void SetKeyText (" + "Int32" + Key + ", " + "String" + Text + ", " + ")");
             Int32 tempKeyNumber; // Derived from tone and lowKey, but then transformed to indicate actual key button.
             // keyIndexes to find key buttons. If < 200 use as index in whiteKeys, else subtract 200 and use to index blackKeys
             Int32[] keyIndexes = new Int32[] { 21, 214, 20, 213, 19, 18, 212, 17, 211, 16, 210, 15,
@@ -2709,7 +2716,7 @@ namespace INTEGRA_7
 
         //private void PlayNote(byte note, Int32 length)
         //{
-        //    ////t.Trace("private void PlayNote (" + "byte" + note + ", " + "Int32" + length + ", " + ")");
+        //    t.Trace("private void PlayNote (" + "byte" + note + ", " + "Int32" + length + ", " + ")");
         //    commonState.midi.NoteOn(commonState.CurrentPart, note, 92);
         //    Task.Delay(length).Wait();
         //    commonState.midi.NoteOff(commonState.CurrentPart, note);
@@ -2717,14 +2724,14 @@ namespace INTEGRA_7
 
         //private void SetFavorite()
         //{
-        //    ////t.Trace("private void SetFavorite()");
+        //    t.Trace("private void SetFavorite()");
         //    btnAddFavorite.IsEnabled = true;
         //    btnRemoveFavorite.IsEnabled = true;
         //}
     }
     class Note
     {
-        //HBTrace t = new //HBTrace("class Note");
+        HBTrace t = new HBTrace("class Note");
         public byte NoteNumber { get; set; }
         public byte Velocity { get; set; }
     }

@@ -12,32 +12,32 @@ using System.Xml.Serialization;
 
 namespace INTEGRA_7
 {
-    //public class //HBTrace
-    //{
-    //    Int32 debugLevel = 0; // 0 or greater enables if not given in call
-    //    //StorageFolder localFolder = null;
-    //    //StorageFile sampleFile = null;
+    public class HBTrace
+    {
+        Int32 debugLevel = 0; // 0 or greater enables if not given in call
+        //StorageFolder localFolder = null;
+        //StorageFile sampleFile = null;
 
-    //    public //HBTrace(String s, Int32 DebugLevel = 0)
-    //    {
-    //        //localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-    //        //Debug.WriteLine(s + " " + DateTime.Now.ToLongTimeString());
-    //    }
+        public HBTrace(String s, Int32 DebugLevel = 0)
+        {
+            //localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            //Debug.WriteLine(s + " " + DateTime.Now.ToLongTimeString());
+        }
 
-    //    public void Trace(String s, Int32 DebugLevel = 0, Double ticks = 0)
-    //    {
-    //        if (DebugLevel <= debugLevel)
-    //        {
-    //            //if (sampleFile == null)
-    //            //{
-    //            //    sampleFile = await localFolder.CreateFileAsync("Roland INTEGRA_7.log",
-    //            //           CreationCollisionOption.OpenIfExists);
-    //            //}
-    //            //await FileIO.AppendTextAsync(sampleFile, ticks > 0 ? ticks.ToString() + " " : "" + s + "\r\n");
-    //            Debug.WriteLine(s + " " + DateTime.Now.ToLongTimeString());
-    //        }
-    //    }
-    //}
+        public void Trace(String s, Int32 DebugLevel = 0, Double ticks = 0)
+        {
+            if (DebugLevel <= debugLevel)
+            {
+                //if (sampleFile == null)
+                //{
+                //    sampleFile = await localFolder.CreateFileAsync("Roland INTEGRA_7.log",
+                //           CreationCollisionOption.OpenIfExists);
+                //}
+                //await FileIO.AppendTextAsync(sampleFile, ticks > 0 ? ticks.ToString() + " " : "" + s + "\r\n");
+                Debug.WriteLine(s + " " + DateTime.Now.ToLongTimeString());
+            }
+        }
+    }
 
     public class Player
     {
@@ -302,6 +302,32 @@ namespace INTEGRA_7
             for (byte i = 0; i < 5; i++)
             {
                 ToneNames.Add(new List<String>());
+                int count = 0;
+                string name = "INIT TONE";
+                switch (i)
+                {
+                    case 0:
+                        count = 256;
+                        break;
+                    case 1:
+                        count = 32;
+                        name = "INIT KIT";
+                        break;
+                    case 2:
+                        count = 256;
+                        break;
+                    case 3:
+                        count = 512;
+                        break;
+                    case 4:
+                        count = 64;
+                        name = "INIT KIT";
+                        break;
+                }
+                for (int j = 0; j < count; j++)
+                {
+                    ToneNames[i].Add(name);
+                }
             }
             FavoritesList = null;
             StudioSetNames = null;
@@ -1731,7 +1757,7 @@ namespace INTEGRA_7
 
     class Buddy
     {
-        //HBTrace t = new //HBTrace("class Buddy");
+        HBTrace t = new HBTrace("class Buddy");
         public byte Offset { get; set; }
         public byte ParameterNumber { get; set; }
         public Int16 ValueOffset { get; set; }
@@ -1744,11 +1770,11 @@ namespace INTEGRA_7
         {
             if (TextBox != null)
             {
-                //t.Trace("public Buddy (" + "byte" + Offset + ", " + "Byte" + ParameterNumber + ", " + "Int16" + ValueOffset + ", " + "TextBox" + TextBox.Text + ", " + "Double" + ValueMultiplier + ", " + ")");
+                t.Trace("public Buddy (" + "byte" + Offset + ", " + "Byte" + ParameterNumber + ", " + "Int16" + ValueOffset + ", " + "TextBox" + TextBox.Text + ", " + "Double" + ValueMultiplier + ", " + ")");
             }
             else
             {
-                //t.Trace("public Buddy (" + "byte" + Offset + ", " + "Byte" + ParameterNumber + ", " + "Int16" + ValueOffset + ", " + "TextBox" + TextBox + ", " + "Double" + ValueMultiplier + ", " + ")");
+                t.Trace("public Buddy (" + "byte" + Offset + ", " + "Byte" + ParameterNumber + ", " + "Int16" + ValueOffset + ", " + "TextBox" + TextBox + ", " + "Double" + ValueMultiplier + ", " + ")");
             }
             this.Offset = Offset;
             this.ParameterNumber = ParameterNumber;
@@ -1763,11 +1789,11 @@ namespace INTEGRA_7
         {
             if (CheckBox != null)
             {
-                //t.Trace("public Buddy (" + "byte" + Offset + ", " + "Byte" + ParameterNumber + ", " + "Int16" + ValueOffset + ", " + "CheckBox" + CheckBox.IsChecked.ToString() + ")");
+                t.Trace("public Buddy (" + "byte" + Offset + ", " + "Byte" + ParameterNumber + ", " + "Int16" + ValueOffset + ", " + "CheckBox" + CheckBox.IsChecked.ToString() + ")");
             }
             else
             {
-                //t.Trace("public Buddy (" + "byte" + Offset + ", " + "Byte" + ParameterNumber + ", " + "Int16" + ValueOffset + ", " + "CheckBox" + CheckBox + ")");
+                t.Trace("public Buddy (" + "byte" + Offset + ", " + "Byte" + ParameterNumber + ", " + "Int16" + ValueOffset + ", " + "CheckBox" + CheckBox + ")");
             }
             this.Offset = Offset;
             this.ParameterNumber = ParameterNumber;
@@ -1801,7 +1827,7 @@ namespace INTEGRA_7
 
     class SelectedTone
     {
-        //HBTrace t = new //HBTrace("class SelectedTone");
+        HBTrace t = new HBTrace("class SelectedTone");
         public byte BankMSB { get; set; }
         public byte BankLSB { get; set; }
         public byte Program { get; set; }
@@ -1811,7 +1837,7 @@ namespace INTEGRA_7
 
         public SelectedTone(byte MSB, byte LSB, byte Program)
         {
-            //t.Trace("public SelectedTone (" + "byte" + MSB + ", " + "byte" + LSB + ", " + "byte" + Program + ", " + ")");
+            t.Trace("public SelectedTone (" + "byte" + MSB + ", " + "byte" + LSB + ", " + "byte" + Program + ", " + ")");
             this.BankMSB = MSB;
             this.BankLSB = LSB;
             this.Program = Program;
@@ -2015,12 +2041,12 @@ namespace INTEGRA_7
 
     class PCMWaveNames
     {
-        //HBTrace t = new //HBTrace("class PCMWaveNames");
+        HBTrace t = new HBTrace("class PCMWaveNames");
         public String[] Names { get; set; }
 
         public PCMWaveNames()
         {
-            //t.Trace("public PCMWaveNames()");
+            t.Trace("public PCMWaveNames()");
             Names = new String[] { "Off", "StGrand pA L", "StGrand pA R", "StGrand pB L", "StGrand pB R", "StGrand pC L", "StGrand pC R", "StGrand fA L",
                 "StGrand fA R", "StGrand fB L", "StGrand fB R", "StGrand fC L", "StGrand fC R", "Ac Piano2 pA", "Ac Piano2 pB", "Ac Piano2 pC",
                 "Ac Piano2 fA", "Ac Piano2 fB", "Ac Piano2 fC", "Ac Piano1 A", "Ac Piano1 B", "Ac Piano1 C", "Piano Thump", "Piano Up TH", "Piano Atk",
@@ -2152,7 +2178,7 @@ namespace INTEGRA_7
 
     class SuperNaturalSynthToneWaveNames
     {
-        //HBTrace t = new //HBTrace("class PCMWaveNames");
+        HBTrace t = new HBTrace("class PCMWaveNames");
         public String[] Names { get; set; }
 
         public SuperNaturalSynthToneWaveNames()
@@ -2256,7 +2282,7 @@ namespace INTEGRA_7
     /// </summary>
     class EditToneParameterPageItems
     {
-        //HBTrace t = new //HBTrace("class EditToneParameterPageItems");
+        HBTrace t = new HBTrace("class EditToneParameterPageItems");
         public String[][] Items { get; set; }
 
         public EditToneParameterPageItems()
@@ -2288,7 +2314,7 @@ namespace INTEGRA_7
 
         public String[] ParameterPageItems(ProgramType ProgramType)
         {
-            //t.Trace("public ParameterPageItems (" + "ProgramType." + ProgramType.ToString() + ", " + ")");
+            t.Trace("public ParameterPageItems (" + "ProgramType." + ProgramType.ToString() + ", " + ")");
             switch (ProgramType)
             {
                 case ProgramType.PCM_SYNTH_TONE:
@@ -2401,7 +2427,7 @@ namespace INTEGRA_7
     public class ParameterSets
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class ParameterSets");
+        HBTrace t = new HBTrace("class ParameterSets");
         /// <summary>
         /// These are the specifics for SET_OF_NAMES type numbered parameters for PCM Synth Tone MFX
         /// </summary>
@@ -2413,7 +2439,7 @@ namespace INTEGRA_7
 
         public String[] GetNumberedParameter(PARAMETER_TYPE ParameterType)
         {
-            //t.Trace("public String[] GetNumberedParameter (" + "PARAMETER_TYPE." + ParameterType + ", " + ")");
+            t.Trace("public String[] GetNumberedParameter (" + "PARAMETER_TYPE." + ParameterType + ", " + ")");
             String[] result = new String[] { };
             switch (ParameterType)
             {
@@ -2597,7 +2623,7 @@ namespace INTEGRA_7
     public class NumberedParameters
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class NumberedParameters");
+        HBTrace t = new HBTrace("class NumberedParameters");
         [DataMember]
         public String Name { get; set; }
         [DataMember]
@@ -2607,7 +2633,7 @@ namespace INTEGRA_7
 
         public NumberedParameters(byte Offset = 0)
         {
-            //t.Trace("public NumberedParameters (" + "byte " + Offset + ", " + ")");
+            t.Trace("public NumberedParameters (" + "byte " + Offset + ", " + ")");
             Name = "";
             this.Offset = Offset;
             Parameters = new NumberedParameter[0];
@@ -2621,7 +2647,7 @@ namespace INTEGRA_7
     public class NumberedParameter
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class NumberedParameter");
+        HBTrace t = new HBTrace("class NumberedParameter");
         [DataMember]
         public String Name { get; set; }
         [DataMember]
@@ -2633,7 +2659,7 @@ namespace INTEGRA_7
 
         public NumberedParameter()
         {
-            //t.Trace("public NumberedParameter()");
+            t.Trace("public NumberedParameter()");
             Name = "";
             Type = PARAMETER_TYPE.SLIDER_0_TO_127;
             ControlName = "";
@@ -2651,7 +2677,7 @@ namespace INTEGRA_7
     public class NumberedParameterValue
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class NumberedParameterValue");
+        HBTrace t = new HBTrace("class NumberedParameterValue");
         [DataMember]
         public String[] Text { get; set; } // These are texts for type SET_OF_NAMES
         [DataMember]
@@ -2661,7 +2687,7 @@ namespace INTEGRA_7
 
         public NumberedParameterValue()
         {
-            //t.Trace("public NumberedParameterValue()");
+            t.Trace("public NumberedParameterValue()");
             Text = null;
             Value = 0xff;
             On = false;
@@ -2670,7 +2696,7 @@ namespace INTEGRA_7
 
     class NumberedParametersContent
     {
-        //HBTrace t = new //HBTrace("class NumberedParametersContent");
+        HBTrace t = new HBTrace("class NumberedParametersContent");
         public String[] TypeNames;
         public String[][] ParameterNames;
         public PARAMETER_TYPE[][] ParameterTypes;
@@ -2682,7 +2708,7 @@ namespace INTEGRA_7
 
         public NumberedParametersContent()
         {
-            //t.Trace("public NumberedParametersContent()");
+            t.Trace("public NumberedParametersContent()");
             // All type names (same for all 5 tone types [PCM tone, PCM drum kit, SuperNatural tone etc] of MFX)
             TypeNames = new String[] {
                 "00:Thru",
@@ -4666,7 +4692,7 @@ namespace INTEGRA_7
     public class MFXNumberedParameters
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class MFXNumberedParameters");
+        HBTrace t = new HBTrace("class MFXNumberedParameters");
         [DataMember]
         public UInt16 Offset { get; set; }
         [DataMember]
@@ -4680,7 +4706,7 @@ namespace INTEGRA_7
 
         public MFXNumberedParameters(ReceivedData Data, UInt16 Offset)
         {
-            //t.Trace("public MFXNumberedParameters (" + "ReceivedData" + Data + ", " + "UInt16" + Offset + ", " + ")");
+            t.Trace("public MFXNumberedParameters (" + "ReceivedData" + Data + ", " + "UInt16" + Offset + ", " + ")");
             this.Offset = Offset;
             sets = new ParameterSets();
             Parameters = new NumberedParameters(0x11);
@@ -6108,7 +6134,7 @@ namespace INTEGRA_7
     public class PCMSynthTone
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class PCMSynthTone");
+        HBTrace t = new HBTrace("class PCMSynthTone");
         [DataMember]
         public PCMSynthToneCommon pCMSynthToneCommon { get; set; }
         //public PCMSynthToneCommonMFX PCMSynthToneCommonMFX { get; set; }
@@ -6121,7 +6147,7 @@ namespace INTEGRA_7
 
         public PCMSynthTone(ReceivedData Data)
         {
-            //t.Trace("public PCMSynthTone (" + "ReceivedData" + Data + ", " + ")");
+            t.Trace("public PCMSynthTone (" + "ReceivedData" + Data + ", " + ")");
             pCMSynthTonePartial = new PCMSynthTonePartial[4];
             pCMSynthToneCommon = new PCMSynthToneCommon(Data);
         }
@@ -6135,7 +6161,7 @@ namespace INTEGRA_7
     public class PCMDrumKit
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class PCMDrumKit");
+        HBTrace t = new HBTrace("class PCMDrumKit");
         [DataMember]
         public PCMDrumKitCommon pCMDrumKitCommon { get; set; }
         //public PCMDrumKitCommonMFX PCMDrumKitCommonMFX { get; set; }
@@ -6148,7 +6174,7 @@ namespace INTEGRA_7
 
         public PCMDrumKit(ReceivedData Data)
         {
-            //t.Trace("public PCMDrumKit (" + "ReceivedData" + Data + ", " + ")");
+            t.Trace("public PCMDrumKit (" + "ReceivedData" + Data + ", " + ")");
             pCMDrumKitPartial = new PCMDrumKitPartial[88];
             pCMDrumKitCommon = new PCMDrumKitCommon(Data);
         }
@@ -6158,14 +6184,14 @@ namespace INTEGRA_7
     public class SuperNATURALAcousticTone
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class SuperNATURALAcousticTone");
+        HBTrace t = new HBTrace("class SuperNATURALAcousticTone");
         [DataMember]
         public SuperNATURALAcousticToneCommon superNATURALAcousticToneCommon { get; set; }
         //public SuperNATURALAcousticToneMFX SuperNATURALAcousticToneMFX { get; set; }
 
         public SuperNATURALAcousticTone(ReceivedData Data)
         {
-            //t.Trace("public SuperNATURALAcousticTone (" + "ReceivedData" + Data + ", " + ")");
+            t.Trace("public SuperNATURALAcousticTone (" + "ReceivedData" + Data + ", " + ")");
             superNATURALAcousticToneCommon = new SuperNATURALAcousticToneCommon(Data);
         }
     }
@@ -6174,7 +6200,7 @@ namespace INTEGRA_7
     public class SuperNATURALSynthTone
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class SuperNATURALSynthTone");
+        HBTrace t = new HBTrace("class SuperNATURALSynthTone");
         [DataMember]
         public SuperNATURALSynthToneCommon superNATURALSynthToneCommon { get; set; }
         //public SuperNATURALSynthToneCommonMFX SuperNATURALSynthToneCommonMFX { get; set; }
@@ -6185,7 +6211,7 @@ namespace INTEGRA_7
 
         public SuperNATURALSynthTone(ReceivedData Data)
         {
-            //t.Trace("public SuperNATURALSynthTone (" + "ReceivedData" + Data + ", " + ")");
+            t.Trace("public SuperNATURALSynthTone (" + "ReceivedData" + Data + ", " + ")");
             superNATURALSynthToneCommon = new SuperNATURALSynthToneCommon(Data);
             superNATURALSynthTonePartial = new SuperNATURALSynthTonePartial[3];
         }
@@ -6579,7 +6605,7 @@ namespace INTEGRA_7
     public class SuperNATURALDrumKit
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class SuperNATURALDrumKit");
+        HBTrace t = new HBTrace("class SuperNATURALDrumKit");
         [DataMember]
         public SuperNATURALDrumKitCommon superNATURALDrumKitCommon { get; set; }
         [DataMember]
@@ -6589,7 +6615,7 @@ namespace INTEGRA_7
 
         public SuperNATURALDrumKit(ReceivedData Data)
         {
-            //t.Trace("public SuperNATURALDrumKit (" + "ReceivedData" + Data + ", " + ")");
+            t.Trace("public SuperNATURALDrumKit (" + "ReceivedData" + Data + ", " + ")");
             superNATURALDrumKitCommon = new SuperNATURALDrumKitCommon(Data);
             superNATURALDrumKitKey = new SuperNATURALDrumKitKey[62];
         }
@@ -6635,7 +6661,7 @@ namespace INTEGRA_7
     public class CommonMFX
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class CommonMFX");
+        HBTrace t = new HBTrace("class CommonMFX");
         [DataMember]
         public byte MFXType { get; set; }
         [DataMember]
@@ -6751,7 +6777,7 @@ private ParameterSets sets;
 
         public CommonMFX(ReceivedData Data)
         {
-            //t.Trace("public CommonMFX (" + "ReceivedData" + Data + ", " + ")");
+            t.Trace("public CommonMFX (" + "ReceivedData" + Data + ", " + ")");
             sets = new ParameterSets();
             MFXControlSource = new byte[4];
             MFXControlSens = new byte[4];
@@ -6882,7 +6908,7 @@ private ParameterSets sets;
     public class PCMSynthToneCommon
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class PCMSynthToneCommon");
+        HBTrace t = new HBTrace("class PCMSynthToneCommon");
         [DataMember]
         public String Name { get; set; }
         [DataMember]
@@ -6942,7 +6968,7 @@ private ParameterSets sets;
 
         public PCMSynthToneCommon(ReceivedData Data)
         {
-            //t.Trace("public PCMSynthToneCommon (" + "ReceivedData" + Data + ", " + ")");
+            t.Trace("public PCMSynthToneCommon (" + "ReceivedData" + Data + ", " + ")");
             MatrixControlSource = new byte[4];
             MatrixControlDestination = new byte[4][];
             MatrixControlSens = new byte[4][];
@@ -6997,7 +7023,7 @@ private ParameterSets sets;
     public class PCMSynthTonePMT // Partial Mapping Table
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class PCMSynthTonePMT // Partial Mapping Table");
+        HBTrace t = new HBTrace("class PCMSynthTonePMT // Partial Mapping Table");
         [DataMember]
         public byte StructureType1_2 { get; set; }
         [DataMember]
@@ -7029,7 +7055,7 @@ private ParameterSets sets;
 
         public PCMSynthTonePMT(ReceivedData Data)
         {
-            //t.Trace("public PCMSynthTonePMT (" + "ReceivedData" + Data + ", " + ")");
+            t.Trace("public PCMSynthTonePMT (" + "ReceivedData" + Data + ", " + ")");
             PMTPartialSwitch = new Boolean[4];
             PMTKeyboardRangeLower = new byte[4];
             PMTKeyboardRangeUpper = new byte[4];
@@ -7064,7 +7090,7 @@ private ParameterSets sets;
     public class LFO
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class LFO");
+        HBTrace t = new HBTrace("class LFO");
         [DataMember]
         public byte LFOWaveform { get; set; }
         [DataMember]
@@ -7094,8 +7120,8 @@ private ParameterSets sets;
 
         public LFO(ReceivedData Data, byte msb, byte lsb)
         {
-            //t.Trace("*** " + DateTime.Now.TimeOfDay.Milliseconds.ToString());
-            //t.Trace("public LFO (" + "ReceivedData" + Data + ", " + "byte" + msb + ", " + "byte" + lsb + ", " + ")");
+            t.Trace("*** " + DateTime.Now.TimeOfDay.Milliseconds.ToString());
+            t.Trace("public LFO (" + "ReceivedData" + Data + ", " + "byte" + msb + ", " + "byte" + lsb + ", " + ")");
             LFOWaveform = Data.GetByte(256 * msb + lsb + 0x00);
             LFORate = (byte)(16 * Data.GetByte(256 * msb + lsb + 0x01) + Data.GetByte(256 * msb + lsb + 0x02));
             LFOOffset = Data.GetByte(256 * msb + lsb + 0x03);
@@ -7116,7 +7142,7 @@ private ParameterSets sets;
     public class TVA
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class TVA");
+        HBTrace t = new HBTrace("class TVA");
         [DataMember]
         public byte TVALevelVelocityCurve { get; set; }
         [DataMember]
@@ -7134,8 +7160,8 @@ private ParameterSets sets;
 
         public TVA(ReceivedData Data, byte msb, byte lsb, Boolean keyFollow)
         {
-            //t.Trace("*** " + DateTime.Now.TimeOfDay.Milliseconds.ToString());
-            //t.Trace("public TVA (" + "ReceivedData" + Data + ", " + "byte" + msb + ", " + "byte" + lsb + ", " + ")");
+            t.Trace("*** " + DateTime.Now.TimeOfDay.Milliseconds.ToString());
+            t.Trace("public TVA (" + "ReceivedData" + Data + ", " + "byte" + msb + ", " + "byte" + lsb + ", " + ")");
             TVAEnvTime = new byte[4];
             TVAEnvLevel = new byte[3];
 
@@ -7164,7 +7190,7 @@ private ParameterSets sets;
     public class TVF
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class TVF");
+        HBTrace t = new HBTrace("class TVF");
         [DataMember]
         public byte TVFFilterType { get; set; }
         [DataMember]
@@ -7198,8 +7224,8 @@ private ParameterSets sets;
 
         public TVF(ReceivedData Data, byte msb, byte lsb, Boolean keyFollow)
         {
-            //t.Trace("*** " + DateTime.Now.TimeOfDay.Milliseconds.ToString());
-            //t.Trace("public TVF (" + "ReceivedData" + Data + ", " + "byte" + msb + ", " + "byte" + lsb + ", " + ")");
+            t.Trace("*** " + DateTime.Now.TimeOfDay.Milliseconds.ToString());
+            t.Trace("public TVF (" + "ReceivedData" + Data + ", " + "byte" + msb + ", " + "byte" + lsb + ", " + ")");
             TVFEnvTime = new byte[4];
             TVFEnvLevel = new byte[5];
 
@@ -7240,7 +7266,7 @@ private ParameterSets sets;
     public class WMT
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class WMT");
+        HBTrace t = new HBTrace("class WMT");
         [DataMember]
         public Boolean WMTWaveSwitch { get; set; }
         [DataMember]
@@ -7284,7 +7310,7 @@ private ParameterSets sets;
 
         public WMT(ReceivedData Data, byte msb, byte lsb, byte index)
         {
-            //t.Trace("public WMT (" + "ReceivedData" + Data + ", " + "byte" + msb + ", " + "byte" + lsb + ", " + "byte" + index + ", " + ")");
+            t.Trace("public WMT (" + "ReceivedData" + Data + ", " + "byte" + msb + ", " + "byte" + lsb + ", " + "byte" + index + ", " + ")");
             UInt16 offset = (UInt16)(msb * 16 + lsb + 29 * index);
             WMTWaveSwitch = Data.GetByte(offset + 0x00) > 0;
             WMTWaveGroupType = Data.GetByte(offset + 0x01);
@@ -7313,7 +7339,7 @@ private ParameterSets sets;
     public class PitchEnv
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class PitchEnv");
+        HBTrace t = new HBTrace("class PitchEnv");
         [DataMember]
         public byte PitchEnvDepth { get; set; }
         [DataMember]
@@ -7331,7 +7357,7 @@ private ParameterSets sets;
 
         public PitchEnv(ReceivedData Data, byte msb, byte lsb, Boolean keyFollow)
         {
-            //t.Trace("public PitchEnv (" + "ReceivedData" + Data + ", " + "byte" + msb + ", " + "byte" + lsb + ", " + ")");
+            t.Trace("public PitchEnv (" + "ReceivedData" + Data + ", " + "byte" + msb + ", " + "byte" + lsb + ", " + ")");
             PitchEnvTime = new byte[4];
             PitchEnvLevel = new byte[5];
 
@@ -7360,7 +7386,7 @@ private ParameterSets sets;
     public class PCMSynthTonePartial
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class PCMSynthTonePartial");
+        HBTrace t = new HBTrace("class PCMSynthTonePartial");
         [DataMember]
         public TVA TVA { get; set; }
         [DataMember]
@@ -7442,7 +7468,7 @@ private ParameterSets sets;
 
         public PCMSynthTonePartial(ReceivedData Data)
         {
-            //t.Trace("public PCMSynthTonePartial (" + "ReceivedData" + Data + ", " + ")");
+            t.Trace("public PCMSynthTonePartial (" + "ReceivedData" + Data + ", " + ")");
 
             TVA = new TVA(Data, 0x00, 0x61, true);
             TVF = new TVF(Data, 0x00, 0x48, true);
@@ -7503,7 +7529,7 @@ private ParameterSets sets;
     public class PCMSynthToneCommon2
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class PCMSynthToneCommon2");
+        HBTrace t = new HBTrace("class PCMSynthToneCommon2");
         [DataMember]
         public byte ToneCategory { get; set; }
         [DataMember]
@@ -7517,7 +7543,7 @@ private ParameterSets sets;
 
         public PCMSynthToneCommon2(ReceivedData Data)
         {
-            //t.Trace("public PCMSynthToneCommon2 (" + "ReceivedData" + Data + ", " + ")");
+            t.Trace("public PCMSynthToneCommon2 (" + "ReceivedData" + Data + ", " + ")");
             ToneCategory = Data.GetByte(0x10);
             MissingInDocs = (byte)(16 * Data.GetByte(0x11) + Data.GetByte(0x12));
             PhraseOctaveShift = Data.GetByte(0x13);
@@ -7530,7 +7556,7 @@ private ParameterSets sets;
     public class PCMDrumKitCommon
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class PCMDrumKitCommon");
+        HBTrace t = new HBTrace("class PCMDrumKitCommon");
         [DataMember]
         public String Name { get; set; }
         [DataMember]
@@ -7538,7 +7564,7 @@ private ParameterSets sets;
 
         public PCMDrumKitCommon(ReceivedData Data)
         {
-            //t.Trace("public PCMDrumKitCommon (" + "ReceivedData" + Data + ", " + ")");
+            t.Trace("public PCMDrumKitCommon (" + "ReceivedData" + Data + ", " + ")");
             Name = "";
             for (Int32 i = 0x00; i < 0x0c; i++)
             {
@@ -7552,7 +7578,7 @@ private ParameterSets sets;
     public class CompEq
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class CompEq");
+        HBTrace t = new HBTrace("class CompEq");
         [DataMember]
         public Boolean CompSwitch { get; set; }
         [DataMember]
@@ -7584,7 +7610,7 @@ private ParameterSets sets;
 
         public void SetContent(byte i, ReceivedData Data)
         {
-            //t.Trace("public void SetContent (" + "byte" + i + ", " + "ReceivedData" + Data + ", " + ")");
+            t.Trace("public void SetContent (" + "byte" + i + ", " + "ReceivedData" + Data + ", " + ")");
             byte address = (byte)(i * 0x0e);
             CompSwitch = Data.GetByte(address + 0) > 0;
             CompAttackTime = Data.GetByte(address + 1);
@@ -7607,13 +7633,13 @@ private ParameterSets sets;
     public class PCMDrumKitCommonCompEQ
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class PCMDrumKitCommonCompEQ");
+        HBTrace t = new HBTrace("class PCMDrumKitCommonCompEQ");
         [DataMember]
         public CompEq[] CompEq { get; set; } // [6]
 
         public PCMDrumKitCommonCompEQ(ReceivedData Data)
         {
-            //t.Trace("public PCMDrumKitCommonCompEQ (" + "ReceivedData" + Data + ", " + ")");
+            t.Trace("public PCMDrumKitCommonCompEQ (" + "ReceivedData" + Data + ", " + ")");
             CompEq = new CompEq[6];
             for (byte i = 0; i < 6; i++)
             {
@@ -7627,7 +7653,7 @@ private ParameterSets sets;
     public class PCMDrumKitPartial
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class PCMDrumKitPartial");
+        HBTrace t = new HBTrace("class PCMDrumKitPartial");
         [DataMember]
         public TVF TVF { get; set; }
         [DataMember]
@@ -7681,7 +7707,7 @@ private ParameterSets sets;
 
         public PCMDrumKitPartial(ReceivedData Data)
         {
-            //t.Trace("public PCMDrumKitPartial (" + "ReceivedData" + Data + ", " + ")");
+            t.Trace("public PCMDrumKitPartial (" + "ReceivedData" + Data + ", " + ")");
             TVF = new TVF(Data, 0x01, 0x22, false);
             TVA = new TVA(Data, 0x01, 0x36, false);
             WMT = new WMT[4];
@@ -7723,7 +7749,7 @@ private ParameterSets sets;
     public class PCMDrumKitCommon2
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class PCMDrumKitCommon2");
+        HBTrace t = new HBTrace("class PCMDrumKitCommon2");
         [DataMember]
         public byte PhraseNumber { get; set; }
         [DataMember]
@@ -7731,7 +7757,7 @@ private ParameterSets sets;
 
         public PCMDrumKitCommon2(ReceivedData Data)
         {
-            //t.Trace("public PCMDrumKitCommon2 (" + "ReceivedData" + Data + ", " + ")");
+            t.Trace("public PCMDrumKitCommon2 (" + "ReceivedData" + Data + ", " + ")");
             PhraseNumber = Data.Get2Byte(16);
             TFXSwitch = Data.GetByte(18);
         }
@@ -7741,7 +7767,7 @@ private ParameterSets sets;
     public class SuperNATURALSynthToneCommon
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class SuperNATURALSynthToneCommon");
+        HBTrace t = new HBTrace("class SuperNATURALSynthToneCommon");
         [DataMember]
         public String Name { get; set; }
         [DataMember]
@@ -7795,7 +7821,7 @@ private ParameterSets sets;
 
         public SuperNATURALSynthToneCommon(ReceivedData Data)
         {
-            //t.Trace("public SuperNATURALSynthToneCommon (" + "ReceivedData" + Data + ", " + ")");
+            t.Trace("public SuperNATURALSynthToneCommon (" + "ReceivedData" + Data + ", " + ")");
             Name = "";
             for (byte i = 0; i < 0x0c; i++)
             {
@@ -7832,7 +7858,7 @@ private ParameterSets sets;
     public class SuperNATURALSynthTonePartial
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class SuperNATURALSynthTonePartial");
+        HBTrace t = new HBTrace("class SuperNATURALSynthTonePartial");
         [DataMember]
         public byte OSCWave { get; set; }
         [DataMember]
@@ -7944,7 +7970,7 @@ private ParameterSets sets;
 
         public SuperNATURALSynthTonePartial(ReceivedData Data)
         {
-            //t.Trace("public SuperNATURALSynthTonePartial (" + "ReceivedData" + Data + ", " + ")");
+            t.Trace("public SuperNATURALSynthTonePartial (" + "ReceivedData" + Data + ", " + ")");
             OSCWave = Data.GetByte(0x00);
             OSCWaveVariation = Data.GetByte(0x01);
             OSCPitch = Data.GetByte(0x03);
@@ -8033,7 +8059,7 @@ private ParameterSets sets;
     public class SuperNATURALAcousticToneCommon
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class SuperNATURALAcousticToneCommon");
+        HBTrace t = new HBTrace("class SuperNATURALAcousticToneCommon");
         [DataMember]
         public String Name { get; set; }
         [DataMember]
@@ -8137,7 +8163,7 @@ private ParameterSets sets;
 
         public SuperNATURALAcousticToneCommon(ReceivedData Data)
         {
-            //t.Trace("public SuperNATURALAcousticToneCommon (" + "ReceivedData" + Data + ", " + ")");
+            t.Trace("public SuperNATURALAcousticToneCommon (" + "ReceivedData" + Data + ", " + ")");
             Name = "";
             for (byte i = 0; i < 0x0c; i++)
             {
@@ -8199,7 +8225,7 @@ private ParameterSets sets;
     public class SuperNATURALDrumKitCommon
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class SuperNATURALDrumKitCommon");
+        HBTrace t = new HBTrace("class SuperNATURALDrumKitCommon");
         [DataMember]
         public String Name { get; set; }
         [DataMember]
@@ -8213,7 +8239,7 @@ private ParameterSets sets;
 
         public SuperNATURALDrumKitCommon(ReceivedData Data)
         {
-            //t.Trace("public SuperNATURALDrumKitCommon (" + "ReceivedData" + Data + ", " + ")");
+            t.Trace("public SuperNATURALDrumKitCommon (" + "ReceivedData" + Data + ", " + ")");
             Name = "";
             for (byte i = 0; i < 0x0c; i++)
             {
@@ -8228,7 +8254,7 @@ private ParameterSets sets;
 
     //class SuperNATURALDrumKitMFX
     //{
-    //    //HBTrace t = new //HBTrace("class SuperNATURALDrumKitMFX");
+    //    HBTrace t = new HBTrace("class SuperNATURALDrumKitMFX");
     //    public byte MFXType { get; set; }
     //    public byte MFXChorusSendLevel { get; set; }
     //    public byte MFXReverbSendLevel { get; set; }
@@ -8240,7 +8266,7 @@ private ParameterSets sets;
 
     //    public SuperNATURALDrumKitMFX(ReceivedData Data)
     //    {
-    //        //t.Trace("public SuperNATURALDrumKitMFX (" + "ReceivedData" + Data + ", " + ")");
+    //        t.Trace("public SuperNATURALDrumKitMFX (" + "ReceivedData" + Data + ", " + ")");
     //        MFXControlSource = new byte[4];
     //        MFXControlSens = new byte[4];
     //        MFXControlAssign = new byte[4];
@@ -8262,13 +8288,13 @@ private ParameterSets sets;
     public class SuperNATURALDrumKitCommonCompEQ
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class SuperNATURALDrumKitCommonCompEQ");
+        HBTrace t = new HBTrace("class SuperNATURALDrumKitCommonCompEQ");
         [DataMember]
         public CompEq[] CompEQ; // [6]
 
         public SuperNATURALDrumKitCommonCompEQ(ReceivedData Data)
         {
-            //t.Trace("public SuperNATURALDrumKitCommonCompEQ (" + "ReceivedData" + Data + ", " + ")");
+            t.Trace("public SuperNATURALDrumKitCommonCompEQ (" + "ReceivedData" + Data + ", " + ")");
             CompEQ = new CompEq[6];
             for (byte i = 0; i < 6; i++)
             {
@@ -8282,7 +8308,7 @@ private ParameterSets sets;
     public class SuperNATURALDrumKitKey
     {
         [IgnoreDataMember]
-        //HBTrace t = new //HBTrace("class SuperNATURALDrumKitKey");
+        HBTrace t = new HBTrace("class SuperNATURALDrumKitKey");
         [DataMember]
         public byte BankNumber { get; set; } // This is 0 for Internal and 1 for ExSN6. Read more in MakeDynamicControls.cs AddSupernaturalDrumKitDruminstrumentControls()
         [DataMember]
@@ -8314,7 +8340,7 @@ private ParameterSets sets;
 
         public SuperNATURALDrumKitKey(ReceivedData Data)
         {
-            //t.Trace("public SuperNATURALDrumKitNote (" + "ReceivedData" + Data + ", " + ")");
+            t.Trace("public SuperNATURALDrumKitNote (" + "ReceivedData" + Data + ", " + ")");
             //InstNumber = new byte[2];
             InstNumber = Data.Get3Of4Byte(0);
             if (InstNumber > 168)
@@ -8396,7 +8422,7 @@ private ParameterSets sets;
                 case _colorSettings.DARK:
                     ControlBorder = new Color(1, 1, 1, 1);
                     FrameBorder = new Color(0.2, 0.2, 0.2, 1);
-                    Background = new Color(0.15, 0.15, 0.15, 1);
+                    Background = new Color(0.237, 0.2115, 0.2115, 1);
                     Text = new Color(0.33, 0.55, 0.33, 1);
                     ListViewTextColor.SetValue(TextCell.TextColorProperty, new Color(0.5, 1, 1, 1));
                     IsFavorite = Color.DarkGreen;
@@ -8441,7 +8467,7 @@ private ParameterSets sets;
     /// </summary>
     class GridRow : Grid
     {
-        //HBTrace t = new //HBTrace("class GridRow");
+        HBTrace t = new HBTrace("class GridRow");
         //public Grid Row { get; set; }
         public Grid[] Columns { get; set; }
 
@@ -8513,7 +8539,7 @@ private ParameterSets sets;
 
         public GridRow(byte row, View[] controls = null, byte[] columnWidths = null, Boolean KeepAlignment = false, Boolean AddMargins = false, Int32 rowspan = 1)
         {
-            //t.Trace("public GridRow ()");
+            t.Trace("public GridRow ()");
             try
             {
                 //Row = new Grid();
@@ -8566,11 +8592,11 @@ private ParameterSets sets;
                         //SetAttributes(controls[column], row, column);
                     }
                 }
-                //t.Trace("Exit public GridRow ()");
+                t.Trace("Exit public GridRow ()");
             }
-            catch 
+            catch (Exception e)
             {
-                //t.Trace("Catch in public GridRow: " + e.Message);
+                t.Trace("Catch in public GridRow: " + e.Message);
             }
         }
 
@@ -8852,12 +8878,12 @@ private ParameterSets sets;
 
     class NumberedParameterValues
     {
-        //HBTrace t = new //HBTrace("class NumberedParameterValues");
+        HBTrace t = new HBTrace("class NumberedParameterValues");
         public UInt16[][] Parameters { get; set; }
 
         public NumberedParameterValues()
         {
-            //t.Trace("public NumberedParameterValues()");
+            t.Trace("public NumberedParameterValues()");
             Parameters = new UInt16[68][];
             for (byte i = 0; i < 68; i++)
             {
@@ -11182,19 +11208,19 @@ private ParameterSets sets;
     }
     public class ReceivedData
     {
-        //HBTrace t = new //HBTrace("class ReceivedData");
+        HBTrace t = new HBTrace("class ReceivedData");
         public byte[] RawData { get; set; }
 
         public ReceivedData(byte[] RawData)
         {
-            ////t.Trace("public ReceivedData (" + "byte[]" + RawData + ", " + ")");
+            t.Trace("public ReceivedData (" + "byte[]" + RawData + ", " + ")");
             this.RawData = RawData;
         }
 
         // Use when you have 2 bytes for where class object resides in parent class, and you have an offset into the current class:
         public byte GetByte(byte msb, byte lsb, byte offset)
         {
-            ////t.Trace("public byte GetByte (" + "byte" + msb + ", " + "byte" + lsb + ", " + "byte" + offset + ", " + ")");
+            t.Trace("public byte GetByte (" + "byte" + msb + ", " + "byte" + lsb + ", " + "byte" + offset + ", " + ")");
             UInt16 Index = (UInt16)(128 * msb + lsb + offset);
             if (Index < RawData.Length - 11)
             {
@@ -11208,7 +11234,7 @@ private ParameterSets sets;
 
         public byte GetByte(Int32 Index)
         {
-            ////t.Trace("public byte GetByte (" + "Int32" + Index + ", " + ")");
+            t.Trace("public byte GetByte (" + "Int32" + Index + ", " + ")");
             // NOTE!
             // Addressing does NOT use msb. Index larger than 0x7f will start on new page, thus 0x00, 0x7f + 1 = 0x01, 0x00
             // Msb is never larger than 0x01, so math can be simplified.
@@ -11231,7 +11257,7 @@ private ParameterSets sets;
         // Those addresses are marked with a # in the MIDI implementation chart.
         public byte Get2Byte(Int32 Index)
         {
-            ////t.Trace("public byte Get2Byte (" + "Int32" + Index + ", " + ")");
+            t.Trace("public byte Get2Byte (" + "Int32" + Index + ", " + ")");
             if (Index < RawData.Length - 12 && Index > -1)
             {
                 return (byte)(16 * RawData[Index + 11] + RawData[Index + 12]);
@@ -11246,7 +11272,7 @@ private ParameterSets sets;
         // but the functions gets bytes 3-4, 2-4 and 1-4 respectively.
         public byte Get2Of4Byte(Int32 Index)
         {
-            ////t.Trace("public byte Get2Of4Byte (" + "Int32" + Index + ", " + ")");
+            t.Trace("public byte Get2Of4Byte (" + "Int32" + Index + ", " + ")");
             if (Index < RawData.Length - 14 && Index > -1)
             {
                 return (byte)(16 * RawData[Index + 13] + RawData[Index + 14]);
@@ -11259,7 +11285,7 @@ private ParameterSets sets;
 
         public UInt16 Get3Of4Byte(Int32 Index)
         {
-            ////t.Trace("public byte Get3Of4Byte (" + "Int32" + Index + ", " + ")");
+            t.Trace("public byte Get3Of4Byte (" + "Int32" + Index + ", " + ")");
             if (Index < RawData.Length - 14 && Index > -1)
             {
                 return (UInt16)(16 * 16 * RawData[Index + 12] + 16 * RawData[Index + 13] + RawData[Index + 14]);
@@ -11272,7 +11298,7 @@ private ParameterSets sets;
 
         public UInt16 Get4Byte(Int32 Index)
         {
-            ////t.Trace("public UInt16 Get4Byte (" + "Int32" + Index + ", " + ")");
+            t.Trace("public UInt16 Get4Byte (" + "Int32" + Index + ", " + ")");
             if (Index < RawData.Length - 14 && Index > -1)
             {
                 return (UInt16)(16 * 16 * 16 * RawData[Index + 11] + 16 * 16 * RawData[Index + 12] + 16 * RawData[Index + 13] + RawData[Index + 14]);

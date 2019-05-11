@@ -24,7 +24,7 @@ namespace INTEGRA_7
 
         private void UpdateParameterPagesSelector()
         {
-            //t.Trace("private void UpdateParameterPagesSelector()");
+            t.Trace("private void UpdateParameterPagesSelector()");
 
             EditToneParameterPageItems parameters = new EditToneParameterPageItems();
             cbEditTone_ParameterPages.Items.Clear();
@@ -38,12 +38,12 @@ namespace INTEGRA_7
             item = new ComboBoxItem();
             item.Content = "Save/Delete";
             cbEditTone_ParameterPages.Items.Add(item);
-            item = new ComboBoxItem();
-            item.Content = "Save file";
-            cbEditTone_ParameterPages.Items.Add(item);
-            item = new ComboBoxItem();
-            item.Content = "Load file";
-            cbEditTone_ParameterPages.Items.Add(item);
+            //->item = new ComboBoxItem();
+            //->item.Content = "Save file";
+            //->cbEditTone_ParameterPages.Items.Add(item);
+            //->item = new ComboBoxItem();
+            //->item.Content = "Load file";
+            //->cbEditTone_ParameterPages.Items.Add(item);
 
             // When selecting another part, that part might have another tone type, thus the items we just
             // read in to the combobox does not correspond to the previous ones, and currentParameterPageIndex is invalid.
@@ -68,7 +68,7 @@ namespace INTEGRA_7
 
         private void Update_PartialSelector()
         {
-            //t.Trace("Update_PartialSelector()");
+            t.Trace("Update_PartialSelector()");
             cbEditTone_PartialSelector.Items.Clear();
             cbEditTone_PartialSelector.Items.Add("Partial 1");
             cbEditTone_PartialSelector.Items.Add("Partial 2");
@@ -89,7 +89,7 @@ namespace INTEGRA_7
 
         private void UpdateInstrumentSelector()
         {
-            //t.Trace("private void UpdateInstrumentSelector()");
+            t.Trace("private void UpdateInstrumentSelector()");
             cbEditTone_InstrumentCategorySelector.Items.Clear();
             switch (currentProgramType)
             {
@@ -188,7 +188,7 @@ namespace INTEGRA_7
         private void MakePCMSynthToneControls(byte SelectedIndex = 0)
         {
             // Bug tracing! Do we need to use SelectedIndex? Because it is written into currentPartial causing havoc!
-            //t.Trace("private void MakePCMSynthToneControls (" + "byte " + SelectedIndex.ToString() + ", " + ")");
+            t.Trace("private void MakePCMSynthToneControls (" + "byte " + SelectedIndex.ToString() + ", " + ")");
             UpdatePCMSynthToneControls(SelectedIndex);
         }
 
@@ -262,7 +262,7 @@ namespace INTEGRA_7
 
         private void MakePCMDrumKitControls(byte SelectedIndex = 0)
         {
-            //t.Trace("private void MakePCMDrumKitControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void MakePCMDrumKitControls (" + "byte" + SelectedIndex + ", " + ")");
             //RemoveControls(ControlsGrid);
             UpdatePCMDrumKitKeySelector();
             cbEditTone_PartialSelector.SelectedIndex = currentPartial;
@@ -355,7 +355,7 @@ namespace INTEGRA_7
 
         private void UpdateSuperNATURALAcousticToneControls(byte SelectedIndex = 0)
         {
-            //t.Trace("private void UpdateSuperNATURALAcousticToneControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void UpdateSuperNATURALAcousticToneControls (" + "byte" + SelectedIndex + ", " + ")");
             RemoveControls(ControlsGrid);
             switch (currentParameterPageIndex)
             {
@@ -385,7 +385,7 @@ namespace INTEGRA_7
 
         private void UpdateSuperNATURALSynthToneControls(byte SelectedIndex = 0)
         {
-            //t.Trace("private void UpdateSuperNATURALSynthToneControls (" + "byte " + SelectedIndex.ToString() + ", " + ")");
+            t.Trace("private void UpdateSuperNATURALSynthToneControls (" + "byte " + SelectedIndex.ToString() + ", " + ")");
             RemoveControls(ControlsGrid);
             switch (currentParameterPageIndex)
             {
@@ -432,8 +432,11 @@ namespace INTEGRA_7
 
         private void UpdateSuperNATURALDrumKitControls(byte SelectedIndex = 0)
         {
-            //t.Trace("private void UpdateSuperNATURALDrumKitControls (" + "byte" + SelectedIndex + ", " + ")");
-            UpdateSuperNaturalDrumKitKeySelector();
+            t.Trace("private void UpdateSuperNATURALDrumKitControls (" + "byte" + SelectedIndex + ", " + ")");
+            if (!initDone)
+            {
+                UpdateSuperNaturalDrumKitKeySelector();
+            }
             RemoveControls(ControlsGrid);
             switch (currentParameterPageIndex)
             {
@@ -475,7 +478,7 @@ namespace INTEGRA_7
 
         private void AddPCMSynthToneCommonControls()
         {
-            //t.Trace("private void AddPCMSynthToneCommonControls()");
+            t.Trace("private void AddPCMSynthToneCommonControls()");
             controlsIndex = 0;
             // Create all controls and put into lines:
             // Phrase number:
@@ -779,7 +782,7 @@ namespace INTEGRA_7
 
         private void AddPCMSynthToneWaveControls(byte Partial)
         {
-            //t.Trace("private void AddPCMSynthToneWaveControls (" + "byte" + Partial + ", " + ")");
+            t.Trace("private void AddPCMSynthToneWaveControls (" + "byte" + Partial + ", " + ")");
             controlsIndex = 0;
             //currentPartial = Partial; // The event handlers are dependent on correct partial reference
 
@@ -988,7 +991,7 @@ namespace INTEGRA_7
 
         private void AddPCMSynthTonePMTControls(byte PMTIndex)
         {
-            //t.Trace("private void AddPCMSynthTonePMTControls (" + "byte" + PMTIndex + ", " + ")");
+            t.Trace("private void AddPCMSynthTonePMTControls (" + "byte" + PMTIndex + ", " + ")");
             controlsIndex = 0;
             //currentPMT = PMTIndex; // The event handlers are dependent on correct partial reference
 
@@ -1246,7 +1249,7 @@ namespace INTEGRA_7
 
         private void AddPCMSynthTonePitchControls(byte Partial)
         {
-            //t.Trace("private void AddPCMSynthTonePitchControls (" + "byte" + Partial + ", " + ")");
+            t.Trace("private void AddPCMSynthTonePitchControls (" + "byte" + Partial + ", " + ")");
             controlsIndex = 0;
 
             // CheckBox for PitchPartial1Switch
@@ -1413,7 +1416,7 @@ namespace INTEGRA_7
 
         private void AddPCMSynthTonePitchEnvControls(byte Partial)
         {
-            //t.Trace("private void AddPCMSynthTonePitchEnvControls (" + "byte" + Partial + ", " + ")");
+            t.Trace("private void AddPCMSynthTonePitchEnvControls (" + "byte" + Partial + ", " + ")");
             controlsIndex = 0;
 
             // CheckBox for PitchPartial1Switch
@@ -1589,7 +1592,7 @@ namespace INTEGRA_7
 
         private void AddPCMSynthToneTVFControls(byte Partial)
         {
-            //t.Trace("private void AddPCMSynthToneTVFControls (" + "byte" + Partial + ", " + ")");
+            t.Trace("private void AddPCMSynthToneTVFControls (" + "byte" + Partial + ", " + ")");
             controlsIndex = 0;
 
             // CheckBox for PitchPartial1Switch
@@ -1750,7 +1753,7 @@ namespace INTEGRA_7
 
         private void AddPCMSynthToneTVFEnvControls(byte Partial)
         {
-            //t.Trace("private void AddPCMSynthToneTVFEnvControls (" + "byte" + Partial + ", " + ")");
+            t.Trace("private void AddPCMSynthToneTVFEnvControls (" + "byte" + Partial + ", " + ")");
             controlsIndex = 0;
 
             // CheckBox for PitchPartial1Switch
@@ -1939,7 +1942,7 @@ namespace INTEGRA_7
 
         private void AddPCMSynthToneTVAControls(byte Partial)
         {
-            //t.Trace("private void AddPCMSynthToneTVAControls (" + "byte" + Partial + ", " + ")");
+            t.Trace("private void AddPCMSynthToneTVAControls (" + "byte" + Partial + ", " + ")");
             controlsIndex = 0;
 
             // CheckBox for PitchPartial1Switch
@@ -2159,7 +2162,7 @@ namespace INTEGRA_7
 
         private void AddPCMSynthToneTVAEnvControls(byte Partial)
         {
-            //t.Trace("private void AddPCMSynthToneTVAEnvControls (" + "byte" + Partial + ", " + ")");
+            t.Trace("private void AddPCMSynthToneTVAEnvControls (" + "byte" + Partial + ", " + ")");
             controlsIndex = 0;
 
             // CheckBox for PitchPartial1Switch
@@ -2303,7 +2306,7 @@ namespace INTEGRA_7
 
         private void AddPCMSynthToneOutputControls(byte Partial)
         {
-            //t.Trace("private void AddPCMSynthToneOutputControls (" + "byte" + Partial + ", " + ")");
+            t.Trace("private void AddPCMSynthToneOutputControls (" + "byte" + Partial + ", " + ")");
             controlsIndex = 0;
 
             // CheckBox for PitchPartial1Switch
@@ -2400,7 +2403,7 @@ namespace INTEGRA_7
 
         private void AddPCMSynthToneLFO01Controls(byte Partial)
         {
-            //t.Trace("private void AddPCMSynthToneLFO01Controls (" + "byte" + Partial + ", " + ")");
+            t.Trace("private void AddPCMSynthToneLFO01Controls (" + "byte" + Partial + ", " + ")");
             controlsIndex = 0;
 
             // CheckBox for PitchPartial1Switch
@@ -2642,7 +2645,7 @@ namespace INTEGRA_7
 
         private void AddPCMSynthToneLFO02Controls(byte Partial)
         {
-            //t.Trace("private void AddPCMSynthToneLFO02Controls (" + "byte" + Partial + ", " + ")");
+            t.Trace("private void AddPCMSynthToneLFO02Controls (" + "byte" + Partial + ", " + ")");
             controlsIndex = 0;
 
             // CheckBox for PitchPartial1Switch
@@ -2881,7 +2884,7 @@ namespace INTEGRA_7
 
         private void AddPCMSynthToneStepLFOControls(byte Partial)
         {
-            //t.Trace("private void AddPCMSynthToneStepLFOControls (" + "byte" + Partial + ", " + ")");
+            t.Trace("private void AddPCMSynthToneStepLFOControls (" + "byte" + Partial + ", " + ")");
             controlsIndex = 0;
 
             // CheckBox for PitchPartial1Switch
@@ -2949,6 +2952,14 @@ namespace INTEGRA_7
                     tbEditTone_PCMSynthTone_StepLFO_LFOStep[i * 2 + 1], slEditTone_PCMSynthTone_StepLFO_LFOStep[i * 2 + 1]}, new byte[] { 1, 2, 1, 2 })));
             }
 
+            byte row = 9;
+            while (row < MAX_ROWS)
+            {
+                Grid dummy = new Grid();
+                dummy.BackgroundColor = colorSettings.Background;
+                ControlsGrid.Children.Add((new GridRow(row++, new View[] { dummy })));
+            }
+
             // Set values
             cbEditTone_PCMSynthTone_Pitch_PitchPartial1Switch.IsChecked = pCMSynthTone.pCMSynthTonePMT.PMTPartialSwitch[0];
             cbEditTone_PCMSynthTone_Pitch_PitchPartial2Switch.IsChecked = pCMSynthTone.pCMSynthTonePMT.PMTPartialSwitch[1];
@@ -2964,7 +2975,7 @@ namespace INTEGRA_7
 
         private void AddPCMSynthToneControlControls(byte Partial)
         {
-            //t.Trace("private void AddPCMSynthToneControlControls (" + "byte" + Partial + ", " + ")");
+            t.Trace("private void AddPCMSynthToneControlControls (" + "byte" + Partial + ", " + ")");
             controlsIndex = 0;
 
             // CheckBox for PitchPartial1Switch
@@ -3071,7 +3082,7 @@ namespace INTEGRA_7
 
         private void AddPCMSynthToneMatrixControlControls()
         {
-            //t.Trace("private void AddPCMSynthToneMatrixControlControls ()");
+            t.Trace("private void AddPCMSynthToneMatrixControlControls ()");
             controlsIndex = 0;
 
             // CheckBox for PitchPartial1Switch
@@ -3369,7 +3380,7 @@ namespace INTEGRA_7
 
         private void AddPCMSynthToneMFXControlControls()
         {
-            //t.Trace("private void AddPCMSynthToneMFXControlControls()");
+            t.Trace("private void AddPCMSynthToneMFXControlControls()");
             controlsIndex = 0;
             // Create controls
 
@@ -3519,6 +3530,14 @@ namespace INTEGRA_7
                 ControlsGrid.Children.Add((new GridRow((byte)(2 + 3 * i), new View[] { tbEditTone_PCMSynthTone_MFXControl_MFXControlSens[i], slEditTone_PCMSynthTone_MFXControl_MFXControlSens[i] }, new byte[] { 1, 2 })));
             }
 
+            byte row = 13;
+            while (row < MAX_ROWS)
+            {
+                Grid dummy = new Grid();
+                dummy.BackgroundColor = colorSettings.Background;
+                ControlsGrid.Children.Add((new GridRow(row++, new View[] { dummy })));
+            }
+
             // Set values
             //PushHandleControlEvents();
             for (byte i = 0; i < 4; i++)
@@ -3542,7 +3561,7 @@ namespace INTEGRA_7
         // Save controls
         private void AddSaveDeleteControls()
         {
-            //t.Trace("private void AddSaveDeleteControls()");
+            t.Trace("private void AddSaveDeleteControls()");
             controlsIndex = 0;
 
             // Create controls
@@ -3593,6 +3612,14 @@ namespace INTEGRA_7
                 tbEditTone_SaveTone_TitleText, cbEditTone_SaveTone_SlotNumber, btnEditTone_SaveTone,
                 btnEditTone_DeleteTone}, new byte[] { 4, 3, 3, 2, 2 })));
 
+            byte row = 1;
+            while (row < MAX_ROWS)
+            {
+                Grid dummy = new Grid();
+                dummy.BackgroundColor = colorSettings.Background;
+                ControlsGrid.Children.Add((new GridRow(row++, new View[] { dummy })));
+            }
+
             // Set values
             tbEditTone_SaveTone_Title.Text = "Name (max 12 chars):";
             try
@@ -3613,7 +3640,7 @@ namespace INTEGRA_7
         // PCM Drum Kit controls
         private void AddPCMDrumKitCommonControls()
         {
-            //t.Trace("private void AddPCMDrumKitCommonControls()");
+            t.Trace("private void AddPCMDrumKitCommonControls()");
             controlsIndex = 0;
 
             // There are 88 partials in PCM Drum Kit, corresponding to keys.
@@ -3797,7 +3824,7 @@ namespace INTEGRA_7
 
         private void AddPCMDrumKitWaveControls() //byte SelectedIndex)
         {
-            //t.Trace("private void AddPCMDrumKitWaveControls (" + "byte)"); // + SelectedIndex + ", " + ")");
+            t.Trace("private void AddPCMDrumKitWaveControls (" + "byte)"); // + SelectedIndex + ", " + ")");
             controlsIndex = 0;
             // CheckBox for PitchPartial1Switch
             CheckBox cbEditTone_PCMDrumKit_Partial1Switch = new CheckBox();
@@ -4039,8 +4066,8 @@ namespace INTEGRA_7
 
         private void AddPCMDrumKitWMTControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddPCMDrumKitWMTControls (" + "byte" + SelectedIndex + ", " + ")");
-            //t.Trace("private void AddPCMDrumKitWaveControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddPCMDrumKitWMTControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddPCMDrumKitWaveControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
             // CheckBox for PitchPartial1Switch
             CheckBox cbEditTone_PCMDrumKit_Partial1Switch = new CheckBox();
@@ -4163,7 +4190,7 @@ namespace INTEGRA_7
 
         private void AddPCMDrumKitPitchControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddPCMDrumKitPitchControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddPCMDrumKitPitchControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
 
             // Slider for Partial Coarse Tune:
@@ -4247,7 +4274,7 @@ namespace INTEGRA_7
 
         private void AddPCMDrumKitPitchEnvControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddPCMDrumKitPitchEnvControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddPCMDrumKitPitchEnvControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
 
             // Slider for Pitch Env Depth:
@@ -4365,7 +4392,7 @@ namespace INTEGRA_7
 
         private void AddPCMDrumKitTVFControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddPCMDrumKitTVFControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddPCMDrumKitTVFControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
             // ComboBox for Filter type
             ComboBox cbEditTone_PCMDrumKit_TVF_TVFFilterType = new ComboBox();
@@ -4522,7 +4549,7 @@ namespace INTEGRA_7
 
         private void AddPCMDrumKitTVFEnvControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddPCMDrumKitTVFEnvControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddPCMDrumKitTVFEnvControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
 
             // Slider for TVF Env Depth:
@@ -4601,7 +4628,7 @@ namespace INTEGRA_7
 
         private void AddPCMDrumKitTVAControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddPCMDrumKitTVAControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddPCMDrumKitTVAControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
 
             // Slider for Partial Level:
@@ -4714,7 +4741,7 @@ namespace INTEGRA_7
 
         private void AddPCMDrumKitTVAEnvControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddPCMDrumKitTVAEnvControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddPCMDrumKitTVAEnvControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
 
             // Slider for TVA Env Time 1 Velocity Sens:
@@ -4806,7 +4833,7 @@ namespace INTEGRA_7
 
         private void AddPCMDrumKitOutputControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddPCMDrumKitOutputControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddPCMDrumKitOutputControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
 
             // ComboBox for Partial Output Assign
@@ -4879,7 +4906,7 @@ namespace INTEGRA_7
 
         private void AddPCMDrumKitCompressorControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddPCMDrumKitCompressorControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddPCMDrumKitCompressorControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
             // CheckBox for Comp Switch
             CheckBox[] cbEditTone_PCMDrumKit_CompEq_CompSwitch = new CheckBox[6];
@@ -5095,7 +5122,7 @@ namespace INTEGRA_7
 
         private void AddPCMDrumKitEqualizerControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddPCMDrumKitEqualizerControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddPCMDrumKitEqualizerControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
             // CheckBox for Eq Switch
             CheckBox[] cbEditTone_PCMDrumKit_Equalizer_EqSwitch = new CheckBox[6];
@@ -5327,7 +5354,7 @@ namespace INTEGRA_7
 
         private void AddPCMDrumKitMFXControlControls()
         {
-            //t.Trace("private void AddPCMDrumKitMFXControlControls()");
+            t.Trace("private void AddPCMDrumKitMFXControlControls()");
             controlsIndex = 0;
 
             // ComboBox for MFX Control Source
@@ -5462,9 +5489,12 @@ namespace INTEGRA_7
                 cbEditTone_PCMDrumKit_MFXcontrol_MFXControlAssign[i].Tag = new HelpTag(controlsIndex++, 0);
                 cbEditTone_PCMDrumKit_MFXcontrol_MFXControlAssign[i].Name = "cbEditTone_PCMDrumKit_MFXcontrol_MFXControlAssign" + i.ToString();
                 cbEditTone_PCMDrumKit_MFXcontrol_MFXControlAssign[i].Items.Add("Destination : Off");
-                for (byte j = 0; j < CommonMFX.MFXControlAssigns[commonMFX.MFXType - 1].Length; j++)
+                if (commonMFX.MFXType > 0)
                 {
-                    cbEditTone_PCMDrumKit_MFXcontrol_MFXControlAssign[i].Items.Add("Destination : " + CommonMFX.MFXControlAssigns[commonMFX.MFXType - 1][j]);
+                    for (byte j = 0; j < CommonMFX.MFXControlAssigns[commonMFX.MFXType - 1].Length; j++)
+                    {
+                        cbEditTone_PCMDrumKit_MFXcontrol_MFXControlAssign[i].Items.Add("Destination : " + CommonMFX.MFXControlAssigns[commonMFX.MFXType - 1][j]);
+                    }
                 }
 
                 // Slider for MFX Control Sens:
@@ -5507,7 +5537,7 @@ namespace INTEGRA_7
         // PCM Drum Kit Save controls
         private void AddPCMDrumKitSaveControls()
         {
-            //t.Trace("private void AddPCMDrumKitSaveControls()");
+            t.Trace("private void AddPCMDrumKitSaveControls()");
             controlsIndex = 0;
 
             // Create controls
@@ -5553,6 +5583,14 @@ namespace INTEGRA_7
             ControlsGrid.Children.Add((new GridRow((byte)(0), new View[] {  tbEditTone_SaveTone_Title,
                 tbEditTone_SaveTone_TitleText, cbEditTone_SaveTone_SlotNumber, btnEditTone_PCMDrumKit_SaveTitle,
                 btnEditTone_PCMSynthTone_DeleteTone}, new byte[] { 4, 3, 3, 2, 2 })));
+
+            byte row = 1;
+            while (row < MAX_ROWS)
+            {
+                Grid dummy = new Grid();
+                dummy.BackgroundColor = colorSettings.Background;
+                ControlsGrid.Children.Add((new GridRow(row++, new View[] { dummy })));
+            }
 
             // Set values
             tbEditTone_SaveTone_Title.Text = "Name (max 12 chars):";
@@ -5767,7 +5805,7 @@ namespace INTEGRA_7
 
         private void AddSupernaturalAcousticToneInstrumentControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddSupernaturalAcousticToneInstrumentControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddSupernaturalAcousticToneInstrumentControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
 
             // Get the string identifying bank:
@@ -5831,7 +5869,7 @@ namespace INTEGRA_7
 
         private void AddSupernaturalAcousticToneInstrumentParametersControls()
         {
-            //t.Trace("private void AddSupernaturalAcousticToneInstrumentParametersControls()");
+            t.Trace("private void AddSupernaturalAcousticToneInstrumentParametersControls()");
             controlsIndex = 2;
 
             // Remove any previous controls before adding new ones, but leave the first row:
@@ -6057,7 +6095,7 @@ namespace INTEGRA_7
 
             if (index == 255)
             {
-                ////t.Trace("Missing instrument, group = " + currentInstrument.InstrumentGroup + " name = " + currentInstrument.InstrumentName);
+                t.Trace("Missing instrument, group = " + currentInstrument.InstrumentGroup + " name = " + currentInstrument.InstrumentName);
                 return;
             }
 
@@ -7346,7 +7384,7 @@ namespace INTEGRA_7
 
         private void AddSupernaturalAcousticToneMFXcontrolControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddSupernaturalAcousticToneMFXcontrolControls()");
+            t.Trace("private void AddSupernaturalAcousticToneMFXcontrolControls()");
             controlsIndex = 0;
             // Create controls
 
@@ -7503,6 +7541,14 @@ namespace INTEGRA_7
                     slEditTone_CommonMFX_Control_MFXControlSens[i] }, new byte[] { 1, 2 })));
             }
 
+            byte row = 12;
+            while (row < MAX_ROWS)
+            {
+                Grid dummy = new Grid();
+                dummy.BackgroundColor = colorSettings.Background;
+                ControlsGrid.Children.Add((new GridRow(row++, new View[] { dummy })));
+            }
+
             // Set values
             PushHandleControlEvents();
             for (byte i = 0; i < 4; i++)
@@ -7518,7 +7564,7 @@ namespace INTEGRA_7
         // SuperNatural Acoustic Tone Save controls
         private void AddSuperNaturalAcousticToneSaveControls()
         {
-            //t.Trace("private void AddSuperNaturalAcousticToneSaveControls()");
+            t.Trace("private void AddSuperNaturalAcousticToneSaveControls()");
             controlsIndex = 0;
 
             // Create controls
@@ -7565,6 +7611,14 @@ namespace INTEGRA_7
                 tbEditTone_SaveTone_TitleText, cbEditTone_SaveTone_SlotNumber, btnEditTone_SuperNaturalAcousticTone_SaveTitle,
                 btnEditTone_PCMSynthTone_DeleteTone}, new byte[] { 4, 3, 3, 2, 2 })));
 
+            byte row = 1;
+            while (row < MAX_ROWS)
+            {
+                Grid dummy = new Grid();
+                dummy.BackgroundColor = colorSettings.Background;
+                ControlsGrid.Children.Add((new GridRow(row++, new View[] { dummy })));
+            }
+
             // Set values
             tbEditTone_SaveTone_Title.Text = "Name (max 12 chars):";
             tbEditTone_SaveTone_TitleText.Text = superNATURALAcousticTone.superNATURALAcousticToneCommon.Name.TrimEnd();
@@ -7577,7 +7631,7 @@ namespace INTEGRA_7
 
         private void AddSupernaturalSynthToneCommonControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddSupernaturalSynthToneCommonControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddSupernaturalSynthToneCommonControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
 
             // ComboBox for Phrase Number
@@ -7756,7 +7810,7 @@ namespace INTEGRA_7
 
         private void AddSupernaturalSynthToneOscControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddSupernaturalSynthToneWaveControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddSupernaturalSynthToneWaveControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
 
             // CheckBox for Partial 1 Switch
@@ -7902,7 +7956,7 @@ namespace INTEGRA_7
 
         private void AddSupernaturalSynthTonePitchControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddSupernaturalSynthTonePitchControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddSupernaturalSynthTonePitchControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
 
             // CheckBox for Partial 1 Switch
@@ -8059,7 +8113,7 @@ namespace INTEGRA_7
 
         private void AddSupernaturalSynthToneFilterControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddSupernaturalSynthTonePitchenvControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddSupernaturalSynthTonePitchenvControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
 
             // CheckBox for Partial 1 Switch
@@ -8267,7 +8321,7 @@ namespace INTEGRA_7
 
         private void AddSupernaturalSynthToneAMPControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddSupernaturalSynthToneTVFControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddSupernaturalSynthToneTVFControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
 
             // CheckBox for Partial 1 Switch
@@ -8421,7 +8475,7 @@ namespace INTEGRA_7
 
         private void AddSupernaturalSynthToneLFOControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddSupernaturalSynthToneTVFenvControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddSupernaturalSynthToneTVFenvControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
 
             // CheckBox for Partial 1 Switch
@@ -8613,7 +8667,7 @@ namespace INTEGRA_7
 
         private void AddSupernaturalSynthToneModLFOControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddSupernaturalSynthToneTVAControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddSupernaturalSynthToneTVAControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
 
             // CheckBox for Partial 1 Switch
@@ -8795,7 +8849,7 @@ namespace INTEGRA_7
 
         private void AddSupernaturalSynthToneAftertouchControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddSupernaturalSynthToneTVAenvControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddSupernaturalSynthToneTVAenvControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
 
             // CheckBox for Partial 1 Switch
@@ -8871,7 +8925,7 @@ namespace INTEGRA_7
 
         private void AddSupernaturalSynthToneMiscControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddSupernaturalSynthToneOutputControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddSupernaturalSynthToneOutputControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
 
             // Slider for Attack Time Interval Sens:
@@ -8979,7 +9033,7 @@ namespace INTEGRA_7
 
         private void AddSuperNaturalSynthToneMFXControlControls()
         {
-            //t.Trace("private void AddSuperNaturalSynthToneMFXControlControls()");
+            t.Trace("private void AddSuperNaturalSynthToneMFXControlControls()");
             controlsIndex = 0;
             // Create controls
 
@@ -9130,6 +9184,14 @@ namespace INTEGRA_7
                 ControlsGrid.Children.Add((new GridRow((byte)(2 + 3 * i), new View[] { tbEditTone_CommonMFX_MFXControl_MFXControlSens[i], slEditTone_CommonMFX_MFXControl_MFXControlSens[i] }, new byte[] { 1, 2 })));
             }
 
+            byte row = 12;
+            while (row < MAX_ROWS)
+            {
+                Grid dummy = new Grid();
+                dummy.BackgroundColor = colorSettings.Background;
+                ControlsGrid.Children.Add((new GridRow(row++, new View[] { dummy })));
+            }
+
             // Set values
             PushHandleControlEvents();
             for (byte i = 0; i < 4; i++)
@@ -9144,7 +9206,7 @@ namespace INTEGRA_7
         // SuperNATURAL Synth Tone Save controls
         private void AddSuperNaturalSynthToneSaveControls()
         {
-            //t.Trace("private void AddSuperNaturalSynthToneSaveControls()");
+            t.Trace("private void AddSuperNaturalSynthToneSaveControls()");
             controlsIndex = 0;
 
             // Create controls
@@ -9191,6 +9253,14 @@ namespace INTEGRA_7
                 tbEditTone_SaveTone_TitleText, cbEditTone_SaveTone_SlotNumber, btnEditTone_SuperNaturalSynthTone_SaveTitle,
                 btnEditTone_PCMSynthTone_DeleteTone}, new byte[] { 4, 3, 3, 2, 2 })));
 
+            byte row = 1;
+            while (row < MAX_ROWS)
+            {
+                Grid dummy = new Grid();
+                dummy.BackgroundColor = colorSettings.Background;
+                ControlsGrid.Children.Add((new GridRow(row++, new View[] { dummy })));
+            }
+
             // Set values
             tbEditTone_SaveTone_Title.Text = "Name (max 12 chars):";
             tbEditTone_SaveTone_TitleText.Text = superNATURALSynthTone.superNATURALSynthToneCommon.Name.TrimEnd();
@@ -9204,7 +9274,7 @@ namespace INTEGRA_7
 
         private void AddSupernaturalDrumKitCommonControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddSupernaturalDrumKitCommonControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddSupernaturalDrumKitCommonControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
 
             // ComboBox for Phrase Number
@@ -9274,7 +9344,7 @@ namespace INTEGRA_7
 
         private void AddSupernaturalDrumKitDruminstrumentControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddSupernaturalDrumKitDruminstrumentControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddSupernaturalDrumKitDruminstrumentControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
 
             // Instrument bank is a bit special. Bank and sound number are put together at address 0 (4 nibbles!)
@@ -9542,7 +9612,7 @@ namespace INTEGRA_7
 
         private void AddSupernaturalDrumKitCompressorControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddSupernaturalDrumKitCompressorControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddSupernaturalDrumKitCompressorControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
 
             // CheckBox for Comp Switch
@@ -9768,7 +9838,7 @@ namespace INTEGRA_7
 
         private void AddSupernaturalDrumKitEqualizerControls(byte SelectedIndex)
         {
-            //t.Trace("private void AddSupernaturalDrumKitEqualizerControls (" + "byte" + SelectedIndex + ", " + ")");
+            t.Trace("private void AddSupernaturalDrumKitEqualizerControls (" + "byte" + SelectedIndex + ", " + ")");
             controlsIndex = 0;
             String[] freqs;
 
@@ -9987,7 +10057,7 @@ namespace INTEGRA_7
 
         private void AddSuperNaturalDrumKitMFXControlControls()
         {
-            //t.Trace("private void AddSuperNaturalDrumKitMFXControlControls()");
+            t.Trace("private void AddSuperNaturalDrumKitMFXControlControls()");
             controlsIndex = 0;
             // Create controls
 
@@ -10137,6 +10207,14 @@ namespace INTEGRA_7
                 ControlsGrid.Children.Add((new GridRow((byte)(2 + 3 * i), new View[] { tbEditTone_CommonMFX_MFXControl_MFXControlSens[i], slEditTone_CommonMFX_MFXControl_MFXControlSens[i] }, new byte[] { 1, 2 })));
             }
 
+            byte row = 12;
+            while (row < MAX_ROWS)
+            {
+                Grid dummy = new Grid();
+                dummy.BackgroundColor = colorSettings.Background;
+                ControlsGrid.Children.Add((new GridRow(row++, new View[] { dummy })));
+            }
+
             // Set values
             //PushHandleControlEvents();
             for (byte i = 0; i < 4; i++)
@@ -10151,7 +10229,7 @@ namespace INTEGRA_7
         // SuperNATURAL Drum Kit Save controls
         private void AddSuperNaturalDrumKitSaveControls()
         {
-            //t.Trace("private void AddSuperNaturalDrumKitSaveControls()");
+            t.Trace("private void AddSuperNaturalDrumKitSaveControls()");
             controlsIndex = 0;
 
             // Create controls
@@ -10197,6 +10275,14 @@ namespace INTEGRA_7
             ControlsGrid.Children.Add((new GridRow((byte)(0), new View[] {  tbEditTone_SaveTone_Title,
                 tbEditTone_SaveTone_TitleText, cbEditTone_SaveTone_SlotNumber, btnEditTone_SuperNaturalDrumKit_SaveTitle,
                 btnEditTone_PCMSynthTone_DeleteTone}, new byte[] { 4, 3, 3, 2, 2 })));
+
+            byte row = 1;
+            while (row < MAX_ROWS)
+            {
+                Grid dummy = new Grid();
+                dummy.BackgroundColor = colorSettings.Background;
+                ControlsGrid.Children.Add((new GridRow(row++, new View[] { dummy })));
+            }
 
             // Set values
             tbEditTone_SaveTone_Title.Text = "Name (max 12 chars):";
@@ -10262,7 +10348,7 @@ namespace INTEGRA_7
 
         private void AddMFXControls()
         {
-            //t.Trace("private void AddMFXControls()");
+            t.Trace("private void AddMFXControls()");
             controlsIndex = 0;
             // MFX type:
             ComboBox cbEditTone_MFXType = new ComboBox();
@@ -10858,7 +10944,7 @@ namespace INTEGRA_7
 
         private void AddDynamicTextbox(String text)
         {
-            //t.Trace("private void AddDynamicTextbox (" + "String" + text + ", " + ")");
+            t.Trace("private void AddDynamicTextbox (" + "String" + text + ", " + ")");
             dynamicTextboxes.Add(new TextBox());
             //dynamicTextboxes[dynamicTextboxes.Count() - 1].TextAlignment = TextAlignment.Right; // TODO ?
             //dynamicTextboxes[dynamicTextboxes.Count() - 1].BorderThickness = new Thickness(0);
@@ -10868,7 +10954,7 @@ namespace INTEGRA_7
 
         private void AddDynamicSlider(Int32 Minimum, Int32 Maximum, Int32 Value, Buddy Tag = null)
         {
-            //t.Trace("private void AddDynamicSlider (" + "Int32" + Minimum + ", " + "Int32" + Maximum + ", " + "Int32" + Value + ", " + "Buddy" + Tag + ", " + ")");
+            t.Trace("private void AddDynamicSlider (" + "Int32" + Minimum + ", " + "Int32" + Maximum + ", " + "Int32" + Value + ", " + "Buddy" + Tag + ", " + ")");
             PushHandleControlEvents();
             dynamicSliders.Add(new Slider());
             dynamicSliders[dynamicSliders.Count() - 1].Maximum = Maximum;
@@ -10881,7 +10967,7 @@ namespace INTEGRA_7
 
         private void AddDynamicSlider(Double Minimum, Double Maximum, Double Step, Double Value, Buddy Tag = null)
         {
-            //t.Trace("private void AddDynamicHzSlider (" + "Double" + Minimum + ", " + "Double" + Maximum + ", " + "Double" + Step + ", " + "Double" + Value + ", " + "Buddy" + Tag + ", " + ")");
+            t.Trace("private void AddDynamicHzSlider (" + "Double" + Minimum + ", " + "Double" + Maximum + ", " + "Double" + Step + ", " + "Double" + Value + ", " + "Buddy" + Tag + ", " + ")");
             PushHandleControlEvents();
             dynamicSliders.Add(new Slider());
             dynamicSliders[dynamicSliders.Count() - 1].Maximum = Maximum;
@@ -10895,7 +10981,7 @@ namespace INTEGRA_7
 
         private void AddDynamicComboBox(String[] Items, Int32 SelectedIndex, Buddy Tag = null)
         {
-            //t.Trace("private void AddDynamicComboBox (" + "String[]" + Items + ", " + "Int32" + SelectedIndex + ", " + "Buddy" + Tag + ", " + ")");
+            t.Trace("private void AddDynamicComboBox (" + "String[]" + Items + ", " + "Int32" + SelectedIndex + ", " + "Buddy" + Tag + ", " + ")");
             PushHandleControlEvents();
             dynamicComboboxes.Add(new ComboBox());
             dynamicComboboxes[dynamicComboboxes.Count() - 1].Name = "";
@@ -10925,7 +11011,7 @@ namespace INTEGRA_7
 
         private void AddDynamicCheckBox(UInt16 Checked, String Text, Buddy Tag = null)
         {
-            //t.Trace("private void AddDynamicCheckBox(Boolean Checked = " + Checked.ToString() + ", Buddy Tag = " + Tag + ")");
+            t.Trace("private void AddDynamicCheckBox(Boolean Checked = " + Checked.ToString() + ", Buddy Tag = " + Tag + ")");
             dynamicCheckboxes.Add(new CheckBox());
             dynamicCheckboxes[dynamicCheckboxes.Count - 1].IsChecked = Checked > 0;
             dynamicCheckboxes[dynamicCheckboxes.Count - 1].CBSwitch.Toggled += GenericCheckBox_Click;
@@ -10938,7 +11024,7 @@ namespace INTEGRA_7
 
         private void RemoveControls(Grid grid)
         {
-            //t.Trace("private void RemoveControls (" + "Grid" + grid + ", " + ")");
+            t.Trace("private void RemoveControls (" + "Grid" + grid + ", " + ")");
             if (grid != null && grid.Children != null && grid.Children.Count > 0)
             {
                 try

@@ -2234,7 +2234,7 @@ namespace INTEGRA_7
             StudioSetPartEQ.Children.Add((new GridRow(7, new View[] { tbStudioSetPartEQHighGain, slStudioSetPartEQHighGain })));
 
             grid_Buttons.Children.Add((new GridRow(0, new View[] { cbStudioSetSlot, lblStudioSetName, tbStudioSetName }, new byte[] { 5, 3, 8 })));
-            grid_Buttons.Children.Add((new GridRow(1, new View[] { btnFileSave, btnFileLoad, btnStudioSetSave, btnStudioSetDelete, btnStudioSetReturn }, new byte[] { 3, 3, 2, 2, 2 })));
+            grid_Buttons.Children.Add((new GridRow(1, new View[] { /*->btnFileSave, btnFileLoad,*/ btnStudioSetSave, btnStudioSetDelete, btnStudioSetReturn }, new byte[] { 3, 3, 2, 2, 2 })));
 
             //---------------------------------------------------------------------------------------
             // Assemble column 0 
@@ -2295,6 +2295,10 @@ namespace INTEGRA_7
 
             //grid_StudioSet_Column1.Children.Add((new GridRow(0, new View[] { gStudioSet_Column1 }, null, false, true, 19)));
             //grid_StudioSet_Column1.Children.Add((new GridRow(0, new View[] { gEditStudioSetSearchResult }, null, false, true, 19)));
+            //Grid.SetRow(gStudioSet_Column1, 0);
+            //Grid.SetRow(gEditStudioSetSearchResult, 0);
+            //grid_StudioSet_Column1.Children.Add(gStudioSet_Column1);
+            //grid_StudioSet_Column1.Children.Add(gEditStudioSetSearchResult);
             GridRow.CreateRow(grid_StudioSet_Column1, 0, new View[] { gStudioSet_Column1 }, null, 19);
             GridRow.CreateRow(grid_StudioSet_Column1, 0, new View[] { gEditStudioSetSearchResult }, null, 19);
 
@@ -2349,7 +2353,7 @@ namespace INTEGRA_7
 
         public void StudioSetEditor_Init()
         {
-            //t.Trace("private void StudioSetEditor_Init()");
+            t.Trace("private void StudioSetEditor_Init()");
             studioSetEditor_State = StudioSetEditor_State.INIT;
             try
             {
@@ -3019,7 +3023,7 @@ namespace INTEGRA_7
             if (studioSetEditor_State != StudioSetEditor_State.DONE && studioSetEditor_State != StudioSetEditor_State.NONE)
                 // && waitingForResponseFromIntegra7 > 0)
             {
-                //t.Trace("private void Timer_Tick waiting for response");
+                t.Trace("private void Timer_Tick waiting for response");
                 waitingForResponseFromIntegra7--;
                 if (waitingForResponseFromIntegra7 < 1)
                 {
@@ -3039,7 +3043,7 @@ namespace INTEGRA_7
                 if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest ==
                     StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_TITLES)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_TITLES");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_TITLES");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
 
@@ -3062,9 +3066,9 @@ namespace INTEGRA_7
                 else if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest ==
                     StudioSetEditor_currentStudioSetEditorMidiRequest.SYSTEM_COMMON)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == " +
-                    //    "StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == " +
-                    //    "StudioSetEditor_currentStudioSetEditorMidiRequest.SYSTEM_COMMON");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == " +
+                        "StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == " +
+                        "StudioSetEditor_currentStudioSetEditorMidiRequest.SYSTEM_COMMON");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
 
@@ -3078,9 +3082,9 @@ namespace INTEGRA_7
                 else if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest ==
                     StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_COMMON)
                     {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == " +
-                    //    "StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == " +
-                    //    "StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_COMMON");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == " +
+                        "StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == " +
+                        "StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_COMMON");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
 
@@ -3093,9 +3097,9 @@ namespace INTEGRA_7
                 else if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest ==
                     StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == " +
-                    //    "StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == " +
-                    //    "StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == " +
+                        "StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == " +
+                        "StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
 
@@ -3108,7 +3112,7 @@ namespace INTEGRA_7
                 else if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest ==
                     StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_REVERB)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_REVERB");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_REVERB");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
 
@@ -3120,7 +3124,7 @@ namespace INTEGRA_7
                 }
                 else if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_MOTIONAL_SURROUND)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_MOTIONAL_SURROUND");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_MOTIONAL_SURROUND");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
 
@@ -3133,7 +3137,7 @@ namespace INTEGRA_7
                 else if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest ==
                     StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_MASTER_EQ)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_MASTER_EQ");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_MASTER_EQ");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
 
@@ -3151,7 +3155,7 @@ namespace INTEGRA_7
                 else if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest ==
                     StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
 
@@ -3171,9 +3175,9 @@ namespace INTEGRA_7
                 else if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest ==
                     StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART_TONE_NAME)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == " +
-                    //    "StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == " +
-                    //    "StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART_TONE_NAME");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == " +
+                        "StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == " +
+                        "StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART_TONE_NAME");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
 
@@ -3233,9 +3237,9 @@ namespace INTEGRA_7
                 }
                 else if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART_MIDI_PHASELOCK)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == " +
-                    //    "StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == " +
-                    //    "StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART_MIDI_PHASELOCK");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == " +
+                        "StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == " +
+                        "StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART_MIDI_PHASELOCK");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
 
@@ -3249,9 +3253,9 @@ namespace INTEGRA_7
                 else if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest ==
                     StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART_EQ)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == " +
-                    //    "StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == " +
-                    //    "StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART_EQ");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == " +
+                        "StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == " +
+                        "StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART_EQ");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
 
@@ -3282,9 +3286,9 @@ namespace INTEGRA_7
                 else if (studioSetEditor_State == StudioSetEditor_State.INIT_DONE && currentStudioSetEditorMidiRequest ==
                     StudioSetEditor_currentStudioSetEditorMidiRequest.NONE)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == " +
-                    //    "StudioSetEditor_State.INIT_DONE && currentStudioSetEditorMidiRequest == " +
-                    //    "StudioSetEditor_currentStudioSetEditorMidiRequest.NONE");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == " +
+                        "StudioSetEditor_State.INIT_DONE && currentStudioSetEditorMidiRequest == " +
+                        "StudioSetEditor_currentStudioSetEditorMidiRequest.NONE");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
 
@@ -3342,7 +3346,7 @@ namespace INTEGRA_7
                 // Responses to user changing selectors _after_ initiation is done
                 if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.SYSTEM_COMMON)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.SYSTEM_COMMON");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.SYSTEM_COMMON");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
 
@@ -3355,7 +3359,7 @@ namespace INTEGRA_7
                 }
                 else if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_COMMON)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_COMMON");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_COMMON");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
 
@@ -3368,9 +3372,9 @@ namespace INTEGRA_7
                 else if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS)
                     //&& currentStudioSetEditorMidiRequest <= StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS_GM2_CHORUS)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest >= " +
-                    //    "StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS && currentStudioSetEditorMidiRequest <= StudioSetEditor_currentStudioSetEditorMidiRequest." +
-                    //    "STUDIO_SET_CHORUS_GM2_CHORUS");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest >= " +
+                        "StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS && currentStudioSetEditorMidiRequest <= StudioSetEditor_currentStudioSetEditorMidiRequest." +
+                        "STUDIO_SET_CHORUS_GM2_CHORUS");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
 
@@ -3381,9 +3385,9 @@ namespace INTEGRA_7
                 }
                 else if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS_OFF)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest >= " +
-                    //    "StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS && currentStudioSetEditorMidiRequest <= StudioSetEditor_currentStudioSetEditorMidiRequest." +
-                    //    "STUDIO_SET_CHORUS_GM2_CHORUS");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest >= " +
+                        "StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS && currentStudioSetEditorMidiRequest <= StudioSetEditor_currentStudioSetEditorMidiRequest." +
+                        "STUDIO_SET_CHORUS_GM2_CHORUS");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
                     UpdateStudioSetChorusOffControls();
@@ -3392,9 +3396,9 @@ namespace INTEGRA_7
                 }
                 else if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS_CHORUS)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest >= " +
-                    //    "StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS && currentStudioSetEditorMidiRequest <= StudioSetEditor_currentStudioSetEditorMidiRequest." +
-                    //    "STUDIO_SET_CHORUS_GM2_CHORUS");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest >= " +
+                        "StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS && currentStudioSetEditorMidiRequest <= StudioSetEditor_currentStudioSetEditorMidiRequest." +
+                        "STUDIO_SET_CHORUS_GM2_CHORUS");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
                     UpdateStudioSetChorusChorusControls();
@@ -3404,9 +3408,9 @@ namespace INTEGRA_7
                 }
                 else if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS_DELAY)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest >= " +
-                    //    "StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS && currentStudioSetEditorMidiRequest <= StudioSetEditor_currentStudioSetEditorMidiRequest." +
-                    //    "STUDIO_SET_CHORUS_GM2_CHORUS");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest >= " +
+                        "StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS && currentStudioSetEditorMidiRequest <= StudioSetEditor_currentStudioSetEditorMidiRequest." +
+                        "STUDIO_SET_CHORUS_GM2_CHORUS");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
                     UpdateStudioSetChorusDelayControls();
@@ -3416,9 +3420,9 @@ namespace INTEGRA_7
                 }
                 else if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS_GM2_CHORUS)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest >= " +
-                    //    "StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS && currentStudioSetEditorMidiRequest <= StudioSetEditor_currentStudioSetEditorMidiRequest." +
-                    //    "STUDIO_SET_CHORUS_GM2_CHORUS");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest >= " +
+                        "StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS && currentStudioSetEditorMidiRequest <= StudioSetEditor_currentStudioSetEditorMidiRequest." +
+                        "STUDIO_SET_CHORUS_GM2_CHORUS");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
                     UpdateStudioSetChorusGM2ChorusControls();
@@ -3431,9 +3435,9 @@ namespace INTEGRA_7
                 else if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest >= StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_REVERB
                     && currentStudioSetEditorMidiRequest <= StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_REVERB_GM2_REVERB)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest >= StudioSetEditor_currentStudioSetEditorMidiRequest." +
-                    //    "STUDIO_SET_REVERB_ROOM_HALL_PLATE && currentStudioSetEditorMidiRequest <= StudioSetEditor_currentStudioSetEditorMidiRequest." +
-                    //    "STUDIO_SET_REVERB_GM2_REVERB");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest >= StudioSetEditor_currentStudioSetEditorMidiRequest." +
+                        "STUDIO_SET_REVERB_ROOM_HALL_PLATE && currentStudioSetEditorMidiRequest <= StudioSetEditor_currentStudioSetEditorMidiRequest." +
+                        "STUDIO_SET_REVERB_GM2_REVERB");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
 
@@ -3443,7 +3447,7 @@ namespace INTEGRA_7
                 }
                 else if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
 
@@ -3455,7 +3459,7 @@ namespace INTEGRA_7
                 }
                 else if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART_TONE_NAME)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART_TONE_NAME");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART_TONE_NAME");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
 
@@ -3486,7 +3490,7 @@ namespace INTEGRA_7
                 }
                 else if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART_MIDI_PHASELOCK)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART_MIDI_PHASELOCK");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART_MIDI_PHASELOCK");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
 
@@ -3498,7 +3502,7 @@ namespace INTEGRA_7
                 }
                 else if (studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART_EQ)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART_EQ");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART_EQ");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
 
@@ -3512,7 +3516,7 @@ namespace INTEGRA_7
                 else if (studioSetEditor_State == StudioSetEditor_State.INIT_DONE 
                     && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.NONE)
                 {
-                    //t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.INIT_DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.NONE");
+                    t.Trace("private void Timer_Tick studioSetEditor_State == StudioSetEditor_State.INIT_DONE && currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.NONE");
                     // This will be handled, so...
                     studioSetEditor_State = StudioSetEditor_State.NONE;
 
@@ -3548,7 +3552,7 @@ namespace INTEGRA_7
         }
         private void EditStudioSet_MidiInPort_MessageReceived(/*Windows.Devices.Midi.MidiInPort sender, Windows.Devices.Midi.MidiMessageReceivedEventArgs args*/)
         {
-            //t.Trace("private void EditStudioSet_MidiInPort_MessageReceived (" + "Windows.Devices.Midi.MidiInPort + sender + , Windows.Devices.Midi.MidiMessageReceivedEventArgs + args + , " + ")");
+            t.Trace("private void EditStudioSet_MidiInPort_MessageReceived (" + "Windows.Devices.Midi.MidiInPort + sender + , Windows.Devices.Midi.MidiMessageReceivedEventArgs + args + , " + ")");
             {
                 if ((currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.GET_CURRENT_STUDIO_SET_NUMBER
                     || currentStudioSetEditorMidiRequest == StudioSetEditor_currentStudioSetEditorMidiRequest.GET_CURRENT_STUDIO_SET_NUMBER_AND_SCAN)
@@ -3635,7 +3639,7 @@ namespace INTEGRA_7
         {
             if (initDone)
             {
-                //t.Trace("private void cbStudioSetSelector_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+                t.Trace("private void cbStudioSetSelector_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
                 if (handleControlEvents && studioSetEditor_State != StudioSetEditor_State.INIT && cbStudioSetSelector.SelectedIndex > -1)
                 {
                     // When selecting studio set, also set the studio set slot selector:
@@ -3657,7 +3661,7 @@ namespace INTEGRA_7
 
         private void cbToneControl1_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbToneControl1_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbToneControl1_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 if ((String)cbToneControl1.SelectedItem == "N/A")
@@ -3680,7 +3684,7 @@ namespace INTEGRA_7
 
         private void cbToneControl2_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbToneControl2_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbToneControl2_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 if ((String)cbToneControl2.SelectedItem == "N/A")
@@ -3703,7 +3707,7 @@ namespace INTEGRA_7
 
         private void cbToneControl3_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbToneControl3_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbToneControl3_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 if ((String)cbToneControl3.SelectedItem == "N/A")
@@ -3726,7 +3730,7 @@ namespace INTEGRA_7
 
         private void cbToneControl4_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbToneControl4_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbToneControl4_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 if ((String)cbToneControl4.SelectedItem == "N/A")
@@ -3749,7 +3753,7 @@ namespace INTEGRA_7
 
         private void slTempo_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slTempo_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slTempo_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetCommonTempo(slTempo.Value);
@@ -3768,7 +3772,7 @@ namespace INTEGRA_7
 
         private void cbSoloPart_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbSoloPart_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbSoloPart_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetCommonSoloPart(cbSoloPart.SelectedIndex);
@@ -3787,7 +3791,7 @@ namespace INTEGRA_7
 
         private void cbReverb_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbReverb_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbReverb_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetCommonReverb((Boolean)cbReverb.IsChecked);
@@ -3806,7 +3810,7 @@ namespace INTEGRA_7
 
         private void cbChorus_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbChorus_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbChorus_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetCommonChorus((Boolean)cbChorus.IsChecked);
@@ -3825,7 +3829,7 @@ namespace INTEGRA_7
 
         private void cbMasterEQ_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbMasterEQ_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbMasterEQ_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetCommonMasterEQ((Boolean)cbMasterEQ.IsChecked);
@@ -3844,7 +3848,7 @@ namespace INTEGRA_7
 
         private void cbDrumCompEQPart_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbDrumCompEQPart_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbDrumCompEQPart_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetCommonEQPart(cbDrumCompEQPart.SelectedIndex);
@@ -3863,7 +3867,7 @@ namespace INTEGRA_7
 
         private void cbDrumCompEQ1OutputAssign_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbDrumCompEQ1OutputAssign_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbDrumCompEQ1OutputAssign_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetCommonEQ1OutputAssign(cbDrumCompEQ1OutputAssign.SelectedIndex);
@@ -3882,7 +3886,7 @@ namespace INTEGRA_7
 
         private void cbDrumCompEQ2OutputAssign_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbDrumCompEQ2OutputAssign_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbDrumCompEQ2OutputAssign_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetCommonEQ2OutputAssign(cbDrumCompEQ2OutputAssign.SelectedIndex);
@@ -3901,7 +3905,7 @@ namespace INTEGRA_7
 
         private void cbDrumCompEQ3OutputAssign_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbDrumCompEQ3OutputAssign_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbDrumCompEQ3OutputAssign_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetCommonEQ3OutputAssign(cbDrumCompEQ3OutputAssign.SelectedIndex);
@@ -3920,7 +3924,7 @@ namespace INTEGRA_7
 
         private void cbDrumCompEQ4OutputAssign_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbDrumCompEQ4OutputAssign_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbDrumCompEQ4OutputAssign_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetCommonEQ4OutputAssign(cbDrumCompEQ4OutputAssign.SelectedIndex);
@@ -3939,7 +3943,7 @@ namespace INTEGRA_7
 
         private void cbDrumCompEQ5OutputAssign_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbDrumCompEQ5OutputAssign_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbDrumCompEQ5OutputAssign_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetCommonEQ5OutputAssign(cbDrumCompEQ5OutputAssign.SelectedIndex);
@@ -3958,7 +3962,7 @@ namespace INTEGRA_7
 
         private void cbDrumCompEQ6OutputAssign_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbDrumCompEQ6OutputAssign_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbDrumCompEQ6OutputAssign_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetCommonEQ6OutputAssign(cbDrumCompEQ6OutputAssign.SelectedIndex);
@@ -3977,7 +3981,7 @@ namespace INTEGRA_7
 
         private void cbDrumCompEQ_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbDrumCompEQ_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbDrumCompEQ_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetCompEQ_Click((Boolean)cbDrumCompEQ.IsChecked);
@@ -3996,7 +4000,7 @@ namespace INTEGRA_7
 
         private void cbExtPartMute_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbExtPartMute_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbExtPartMute_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetExtPartMute((Boolean)cbExtPartMute.IsChecked);
@@ -4015,7 +4019,7 @@ namespace INTEGRA_7
 
         private void slExtPartLevel_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slExtPartLevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slExtPartLevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetExtPartLevel(slExtPartLevel.Value);
@@ -4034,7 +4038,7 @@ namespace INTEGRA_7
 
         private void slExtPartChorusSend_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slExtPartChorusSend_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slExtPartChorusSend_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetExtPartChorusSend(slExtPartChorusSend.Value);
@@ -4054,7 +4058,7 @@ namespace INTEGRA_7
 
         private void slExtPartReverbSend_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slExtPartReverbSend_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slExtPartReverbSend_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetExtPartReverbSend(slExtPartReverbSend.Value);
@@ -4075,7 +4079,7 @@ namespace INTEGRA_7
         // Column 1
         private void cbColumn1Selector_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbColumn2Selector_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbColumn2Selector_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetColumn1Selector(cbColumn1Selector.SelectedIndex);
@@ -4121,7 +4125,7 @@ namespace INTEGRA_7
 
         private void slSystemCommonMasterTune_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slSystemCommonMasterTune_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slSystemCommonMasterTune_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetSystemCommonMasterTune((Int32)(slSystemCommonMasterTune.Value));
@@ -4145,7 +4149,7 @@ namespace INTEGRA_7
 
         private void slSystemCommonMasterKeyShift_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slSystemCommonMasterKeyShift_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slSystemCommonMasterKeyShift_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetSystemCommonMasterKeyShift((Int32)slSystemCommonMasterKeyShift.Value);
@@ -4165,7 +4169,7 @@ namespace INTEGRA_7
 
         private void slSystemCommonMasterLevel_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slSystemCommonMasterLevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slSystemCommonMasterLevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetSystemCommonMasterLevel((Int32)slSystemCommonMasterLevel.Value);
@@ -4185,7 +4189,7 @@ namespace INTEGRA_7
 
         private void cbSystemCommonScaleTuneSwitch_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbSystemCommonScaleTuneSwitch_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbSystemCommonScaleTuneSwitch_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetSystemCommonScaleTuneSwitch((Boolean)cbSystemCommonScaleTuneSwitch.IsChecked);
@@ -4204,7 +4208,7 @@ namespace INTEGRA_7
 
         private void cbSystemCommonStudioSetControlChannel_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbSystemCommonStudioSetControlChannel_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbSystemCommonStudioSetControlChannel_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetSystemCommonStudioSetControlChannel(cbSystemCommonStudioSetControlChannel.SelectedIndex);
@@ -4223,7 +4227,7 @@ namespace INTEGRA_7
 
         private void cbSystemCommonSystemControlSource1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbSystemCommonSystemControlSource1_SelectedIndexChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbSystemCommonSystemControlSource1_SelectedIndexChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetSystemCommonSystemControlSource1(cbSystemCommonSystemControlSource1.SelectedIndex);
@@ -4242,7 +4246,7 @@ namespace INTEGRA_7
 
         private void cbSystemCommonSystemControlSource2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbSystemCommonSystemControlSource2_SelectedIndexChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbSystemCommonSystemControlSource2_SelectedIndexChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetSystemCommonSystemControlSource2(cbSystemCommonSystemControlSource2.SelectedIndex);
@@ -4261,7 +4265,7 @@ namespace INTEGRA_7
 
         private void cbSystemCommonSystemControlSource3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbSystemCommonSystemControlSource3_SelectedIndexChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbSystemCommonSystemControlSource3_SelectedIndexChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetSystemCommonSystemControlSource3(cbSystemCommonSystemControlSource3.SelectedIndex);
@@ -4280,7 +4284,7 @@ namespace INTEGRA_7
 
         private void cbSystemCommonSystemControlSource4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbSystemCommonSystemControlSource4_SelectedIndexChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbSystemCommonSystemControlSource4_SelectedIndexChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetSystemCommonSystemControlSource4(cbSystemCommonSystemControlSource4.SelectedIndex);
@@ -4299,7 +4303,7 @@ namespace INTEGRA_7
 
         private void cbSystemCommonControlSource_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbSystemCommonControlSource_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbSystemCommonControlSource_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetSystemCommonControlSource(cbSystemCommonControlSource.SelectedIndex);
@@ -4318,7 +4322,7 @@ namespace INTEGRA_7
 
         private void cbSystemCommonSystemClockSource_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbSystemCommonSystemClockSource_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbSystemCommonSystemClockSource_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetSystemCommonSystemClockSource(cbSystemCommonSystemClockSource.SelectedIndex);
@@ -4337,7 +4341,7 @@ namespace INTEGRA_7
 
         private void slSystemCommonSystemTempo_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slSystemCommonSystemTempo_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slSystemCommonSystemTempo_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetSystemCommonSystemTempo((Int32)slSystemCommonSystemTempo.Value);
@@ -4357,7 +4361,7 @@ namespace INTEGRA_7
 
         private void cbSystemCommonTempoAssignSource_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbSystemCommonTempoAssignSource_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbSystemCommonTempoAssignSource_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetSystemCommonTempoAssignSource(cbSystemCommonTempoAssignSource.SelectedIndex);
@@ -4376,7 +4380,7 @@ namespace INTEGRA_7
 
         private void cbSystemCommonReceiveProgramChange_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbSystemCommonReceiveProgramChange_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbSystemCommonReceiveProgramChange_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetSystemCommonReceiveProgramChange((Boolean)cbSystemCommonReceiveProgramChange.IsChecked);
@@ -4395,7 +4399,7 @@ namespace INTEGRA_7
 
         private void cbSystemCommonReceiveBankSelect_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbSystemCommonReceiveBankSelect_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbSystemCommonReceiveBankSelect_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetSystemCommonReceiveBankSelect((Boolean)cbSystemCommonReceiveBankSelect.IsChecked);
@@ -4414,7 +4418,7 @@ namespace INTEGRA_7
 
         private void cbSystemCommonSurroundCenterSpeakerSwitch_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbSystemCommonSurroundCenterSpeakerSwitch_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbSystemCommonSurroundCenterSpeakerSwitch_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetSystemCommonSurroundCenterSpeakerSwitch((Boolean)cbSystemCommonSurroundCenterSpeakerSwitch.IsChecked);
@@ -4433,7 +4437,7 @@ namespace INTEGRA_7
 
         private void cbSystemCommonSurroundSubWooferSwitch_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbSystemCommonSurroundSubWooferSwitch_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbSystemCommonSurroundSubWooferSwitch_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetSystemCommonSurroundSubWooferSwitch((Boolean)cbSystemCommonSurroundSubWooferSwitch.IsChecked);
@@ -4452,7 +4456,7 @@ namespace INTEGRA_7
 
         private void cbSystemCommonStereoOutputMode_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbSystemCommonStereoOutputMode_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbSystemCommonStereoOutputMode_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetSystemCommonStereoOutputMode(cbSystemCommonStereoOutputMode.SelectedIndex);
@@ -4472,7 +4476,7 @@ namespace INTEGRA_7
 
         private void slVoiceReserve01_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slVoiceReserve01_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slVoiceReserve01_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetVoiceReserve01((Int32)slVoiceReserve01.Value);
@@ -4491,7 +4495,7 @@ namespace INTEGRA_7
 
         private void slVoiceReserve02_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slVoiceReserve02_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slVoiceReserve02_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetVoiceReserve02((Int32)slVoiceReserve02.Value);
@@ -4510,7 +4514,7 @@ namespace INTEGRA_7
 
         private void slVoiceReserve03_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slVoiceReserve03_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slVoiceReserve03_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetVoiceReserve03((Int32)slVoiceReserve03.Value);
@@ -4529,7 +4533,7 @@ namespace INTEGRA_7
 
         private void slVoiceReserve04_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slVoiceReserve04_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slVoiceReserve04_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetVoiceReserve04((Int32)slVoiceReserve04.Value);
@@ -4548,7 +4552,7 @@ namespace INTEGRA_7
 
         private void slVoiceReserve05_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slVoiceReserve05_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slVoiceReserve05_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetVoiceReserve05((Int32)slVoiceReserve05.Value);
@@ -4567,7 +4571,7 @@ namespace INTEGRA_7
 
         private void slVoiceReserve06_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slVoiceReserve06_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slVoiceReserve06_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetVoiceReserve06((Int32)slVoiceReserve06.Value);
@@ -4586,7 +4590,7 @@ namespace INTEGRA_7
 
         private void slVoiceReserve07_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slVoiceReserve07_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slVoiceReserve07_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetVoiceReserve07((Int32)slVoiceReserve07.Value);
@@ -4605,7 +4609,7 @@ namespace INTEGRA_7
 
         private void slVoiceReserve08_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slVoiceReserve08_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slVoiceReserve08_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetVoiceReserve08((Int32)slVoiceReserve08.Value);
@@ -4624,7 +4628,7 @@ namespace INTEGRA_7
 
         private void slVoiceReserve09_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slVoiceReserve09_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slVoiceReserve09_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetVoiceReserve09((Int32)slVoiceReserve09.Value);
@@ -4643,7 +4647,7 @@ namespace INTEGRA_7
 
         private void slVoiceReserve10_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slVoiceReserve10_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slVoiceReserve10_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetVoiceReserve10((Int32)slVoiceReserve10.Value);
@@ -4662,7 +4666,7 @@ namespace INTEGRA_7
 
         private void slVoiceReserve11_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slVoiceReserve11_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slVoiceReserve11_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetVoiceReserve11((Int32)slVoiceReserve11.Value);
@@ -4681,7 +4685,7 @@ namespace INTEGRA_7
 
         private void slVoiceReserve12_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slVoiceReserve12_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slVoiceReserve12_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetVoiceReserve12((Int32)slVoiceReserve12.Value);
@@ -4700,7 +4704,7 @@ namespace INTEGRA_7
 
         private void slVoiceReserve13_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slVoiceReserve13_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slVoiceReserve13_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetVoiceReserve13((Int32)slVoiceReserve13.Value);
@@ -4719,7 +4723,7 @@ namespace INTEGRA_7
 
         private void slVoiceReserve14_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slVoiceReserve14_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slVoiceReserve14_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetVoiceReserve14((Int32)slVoiceReserve14.Value);
@@ -4738,7 +4742,7 @@ namespace INTEGRA_7
 
         private void slVoiceReserve15_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slVoiceReserve15_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slVoiceReserve15_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetVoiceReserve15((Int32)slVoiceReserve15.Value);
@@ -4757,7 +4761,7 @@ namespace INTEGRA_7
 
         private void slVoiceReserve16_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slVoiceReserve16_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slVoiceReserve16_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetVoiceReserve16((Int32)slVoiceReserve16.Value);
@@ -4777,7 +4781,7 @@ namespace INTEGRA_7
         // Chorus events
         private void cbStudioSetChorusType_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetChorusType_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetChorusType_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 // Switch type page:
@@ -4951,7 +4955,7 @@ namespace INTEGRA_7
 
         private void slChorusLevel_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusLevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusLevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusLevel((Int32)slChorusLevel.Value);
@@ -4970,7 +4974,7 @@ namespace INTEGRA_7
 
         private void cbChorusOutputAssign_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbChorusOutputAssign_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbChorusOutputAssign_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusOutputAssign(cbChorusOutputAssign.SelectedIndex);
@@ -4979,7 +4983,7 @@ namespace INTEGRA_7
 
         private void CbChorusOutputSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void CbChorusOutputSelect_SelectedIndexChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void CbChorusOutputSelect_SelectedIndexChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusOutputSelect(cbChorusOutputSelect.SelectedIndex);
@@ -5008,7 +5012,7 @@ namespace INTEGRA_7
 
         private void cbChorusChorusFilterType_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbChorusChorusFilterType_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbChorusChorusFilterType_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusChorusFilterType(cbChorusChorusFilterType.SelectedIndex);
@@ -5027,7 +5031,7 @@ namespace INTEGRA_7
 
         private void cbChorusChorusFilterCutoffFrequency_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbChorusChorusFilterCutoffFrequency_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbChorusChorusFilterCutoffFrequency_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusChorusFilterCutoffFrequency(cbChorusChorusFilterCutoffFrequency.SelectedIndex);
@@ -5047,7 +5051,7 @@ namespace INTEGRA_7
 
         private void slChorusChorusPreDelay_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusChorusPreDelay_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusChorusPreDelay_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusChorusPreDelay((Int32)slChorusChorusPreDelay.Value);
@@ -5068,7 +5072,7 @@ namespace INTEGRA_7
 
         private void cbChorusChorusRateHzNote_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbChorusChorusRate_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbChorusChorusRate_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusChorusRate(cbChorusChorusRateHzNote.SelectedIndex);
@@ -5106,7 +5110,7 @@ namespace INTEGRA_7
 
         private void slChorusChorusRateHz_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusChorusRateHz_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusChorusRateHz_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusChorusRateHz((Int32)(Math.Round(slChorusChorusRateHz.Value, 2) * 20));
@@ -5127,7 +5131,7 @@ namespace INTEGRA_7
 
         private void slChorusChorusRateNote_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusChorusRateNote_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusChorusRateNote_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusChorusRateNote((Int32)slChorusChorusRateNote.Value);
@@ -5148,7 +5152,7 @@ namespace INTEGRA_7
 
         private void slChorusChorusDepth_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusChorusDepth_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusChorusDepth_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusChorusDepth((Int32)slChorusChorusDepth.Value);
@@ -5169,7 +5173,7 @@ namespace INTEGRA_7
 
         private void slChorusChorusPhase_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusChorusPhase_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusChorusPhase_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusChorusPhase((Int32)slChorusChorusPhase.Value);
@@ -5190,7 +5194,7 @@ namespace INTEGRA_7
 
         private void slChorusChorusFeedback_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusChorusFeedback_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusChorusFeedback_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusChorusFeedback((Int32)slChorusChorusFeedback.Value);
@@ -5212,7 +5216,7 @@ namespace INTEGRA_7
 
         private void cbChorusDelayLeftMsNote_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbChorusDelayLeft_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbChorusDelayLeft_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusDelayLeft(cbChorusDelayLeftMsNote.SelectedIndex);
@@ -5249,7 +5253,7 @@ namespace INTEGRA_7
 
         private void slChorusDelayLeftHz_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusDelayLeftHz_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusDelayLeftHz_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusDelayLeftHz((Int32)slChorusDelayLeftHz.Value);
@@ -5272,7 +5276,7 @@ namespace INTEGRA_7
 
         private void slChorusDelayLeftNote_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusDelayLeftNote_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusDelayLeftNote_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusDelayLeftNote((Int32)slChorusDelayLeftNote.Value);
@@ -5293,7 +5297,7 @@ namespace INTEGRA_7
 
         private void cbChorusDelayRightMsNote_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbChorusDelayRight_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbChorusDelayRight_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusDelayRight(cbChorusDelayRightMsNote.SelectedIndex);
@@ -5329,7 +5333,7 @@ namespace INTEGRA_7
 
         private void slChorusDelayRightHz_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusDelayRightHz_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusDelayRightHz_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusDelayRightHz((Int32)slChorusDelayRightHz.Value);
@@ -5352,7 +5356,7 @@ namespace INTEGRA_7
 
         private void slChorusDelayRightNote_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusDelayRightNote_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusDelayRightNote_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusDelayRightNote((Int32)slChorusDelayRightNote.Value);
@@ -5373,7 +5377,7 @@ namespace INTEGRA_7
 
         private void cbChorusDelayCenterMsNote_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbChorusDelayCenter_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbChorusDelayCenter_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusDelayCenter(cbChorusDelayCenterMsNote.SelectedIndex);
@@ -5409,7 +5413,7 @@ namespace INTEGRA_7
 
         private void slChorusDelayCenterHz_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusDelayCenterHz_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusDelayCenterHz_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusDelayCenterHz((Int32)slChorusDelayCenterHz.Value);
@@ -5432,7 +5436,7 @@ namespace INTEGRA_7
 
         private void slChorusDelayCenterNote_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusDelayCenterNote_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusDelayCenterNote_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusDelayCenterNote((Int32)slChorusDelayCenterNote.Value);
@@ -5453,7 +5457,7 @@ namespace INTEGRA_7
 
         private void slChorusDelayCenterFeedback_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusDelayCenterFeedback_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusDelayCenterFeedback_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusDelayCenterFeedback((Int32)slChorusDelayCenterFeedback.Value);
@@ -5474,7 +5478,7 @@ namespace INTEGRA_7
 
         private void cbChorusDelayHFDamp_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbChorusDelayHFDamp_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbChorusDelayHFDamp_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusDelayHFDamp(cbChorusDelayHFDamp.SelectedIndex);
@@ -5494,7 +5498,7 @@ namespace INTEGRA_7
 
         private void slChorusDelayLeftLevel_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusDelayLeftLevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusDelayLeftLevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusDelayLeftLevel((Int32)slChorusDelayLeftLevel.Value);
@@ -5515,7 +5519,7 @@ namespace INTEGRA_7
 
         private void slChorusDelayRightLevel_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusDelayRightevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusDelayRightevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusDelayRightLevel((Int32)slChorusDelayRightLevel.Value);
@@ -5536,7 +5540,7 @@ namespace INTEGRA_7
 
         private void slChorusDelayCenterLevel_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusDelayCenterLevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusDelayCenterLevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusDelayCenterLevel((Int32)slChorusDelayCenterLevel.Value);
@@ -5558,7 +5562,7 @@ namespace INTEGRA_7
         // Chorus GM2 event handlsers
         private void slChorusGM2ChorusPreLPF_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusGM2ChorusPreLPF_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusGM2ChorusPreLPF_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusGM2ChorusPreLPF((Int32)slChorusGM2ChorusPreLPF.Value);
@@ -5574,7 +5578,7 @@ namespace INTEGRA_7
 
         private void slChorusGM2ChorusLevel_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusGM2ChorusLevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusGM2ChorusLevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusGM2ChorusLevel((Int32)slChorusGM2ChorusLevel.Value);
@@ -5590,7 +5594,7 @@ namespace INTEGRA_7
 
         private void slChorusGM2ChorusFeedback_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusGM2ChorusFeedback_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusGM2ChorusFeedback_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusGM2ChorusFeedback((Int32)slChorusGM2ChorusFeedback.Value);
@@ -5606,7 +5610,7 @@ namespace INTEGRA_7
 
         private void slChorusGM2ChorusDelay_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusGM2ChorusDelay_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusGM2ChorusDelay_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusGM2ChorusDelay((Int32)slChorusGM2ChorusDelay.Value);
@@ -5622,7 +5626,7 @@ namespace INTEGRA_7
 
         private void slChorusGM2ChorusRate_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusGM2ChorusRate_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusGM2ChorusRate_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusGM2ChorusRate((Int32)slChorusGM2ChorusRate.Value);
@@ -5638,7 +5642,7 @@ namespace INTEGRA_7
 
         private void slChorusGM2ChorusDepth_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusGM2ChorusDepth_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusGM2ChorusDepth_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusGM2ChorusDepth((Int32)slChorusGM2ChorusDepth.Value);
@@ -5654,7 +5658,7 @@ namespace INTEGRA_7
 
         private void slChorusGM2ChorusSendLevelToReverb_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slChorusGM2ChorusSendLevelToReverb_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slChorusGM2ChorusSendLevelToReverb_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetChorusGM2ChorusSendLevelToReverb((Int32)slChorusGM2ChorusLevel.Value);
@@ -5671,7 +5675,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetReverbType_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetReverbType_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetReverbType_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetReverbType(cbStudioSetReverbType.SelectedIndex);
@@ -5775,7 +5779,7 @@ namespace INTEGRA_7
 
         private void slReverbLevel_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slReverbLevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slReverbLevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetReverbLevel((Int32)slStudioSetReverbLevel.Value);
@@ -5794,7 +5798,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetReverbOutputAssign_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetReverbOutputAssign_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetReverbOutputAssign_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetReverbOutputAssign(cbStudioSetReverbOutputAssign.SelectedIndex);
@@ -5813,7 +5817,7 @@ namespace INTEGRA_7
 
         private void slStudioSetReverbPreDelay_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetReverbPreDelay_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetReverbPreDelay_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetReverbPreDelay((Int32)slStudioSetReverbPreDelay.Value);
@@ -5847,7 +5851,7 @@ namespace INTEGRA_7
 
         private void slStudioSetReverbTime_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetReverbTime_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetReverbTime_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetReverbTime((Int32)slStudioSetReverbTime.Value);
@@ -5889,7 +5893,7 @@ namespace INTEGRA_7
 
         private void slStudioSetReverbDensity_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetReverbDensity_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetReverbDensity_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetReverbDensity((Int32)slStudioSetReverbDensity.Value);
@@ -5905,7 +5909,7 @@ namespace INTEGRA_7
 
         private void slStudioSetReverbDiffusion_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetReverbDiffusion_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetReverbDiffusion_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetReverbDiffusion((Int32)slStudioSetReverbDiffusion.Value);
@@ -5921,7 +5925,7 @@ namespace INTEGRA_7
 
         private void slStudioSetReverbLFDamp_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetReverbLFDamp_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetReverbLFDamp_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetReverbLFDamp((Int32)slStudioSetReverbLFDamp.Value);
@@ -5937,7 +5941,7 @@ namespace INTEGRA_7
 
         private void slStudioSetReverbHFDamp_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetReverbHFDamp_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetReverbHFDamp_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetReverbHFDamp((Int32)slStudioSetReverbHFDamp.Value);
@@ -5953,7 +5957,7 @@ namespace INTEGRA_7
 
         private void slStudioSetReverbSpread_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetReverbSpread_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetReverbSpread_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetReverbSpread((Int32)slStudioSetReverbSpread.Value);
@@ -5969,7 +5973,7 @@ namespace INTEGRA_7
 
         private void slStudioSetReverbTone_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetReverbTone_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetReverbTone_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetReverbTone((Int32)slStudioSetReverbTone.Value);
@@ -5985,7 +5989,7 @@ namespace INTEGRA_7
 
         private void slStudioSetReverbGM2Character_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetReverbGM2Character_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetReverbGM2Character_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetReverbGM2Character((Int32)slStudioSetReverbGM2Character.Value);
@@ -6001,7 +6005,7 @@ namespace INTEGRA_7
 
         private void slStudioSetReverbGM2Time_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetReverbGM2Time_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetReverbGM2Time_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetReverbGM2Time((Int32)slStudioSetReverbGM2Time.Value);
@@ -6026,7 +6030,7 @@ namespace INTEGRA_7
         // Motional surround 18 00 08 00 
         private void cbStudioSetMotionalSurround_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetMotionalSurround_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetMotionalSurround_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetMotionalSurround((Boolean)cbStudioSetMotionalSurround.IsChecked);
@@ -6045,7 +6049,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetMotionalSurroundRoomType_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetMotionalSurroundRoomType_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetMotionalSurroundRoomType_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetMotionalSurroundRoomType((Int32)cbStudioSetMotionalSurroundRoomType.SelectedIndex);
@@ -6064,7 +6068,7 @@ namespace INTEGRA_7
 
         private void slStudioSetMotionalSurroundAmbienceLevel_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetMotionalSurroundAmbienceLevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetMotionalSurroundAmbienceLevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetMotionalSurroundAmbienceLevel((Int32)slStudioSetMotionalSurroundAmbienceLevel.Value);
@@ -6084,7 +6088,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetMotionalSurroundRoomSize_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetMotionalSurroundRoomSize_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetMotionalSurroundRoomSize_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetMotionalSurroundRoomSize(cbStudioSetMotionalSurroundRoomSize.SelectedIndex);
@@ -6103,7 +6107,7 @@ namespace INTEGRA_7
 
         private void slStudioSetMotionalSurroundAmbienceTime_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetMotionalSurroundAmbienceTime_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetMotionalSurroundAmbienceTime_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetMotionalSurroundAmbienceTime((Int32)slStudioSetMotionalSurroundAmbienceTime.Value);
@@ -6123,7 +6127,7 @@ namespace INTEGRA_7
 
         private void slStudioSetMotionalSurroundAmbienceDensity_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetMotionalSurroundAmbienceDensity_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetMotionalSurroundAmbienceDensity_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetMotionalSurroundAmbienceDensity((Int32)slStudioSetMotionalSurroundAmbienceDensity.Value);
@@ -6143,7 +6147,7 @@ namespace INTEGRA_7
 
         private void slStudioSetMotionalSurroundAmbienceHFDamp_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetMotionalSurroundAmbienceHFDamp_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetMotionalSurroundAmbienceHFDamp_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetMotionalSurroundAmbienceHFDamp((Int32)slStudioSetMotionalSurroundAmbienceHFDamp.Value);
@@ -6163,7 +6167,7 @@ namespace INTEGRA_7
 
         private void slStudioSetMotionalSurroundExternalPartLR_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetMotionalSurroundExternalPartLR_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetMotionalSurroundExternalPartLR_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetMotionalSurroundExternalPartLR((Int32)slStudioSetMotionalSurroundExternalPartLR.Value);
@@ -6183,7 +6187,7 @@ namespace INTEGRA_7
 
         private void slStudioSetMotionalSurroundExternalPartFB_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetMotionalSurroundExternalPartFB_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetMotionalSurroundExternalPartFB_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetMotionalSurroundExternalPartFB((Int32)slStudioSetMotionalSurroundExternalPartFB.Value);
@@ -6203,7 +6207,7 @@ namespace INTEGRA_7
 
         private void slStudioSetMotionalSurroundExtPartWidth_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetMotionalSurroundExtPartWidth_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetMotionalSurroundExtPartWidth_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetMotionalSurroundExtPartWidth((Int32)slStudioSetMotionalSurroundExtPartWidth.Value);
@@ -6223,7 +6227,7 @@ namespace INTEGRA_7
 
         private void slStudioSetMotionalSurroundExtpartAmbienceSend_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetMotionalSurroundExtpartAmbienceSend_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetMotionalSurroundExtpartAmbienceSend_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetMotionalSurroundExtpartAmbienceSend((Int32)slStudioSetMotionalSurroundExtpartAmbienceSend.Value);
@@ -6243,7 +6247,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetMotionalSurroundExtPartControl_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetMotionalSurroundExtPartControl_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetMotionalSurroundExtPartControl_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetMotionalSurroundExtPartControl(cbStudioSetMotionalSurroundExtPartControl.SelectedIndex);
@@ -6262,7 +6266,7 @@ namespace INTEGRA_7
 
         private void slStudioSetMotionalSurroundDepth_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetMotionalSurroundDepth_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetMotionalSurroundDepth_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetMotionalSurroundDepth((Int32)slStudioSetMotionalSurroundDepth.Value);
@@ -6283,7 +6287,7 @@ namespace INTEGRA_7
         // Master equalizer 18 00 09 00
         private void cbStudioSetMasterEqLowFreq_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetMasterEqLowFreq_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetMasterEqLowFreq_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetMasterEqLowFreq(cbStudioSetMasterEqLowFreq.SelectedIndex);
@@ -6302,7 +6306,7 @@ namespace INTEGRA_7
 
         private void slStudioSetMasterEqLowGain_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetMasterEqLowGain_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetMasterEqLowGain_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetMasterEqLowGain((Int32)slStudioSetMasterEqLowGain.Value);
@@ -6322,7 +6326,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetMasterEqMidFreq_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetMasterEqMidFreq_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetMasterEqMidFreq_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetMasterEqMidFreq(cbStudioSetMasterEqMidFreq.SelectedIndex);
@@ -6341,7 +6345,7 @@ namespace INTEGRA_7
 
         private void slStudioSetMasterEqMidGain_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetMasterEqMidGain_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetMasterEqMidGain_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetMasterEqMidGain((Int32)slStudioSetMasterEqMidGain.Value);
@@ -6361,7 +6365,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetMasterEqMidQ_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetMasterEqMidQ_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetMasterEqMidQ_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetMasterEqMidQ(cbStudioSetMasterEqMidQ.SelectedIndex);
@@ -6380,7 +6384,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetMasterEqHighFreq_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetMasterEqHighFreq_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetMasterEqHighFreq_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetMasterEqHighFreq(cbStudioSetMasterEqHighFreq.SelectedIndex);
@@ -6399,7 +6403,7 @@ namespace INTEGRA_7
 
         private void slStudioSetMasterEqHighGain_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetMasterEqHighGain_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetMasterEqHighGain_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetMasterEqHighGain((Int32)slStudioSetMasterEqHighGain.Value);
@@ -6420,7 +6424,7 @@ namespace INTEGRA_7
         // Column 2
         private void cbStudioSetPartSelector_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartSelector_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartSelector_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartSelector(cbStudioSetPartSelector.SelectedIndex);
@@ -6436,7 +6440,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartSubSelector_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartSubSelector_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartSubSelector_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartSubSelector(cbStudioSetPartSubSelector.SelectedIndex);
@@ -6481,7 +6485,7 @@ namespace INTEGRA_7
         // Part settings 1
         private async void cbStudioSetPartSettings1ReceiveChannel_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartSettings1ReceiveChannel_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartSettings1ReceiveChannel_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 if (await mainPage.DisplayAlert("Warning!", "INTEGRA-7 normally uses channels 1 thru 16 for parts 1 thru 16.\r\n\r\n" +
@@ -6511,7 +6515,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartSettings1Receive_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartSettings1Receive_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartSettings1Receive_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartSettings1Receive((Boolean)cbStudioSetPartSettings1Receive.IsChecked, cbStudioSetPartSelector.SelectedIndex);
@@ -6531,7 +6535,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartSettings1Group_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartSettings1Group_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartSettings1Group_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartSettings1Group(cbStudioSetPartSettings1Group.SelectedIndex, cbStudioSetPartSelector.SelectedIndex);
@@ -6552,7 +6556,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartSettings1Category_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartSettings1Category_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartSettings1Category_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartSettings1Category(cbStudioSetPartSettings1Category.SelectedIndex, cbStudioSetPartSelector.SelectedIndex);
@@ -6621,7 +6625,7 @@ namespace INTEGRA_7
 
         private void ScanForStudioSetNames()
         {
-            //t.Trace("private void ScanForStudioSetNames()");
+            t.Trace("private void ScanForStudioSetNames()");
             // Set studio set according to currentStudioSetNumber:
             SetStudioSet(studioSetNumberTemp);
 
@@ -6636,7 +6640,7 @@ namespace INTEGRA_7
 
         private void QueryCurrentStudioSetNumber(Boolean scan = true)
         {
-            //t.Trace("private void QueryCurrentStudioSetNumber (" + "Boolean" + scan + ", " + ")");
+            t.Trace("private void QueryCurrentStudioSetNumber (" + "Boolean" + scan + ", " + ")");
             // If this is the first time (scan = true)
             // We must iterate all studio sets on the INTEGRA-7 in order to get the names.
             // Get the currently set studio set in order to restore it when done iterating,
@@ -6659,7 +6663,7 @@ namespace INTEGRA_7
 
         private void QuerySystemCommon()
         {
-            //t.Trace("private void QuerySystemCommon()");
+            t.Trace("private void QuerySystemCommon()");
             // Ask for system common parameters:
             studioSetEditor_State = StudioSetEditor_State.QUERYING_SYSTEM_COMMON;
             currentStudioSetEditorMidiRequest = StudioSetEditor_currentStudioSetEditorMidiRequest.SYSTEM_COMMON;
@@ -6672,7 +6676,7 @@ namespace INTEGRA_7
 
         private void QueryStudioSetCommon()
         {
-            //t.Trace("private void QueryStudioSetCommon()");
+            t.Trace("private void QueryStudioSetCommon()");
             // Ask for current studio set common:
             studioSetEditor_State = StudioSetEditor_State.QUERYING_STUDIO_SET_COMMON;
             currentStudioSetEditorMidiRequest = StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_COMMON;
@@ -6685,7 +6689,7 @@ namespace INTEGRA_7
 
         //private void QueryStudioSetChorus(/*Int32 Selection = 0*/)
         //{
-        //    //t.Trace("private void QueryStudioSetChorus ("/* + "Int32" + Selection + ", "*/ + ")");
+        //    t.Trace("private void QueryStudioSetChorus ("/* + "Int32" + Selection + ", "*/ + ")");
         //    // Ask for current studio set common:
         //    studioSetEditor_State = StudioSetEditor_State.QUERYING_STUDIO_SET_CHORUS;
         //    //switch (Selection)
@@ -6716,7 +6720,7 @@ namespace INTEGRA_7
 
         //private void QueryStudioSetReverb(Int32 Selection = 0)
         //{
-        //    //t.Trace("private void QueryStudioSetReverb (" + "Int32" + Selection + ", " + ")");
+        //    t.Trace("private void QueryStudioSetReverb (" + "Int32" + Selection + ", " + ")");
         //    // Ask for current studio set common:
         //    switch (Selection)
         //    {
@@ -6772,7 +6776,7 @@ namespace INTEGRA_7
 
         private void QueryStudioSetChorusChorus()
         {
-            //t.Trace("private void QueryStudioSetChorusChorus()");
+            t.Trace("private void QueryStudioSetChorusChorus()");
             // Ask for current studio set common:
             studioSetEditor_State = StudioSetEditor_State.QUERYING_STUDIO_SET_CHORUS_CHORUS;
             currentStudioSetEditorMidiRequest = StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS_CHORUS;
@@ -6785,7 +6789,7 @@ namespace INTEGRA_7
 
         private void QueryStudioSetChorusDelay()
         {
-            //t.Trace("private void QueryStudioSetChorusChorus()");
+            t.Trace("private void QueryStudioSetChorusChorus()");
             // Ask for current studio set common:
             studioSetEditor_State = StudioSetEditor_State.QUERYING_STUDIO_SET_CHORUS_DELAY;
             currentStudioSetEditorMidiRequest = StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS_DELAY;
@@ -6798,7 +6802,7 @@ namespace INTEGRA_7
 
         private void QueryStudioSetChorusGM2Chorus()
         {
-            //t.Trace("private void QueryStudioSetChorusChorus()");
+            t.Trace("private void QueryStudioSetChorusChorus()");
             // Ask for current studio set common:
             studioSetEditor_State = StudioSetEditor_State.QUERYING_STUDIO_SET_CHORUS_GM2_CHORUS;
             currentStudioSetEditorMidiRequest = StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS_GM2_CHORUS;
@@ -6811,7 +6815,7 @@ namespace INTEGRA_7
 
         private void QueryStudioSetChorus()
         {
-            //t.Trace("private void QueryStudioSetChorus()");
+            t.Trace("private void QueryStudioSetChorus()");
             // Ask for current studio set common:
             studioSetEditor_State = StudioSetEditor_State.QUERYING_STUDIO_SET_CHORUS;
             currentStudioSetEditorMidiRequest = StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_CHORUS;
@@ -6824,7 +6828,7 @@ namespace INTEGRA_7
 
         private void QueryStudioSetReverb()
         {
-            //t.Trace("private void QueryStudioSetReverb()");
+            t.Trace("private void QueryStudioSetReverb()");
             // Ask for current studio set reverb:
             studioSetEditor_State = StudioSetEditor_State.QUERYING_STUDIO_SET_REVERB;
             currentStudioSetEditorMidiRequest = StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_REVERB;
@@ -6837,7 +6841,7 @@ namespace INTEGRA_7
 
         private void QueryStudioSetMotionalSurround()
         {
-            //t.Trace("private void QueryStudioSetMotionalSurround()");
+            t.Trace("private void QueryStudioSetMotionalSurround()");
             // Ask for current studio set reverb:
             studioSetEditor_State = StudioSetEditor_State.QUERYING_STUDIO_SET_MOTIONAL_SURROUND;
             currentStudioSetEditorMidiRequest = StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_MOTIONAL_SURROUND;
@@ -6850,7 +6854,7 @@ namespace INTEGRA_7
 
         private void QueryStudioSetMasterEQ()
         {
-            //t.Trace("private void QueryStudioSetMasterEQ()");
+            t.Trace("private void QueryStudioSetMasterEQ()");
             studioSetEditor_State = StudioSetEditor_State.QUERYING_STUDIO_SET_MASTER_EQ;
             currentStudioSetEditorMidiRequest = StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_MASTER_EQ;
             byte[] address = { 0x18, 0x00, 0x09, 0x00 };
@@ -6862,7 +6866,7 @@ namespace INTEGRA_7
 
         private void QueryStudioSetPart(Int32 partToRead = -1)
         {
-            //t.Trace("private void QueryStudioSetPart()");
+            t.Trace("private void QueryStudioSetPart()");
             studioSetEditor_State = StudioSetEditor_State.QUERYING_STUDIO_SET_PART;
             currentStudioSetEditorMidiRequest = StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART;
             byte[] address;
@@ -6882,7 +6886,7 @@ namespace INTEGRA_7
 
         private void QueryStudioSetPartToneName()
         {
-            //t.Trace("private void QueryStudioSetPartToneName()");
+            t.Trace("private void QueryStudioSetPartToneName()");
             studioSetEditor_State = StudioSetEditor_State.QUERYING_STUDIO_SET_PART_TONE_NAME;
             currentStudioSetEditorMidiRequest = StudioSetEditor_currentStudioSetEditorMidiRequest.STUDIO_SET_PART_TONE_NAME;
 
@@ -6953,7 +6957,7 @@ namespace INTEGRA_7
 
         private void QueryStudioSetPartMidiPhaselock()
         {
-            //t.Trace("private void QueryStudioSetPartMidiPhaselock()");
+            t.Trace("private void QueryStudioSetPartMidiPhaselock()");
             Int32 part = 0;
             if (EditStudioSet_IsCreated)
             {
@@ -6970,7 +6974,7 @@ namespace INTEGRA_7
 
         private void QueryStudioSetPartEQ(Int32 partToRead = -1)
         {
-            //t.Trace("private void QueryStudioSetPartEQ()");
+            t.Trace("private void QueryStudioSetPartEQ()");
             Int32 part = 0;
             if (EditStudioSet_IsCreated)
             {
@@ -6991,7 +6995,7 @@ namespace INTEGRA_7
 
         private void ReadSystemCommon(Boolean UpdateControls = true)
         {
-            //t.Trace("private void ReadSystemCommon()");
+            t.Trace("private void ReadSystemCommon()");
             try
             {
                 // Unpack system common parameters and update controls:
@@ -7034,7 +7038,7 @@ namespace INTEGRA_7
 
         private void ReadSelectedStudioSet(Boolean UpdateControls = true)
         {
-            //t.Trace("private void ReadSelectedStudioSet()");
+            t.Trace("private void ReadSelectedStudioSet()");
             // Unpack studio set common and update controls:
             if (!UpdateControls)
             {
@@ -7087,7 +7091,7 @@ namespace INTEGRA_7
 
         private void ReadStudioSetChorus(Boolean UpdateControls = true)
         {
-            //t.Trace("private void ReadStudioSetChorus()");
+            t.Trace("private void ReadStudioSetChorus()");
 
             //// I-7 does not reveal its internal storage, so parameters displayed might not be 
             //// the same as we got in rawData.
@@ -7123,7 +7127,7 @@ namespace INTEGRA_7
 
         private void ReadStudioSetChorus(byte Selection, Boolean UpdateControls = true)
         {
-            //t.Trace("private void ReadStudioSetChorus (" + "byte" + Selection + ", " + ")");
+            t.Trace("private void ReadStudioSetChorus (" + "byte" + Selection + ", " + ")");
             if (!UpdateControls)
             {
                 commonState.StudioSet.CommonChorus = new StudioSet_CommonChorus(new ReceivedData(rawData));
@@ -7275,7 +7279,7 @@ namespace INTEGRA_7
 
         private void ReadStudioSetReverb(Boolean UpdateControls = true)
         {
-            //t.Trace("private void ReadStudioSetReverb()");
+            t.Trace("private void ReadStudioSetReverb()");
             //commonState.studioSet.CommonReverb = new StudioSet_CommonReverb(new ReceivedData(rawData));
             //cbStudioSetReverbType.SelectedIndex = -1;
             //cbStudioSetReverbType.SelectedIndex = commonState.studioSet.CommonReverb.Type;
@@ -7285,7 +7289,7 @@ namespace INTEGRA_7
 
         private void ReadStudioSetReverb(byte Selection, Boolean UpdateControls = true)
         {
-            //t.Trace("private void ReadStudioSetReverb (" + "byte" + Selection + ", " + ")");
+            t.Trace("private void ReadStudioSetReverb (" + "byte" + Selection + ", " + ")");
             if (!UpdateControls)
             {
                 commonState.StudioSet.CommonReverb = new StudioSet_CommonReverb(new ReceivedData(rawData));
@@ -7402,7 +7406,7 @@ namespace INTEGRA_7
 
         private void ReadMotionalSurround(Boolean UpdateControls = true)
         {
-            //t.Trace("private void ReadMotionalSurround()");
+            t.Trace("private void ReadMotionalSurround()");
             if (!UpdateControls)
             {
                 commonState.StudioSet.MotionalSurround = new StudioSet_MotionalSurround(new ReceivedData(rawData));
@@ -7439,7 +7443,7 @@ namespace INTEGRA_7
 
         private void ReadStudioSetMasterEQ(Boolean UpdateControls = true)
         {
-            //t.Trace("private void ReadStudioSetMasterEQ()");
+            t.Trace("private void ReadStudioSetMasterEQ()");
             if (!UpdateControls)
             {
                 commonState.StudioSet.MasterEQ = new StudioSet_MasterEQ(new ReceivedData(rawData));
@@ -7475,7 +7479,7 @@ namespace INTEGRA_7
                     partToRead = commonState.CurrentPart;
                 }
             }
-            //t.Trace("private void ReadStudioSetPart()");
+            t.Trace("private void ReadStudioSetPart()");
             // This is a bit different since the read rawData is split into several classes.
             if (updateData)
             {
@@ -7631,7 +7635,7 @@ namespace INTEGRA_7
 
         private void ReadStudioSetPartToneName(Boolean UpdateControls = true, Boolean updateData = true)
         {
-            //t.Trace("private void ReadStudioSetPartToneName()");
+            t.Trace("private void ReadStudioSetPartToneName()");
             //if (!UpdateControls)
             //{
             //    ReceivedData Data = new ReceivedData(rawData);
@@ -7700,7 +7704,7 @@ namespace INTEGRA_7
 
         private void ReadStudioSetPartMidiPhaseLock(Boolean UpdateControls = true, Boolean updateData = true)
         {
-            //t.Trace("private void ReadStudioSetPartMidiPhaseLock()");
+            t.Trace("private void ReadStudioSetPartMidiPhaseLock()");
             // This is a bit special since we have put part MIDI together with MIDI switches (which must first have been read above!).
             if (updateData)
             {
@@ -7716,7 +7720,7 @@ namespace INTEGRA_7
 
         private void ReadStudioSetPartEQ(Int32 partToRead = -1, Boolean UpdateControls = true, Boolean updateData = true)
         {
-            //t.Trace("private void ReadStudioSetPartEQ()");
+            t.Trace("private void ReadStudioSetPartEQ()");
             if (partToRead == -1)
             {
                 if (EditStudioSet_IsCreated && UpdateControls)
@@ -7764,6 +7768,10 @@ namespace INTEGRA_7
             commonState.CurrentTone.Category = (String)cbStudioSetPartSettings1Category.SelectedItem;
             commonState.CurrentTone.Name = (String)cbStudioSetPartSettings1Program.SelectedItem;
             commonState.CurrentTone.Index = commonState.ToneList.Get(commonState.CurrentTone);
+            if (commonState.CurrentTone.Index < 0)
+            {
+                commonState.CurrentTone.Index = 0;
+            }
             // Update  commonState.studioSet:
             commonState.StudioSet.PartMainSettings[cbStudioSetPartSelector.SelectedIndex].ToneBankSelectMSB =
                 byte.Parse(commonState.ToneList.Tones[commonState.CurrentTone.Index][4]);
@@ -7780,7 +7788,7 @@ namespace INTEGRA_7
 
         private void SendProgramChangeToI_7()
         {
-            //t.Trace("private void SendProgramChangeToI_7()");
+            t.Trace("private void SendProgramChangeToI_7()");
             if (MidiChannelIsSameAsPart())
             {
                 byte[] address = { 0x18, 0x00, (byte)(0x20 + (byte)cbStudioSetPartSelector.SelectedIndex), 0x06 };
@@ -7795,7 +7803,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartSettings1Level_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartSettings1Level_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartSettings1Level_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartSettings1Level((Int32)slStudioSetPartSettings1Level.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -7816,7 +7824,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartSettings1Pan_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartSettings1Pan_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartSettings1Pan_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartSettings1Pan((Int32)slStudioSetPartSettings1Pan.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -7837,7 +7845,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartSettings1CoarseTune_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartSettings1CoarseTune_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartSettings1CoarseTune_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartSettings1CoarseTune((Int32)slStudioSetPartSettings1CoarseTune.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -7858,7 +7866,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartSettings1FineTune_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartSettings1FineTune_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartSettings1FineTune_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartSettings1FineTune((Int32)slStudioSetPartSettings1FineTune.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -7879,7 +7887,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartSettings1Poly_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartSettings1Poly_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartSettings1Poly_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartSettings1Poly(cbStudioSetPartSettings1MonoPoly.SelectedIndex, cbStudioSetPartSelector.SelectedIndex);
@@ -7899,7 +7907,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartSettings1Legato_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartSettings1Legato_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartSettings1Legato_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartSettings1Legato(cbStudioSetPartSettings1Legato.SelectedIndex, cbStudioSetPartSelector.SelectedIndex);
@@ -7919,7 +7927,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartSettings1BendRange_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartSettings1BendRange_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartSettings1BendRange_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartSettings1BendRange((Int32)slStudioSetPartSettings1PitchBendRange.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -7942,7 +7950,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartSettings1Portamento_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartSettings1Portamento_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartSettings1Portamento_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartSettings1Portamento(cbStudioSetPartSettings1Portamento.SelectedIndex, cbStudioSetPartSelector.SelectedIndex);
@@ -7962,7 +7970,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartSettings1PortamentoTime_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartSettings1PortamentoTime_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartSettings1PortamentoTime_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartSettings1PortamentoTime((Int32)slStudioSetPartSettings1PortamentoTime.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -7986,7 +7994,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartSettings2CutoffOffset_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartSettings2CutoffOffset_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartSettings2CutoffOffset_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartSettings2CutoffOffset((Int32)slStudioSetPartSettings2CutoffOffset.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -8007,7 +8015,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartSettings2ResonanceOffset_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartSettings2ResonanceOffset_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartSettings2ResonanceOffset_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartSettings2ResonanceOffset((Int32)slStudioSetPartSettings2ResonanceOffset.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -8028,7 +8036,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartSettings2AttackTimeOffset_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartSettings2AttackTimeOffset_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartSettings2AttackTimeOffset_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartSettings2AttackTimeOffset((Int32)slStudioSetPartSettings2AttackTimeOffset.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -8049,7 +8057,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartSettings2DecayTimeOffset_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartSettings2DecayTimeOffset_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartSettings2DecayTimeOffset_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartSettings2DecayTimeOffset((Int32)slStudioSetPartSettings2DecayTimeOffset.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -8070,7 +8078,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartSettings2ReleaseTimeOffset_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartSettings2ReleaseTimeOffset_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartSettings2ReleaseTimeOffset_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartSettings2ReleaseTimeOffset((Int32)slStudioSetPartSettings2ReleaseTimeOffset.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -8091,7 +8099,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartSettings2VibratoRate_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartSettings2VibratoRate_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartSettings2VibratoRate_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartSettings2VibratoRate((Int32)slStudioSetPartSettings2VibratoRate.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -8112,7 +8120,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartSettings2VibratoDepth_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartSettings2VibratoDepth_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartSettings2VibratoDepth_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartSettings2VibratoDepth((Int32)slStudioSetPartSettings2VibratoDepth.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -8133,7 +8141,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartSettings2VibratoDelay_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartSettings2VibratoDelay_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartSettings2VibratoDelay_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartSettings2VibratoDelay((Int32)slStudioSetPartSettings2VibratoDelay.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -8154,7 +8162,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartEffectsChorusSendLevel_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartEffectsChorusSendLevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartEffectsChorusSendLevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartEffectsChorusSendLevel((Int32)slStudioSetPartEffectsChorusSendLevel.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -8175,7 +8183,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartEffectsReverbSendLevel_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartEffectsReverbSendLevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartEffectsReverbSendLevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents) // G�r f�rdig �ven denna!
             {
                 SetStudioSetStudioSetPartEffectsReverbSendLevel((Int32)slStudioSetPartEffectsReverbSendLevel.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -8196,7 +8204,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartEffectsOutputAssign_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartEffectsOutputAssign_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartEffectsOutputAssign_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartEffectsOutputAssign(cbStudioSetPartEffectsOutputAssign.SelectedIndex, cbStudioSetPartSelector.SelectedIndex);
@@ -8217,7 +8225,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartKeyboardOctaveShift_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartKeyboardOctaveShift_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartKeyboardOctaveShift_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartKeyboardOctaveShift((Int32)slStudioSetPartKeyboardOctaveShift.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -8238,7 +8246,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartKeyboardVelocitySenseOffset_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartKeyboardVelocitySenseOffset_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartKeyboardVelocitySenseOffset_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartKeyboardVelocitySenseOffset((Int32)slStudioSetPartKeyboardVelocitySenseOffset.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -8259,7 +8267,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartKeyboardRangeLower_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartKeyboardRangeLower_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartKeyboardRangeLower_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartKeyboardRangeLower((Int32)slStudioSetPartKeyboardRangeLower.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -8280,7 +8288,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartKeyboardRangeUpper_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartKeyboardRangeUpper_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartKeyboardRangeUpper_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartKeyboardRangeUpper((Int32)slStudioSetPartKeyboardRangeUpper.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -8301,7 +8309,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartKeyboardFadeWidthLower_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartKeyboardFadeWidthLower_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartKeyboardFadeWidthLower_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartKeyboardFadeWidthLower((Int32)slStudioSetPartKeyboardFadeWidthLower.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -8322,7 +8330,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartKeyboardFadeWidthUpper_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartKeyboardFadeWidthUpper_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartKeyboardFadeWidthUpper_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartKeyboardFadeWidthUpper((Int32)slStudioSetPartKeyboardFadeWidthUpper.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -8343,7 +8351,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartKeyboardVelocityRangeLower_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartKeyboardVelocityRangeLower_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartKeyboardVelocityRangeLower_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartKeyboardVelocityRangeLower((Int32)slStudioSetPartKeyboardVelocityRangeLower.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -8364,7 +8372,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartKeyboardVelocityRangeUpper_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartKeyboardVelocityRangeUpper_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartKeyboardVelocityRangeUpper_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartKeyboardVelocityRangeUpper((Int32)slStudioSetPartKeyboardVelocityRangeUpper.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -8385,7 +8393,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartKeyboardVelocityFadeWidthLower_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartKeyboardVelocityFadeWidthLower_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartKeyboardVelocityFadeWidthLower_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartKeyboardVelocityFadeWidthLower((Int32)slStudioSetPartKeyboardVelocityFadeWidthLower.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -8406,7 +8414,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartKeyboardVelocityFadeWidthUpper_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartKeyboardVelocityFadeWidthUpper_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartKeyboardVelocityFadeWidthUpper_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartKeyboardVelocityFadeWidthUpper((Int32)slStudioSetPartKeyboardVelocityFadeWidthUpper.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -8427,7 +8435,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartKeyboardVelocityCurveType_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartKeyboardVelocityCurveType_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartKeyboardVelocityCurveType_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartKeyboardVelocityCurveType(cbStudioSetPartKeyboardVelocityCurveType.SelectedIndex, cbStudioSetPartSelector.SelectedIndex);
@@ -8539,7 +8547,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartKeyboard_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartKeyboard_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartKeyboard_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartKeyboard((Boolean)cbStudioSetPartKeyboardMute.IsChecked, cbStudioSetPartSelector.SelectedIndex);
@@ -8560,7 +8568,7 @@ namespace INTEGRA_7
         // Scale tune parameters
         private void cbStudioSetPartScaleTuneType_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartScaleTuneType_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartScaleTuneType_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartScaleTuneType(cbStudioSetPartScaleTuneType.SelectedIndex, cbStudioSetPartSelector.SelectedIndex);
@@ -8580,7 +8588,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartScaleTune_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartScaleTune_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartScaleTune_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartScaleTune(cbStudioSetPartScaleTuneKey.SelectedIndex, cbStudioSetPartSelector.SelectedIndex);
@@ -8600,7 +8608,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartScaleTuneC_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartScaleTuneC_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartScaleTuneC_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartScaleTuneC((Int32)slStudioSetPartScaleTuneC.Value + 64, cbStudioSetPartSelector.SelectedIndex);
@@ -8621,7 +8629,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartScaleTuneCi_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartScaleTuneCi_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartScaleTuneCi_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartScaleTuneCi((Int32)slStudioSetPartScaleTuneCi.Value + 64, cbStudioSetPartSelector.SelectedIndex);
@@ -8642,7 +8650,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartScaleTuneD_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartScaleTuneD_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartScaleTuneD_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartScaleTuneD((Int32)slStudioSetPartScaleTuneD.Value + 64, cbStudioSetPartSelector.SelectedIndex);
@@ -8663,7 +8671,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartScaleTuneDi_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartScaleTuneDi_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartScaleTuneDi_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartScaleTuneDi((Int32)slStudioSetPartScaleTuneDi.Value + 64, cbStudioSetPartSelector.SelectedIndex);
@@ -8684,7 +8692,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartScaleTuneE_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartScaleTuneE_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartScaleTuneE_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartScaleTuneE((Int32)slStudioSetPartScaleTuneE.Value + 64, cbStudioSetPartSelector.SelectedIndex);
@@ -8705,7 +8713,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartScaleTuneF_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartScaleTuneF_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartScaleTuneF_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartScaleTuneF((Int32)slStudioSetPartScaleTuneF.Value + 64, cbStudioSetPartSelector.SelectedIndex);
@@ -8726,7 +8734,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartScaleTuneFi_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartScaleTuneFi_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartScaleTuneFi_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartScaleTuneFi((Int32)slStudioSetPartScaleTuneFi.Value + 64, cbStudioSetPartSelector.SelectedIndex);
@@ -8747,7 +8755,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartScaleTuneG_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartScaleTuneG_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartScaleTuneG_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartScaleTuneG((Int32)slStudioSetPartScaleTuneG.Value + 64, cbStudioSetPartSelector.SelectedIndex);
@@ -8768,7 +8776,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartScaleTuneGi_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartScaleTuneGi_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartScaleTuneGi_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartScaleTuneGi((Int32)slStudioSetPartScaleTuneGi.Value + 64, cbStudioSetPartSelector.SelectedIndex);
@@ -8789,7 +8797,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartScaleTuneA_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartScaleTuneA_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartScaleTuneA_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartScaleTuneA((Int32)slStudioSetPartScaleTuneA.Value + 64, cbStudioSetPartSelector.SelectedIndex);
@@ -8810,7 +8818,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartScaleTuneAi_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartScaleTuneAi_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartScaleTuneAi_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartScaleTuneAi((Int32)slStudioSetPartScaleTuneAi.Value + 64, cbStudioSetPartSelector.SelectedIndex);
@@ -8831,7 +8839,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartScaleTuneB_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartScaleTuneB_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartScaleTuneB_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartScaleTuneB((Int32)slStudioSetPartScaleTuneB.Value + 64, cbStudioSetPartSelector.SelectedIndex);
@@ -8853,7 +8861,7 @@ namespace INTEGRA_7
         // Midi
         private void cbStudioSetPartMidiReceiveProgramChange_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartMidiReceiveProgramChange_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartMidiReceiveProgramChange_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartMidiReceiveProgramChange((Boolean)cbStudioSetPartMidiReceiveProgramChange.IsChecked, cbStudioSetPartSelector.SelectedIndex);
@@ -8873,7 +8881,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartMidiReceiveBankSelect_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartMidiReceiveBankSelect_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartMidiReceiveBankSelect_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartMidiReceiveBankSelect((Boolean)cbStudioSetPartMidiReceiveBankSelect.IsChecked, cbStudioSetPartSelector.SelectedIndex);
@@ -8893,7 +8901,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartMidiReceivePitchBend_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartMidiReceivePitchBend_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartMidiReceivePitchBend_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartMidiReceivePitchBend((Boolean)cbStudioSetPartMidiReceivePitchBend.IsChecked, cbStudioSetPartSelector.SelectedIndex);
@@ -8913,7 +8921,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartMidiReceivePolyphonicKeyPressure_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartMidiReceivePolyphonicKeyPressure_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartMidiReceivePolyphonicKeyPressure_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartMidiReceivePolyphonicKeyPressure((Boolean)cbStudioSetPartMidiReceivePolyphonicKeyPressure.IsChecked, cbStudioSetPartSelector.SelectedIndex);
@@ -8933,7 +8941,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartMidiReceiveChannelPressure_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartMidiReceiveChannelPressure_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartMidiReceiveChannelPressure_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetPartMidiReceiveChannelPressure((Boolean)cbStudioSetPartMidiReceiveChannelPressure.IsChecked, cbStudioSetPartSelector.SelectedIndex);
@@ -8953,7 +8961,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartMidiReceiveModulation_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartMidiReceiveModulation_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartMidiReceiveModulation_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartMidiReceiveModulation((Boolean)cbStudioSetPartMidiReceiveModulation.IsChecked, cbStudioSetPartSelector.SelectedIndex);
@@ -8973,7 +8981,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartMidiReceiveVolume_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartMidiReceiveVolume_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartMidiReceiveVolume_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartMidiReceiveVolume((Boolean)cbStudioSetPartMidiReceiveVolume.IsChecked, cbStudioSetPartSelector.SelectedIndex);
@@ -8993,7 +9001,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartMidiReceivePan_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartMidiReceivePan_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartMidiReceivePan_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartMidiReceivePan((Boolean)cbStudioSetPartMidiReceivePan.IsChecked, cbStudioSetPartSelector.SelectedIndex);
@@ -9013,7 +9021,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartMidiReceiveExpression_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartMidiReceiveExpression_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartMidiReceiveExpression_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartMidiReceiveExpression((Boolean)cbStudioSetPartMidiReceiveExpression.IsChecked, cbStudioSetPartSelector.SelectedIndex);
@@ -9033,7 +9041,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartMidiReceiveHold1_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartMidiReceiveHold1_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartMidiReceiveHold1_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartMidiReceiveHold1((Boolean)cbStudioSetPartMidiReceiveHold1.IsChecked, cbStudioSetPartSelector.SelectedIndex);
@@ -9053,7 +9061,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartMidiPhaseLock_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartMidiPhaseLock_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartMidiPhaseLock_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartMidiPhaseLock((Boolean)cbStudioSetPartMidiPhaseLock.IsChecked, cbStudioSetPartSelector.SelectedIndex);
@@ -9074,7 +9082,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartMotionalSurroundLR_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartMotionalSurroundLR_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartMotionalSurroundLR_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartMotionalSurroundLR((Int32)slStudioSetPartMotionalSurroundLR.Value + 64, cbStudioSetPartSelector.SelectedIndex);
@@ -9095,7 +9103,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartMotionalSurroundFB_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartMotionalSurroundFB_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartMotionalSurroundFB_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartMotionalSurroundFB((Int32)slStudioSetPartMotionalSurroundFB.Value + 64, cbStudioSetPartSelector.SelectedIndex);
@@ -9116,7 +9124,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartMotionalSurroundWidth_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartMotionalSurroundWidth_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartMotionalSurroundWidth_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartMotionalSurroundWidth((Int32)slStudioSetPartMotionalSurroundWidth.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -9137,7 +9145,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartMotionalSurroundAmbienceSendLevel_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartMotionalSurroundAmbienceSendLevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartMotionalSurroundAmbienceSendLevel_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartMotionalSurroundAmbienceSendLevel((Int32)slStudioSetPartMotionalSurroundAmbienceSendLevel.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -9159,7 +9167,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartEQ_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartEQ_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartEQ_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartEQ((Boolean)cbStudioSetPartEQSwitch.IsChecked, cbStudioSetPartSelector.SelectedIndex);
@@ -9179,7 +9187,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartEQLoqFreq_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartEQLoqFreq_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartEQLoqFreq_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartEQLoqFreq(cbStudioSetPartEQLowFreq.SelectedIndex, cbStudioSetPartSelector.SelectedIndex);
@@ -9199,7 +9207,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartEQLowGain_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartEQLowGain_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartEQLowGain_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartEQLowGain((Int32)slStudioSetPartEQLowGain.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -9220,7 +9228,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartEQMidFreq_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartEQMidFreq_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartEQMidFreq_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartEQMidFreq(cbStudioSetPartEQMidFreq.SelectedIndex, cbStudioSetPartSelector.SelectedIndex);
@@ -9240,7 +9248,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartEQMidGain_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartEQMidGain_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartEQMidGain_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartEQMidGain((Int32)slStudioSetPartEQMidGain.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -9261,7 +9269,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartEQMidQ_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartEQMidQ_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartEQMidQ_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartEQMidQ(cbStudioSetPartEQMidQ.SelectedIndex, cbStudioSetPartSelector.SelectedIndex);
@@ -9281,7 +9289,7 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartEQHighFreq_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartEQHighFreq_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartEQHighFreq_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartEQHighFreq(cbStudioSetPartEQHighFreq.SelectedIndex, cbStudioSetPartSelector.SelectedIndex);
@@ -9301,7 +9309,7 @@ namespace INTEGRA_7
 
         private void slStudioSetPartEQHighGain_ValueChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void slStudioSetPartEQHighGain_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void slStudioSetPartEQHighGain_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
                 SetStudioSetStudioSetPartEQHighGain((Int32)slStudioSetPartEQHighGain.Value, cbStudioSetPartSelector.SelectedIndex);
@@ -9336,7 +9344,7 @@ namespace INTEGRA_7
 
         private void tbStudioSetName_KeyUp(object sender, EventArgs e)
         {
-            //t.Trace("private void tbStudioSetName_KeyUp (" + "object" + sender + ", " + "KeyEventArgs" + e + ", " + ")");
+            t.Trace("private void tbStudioSetName_KeyUp (" + "object" + sender + ", " + "KeyEventArgs" + e + ", " + ")");
             if (tbStudioSetName.Text.Length > 16)
             {
                 tbStudioSetName.Text = tbStudioSetName.Text.Remove(12);
@@ -9425,7 +9433,7 @@ namespace INTEGRA_7
 
         private async void btnStudioSetDelete_Click(object sender, EventArgs e)
         {
-            //t.Trace("private void btnStudioSetDelete_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void btnStudioSetDelete_Click (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (!tbStudioSetName.Text.StartsWith("INIT STUDIO"))
             {
                 Boolean write = true;
@@ -9496,18 +9504,18 @@ namespace INTEGRA_7
 
         private void cbStudioSetPartSettings1Search_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //t.Trace("private void cbStudioSetPartSettings1Search_TextChanged (" + "object" + sender + ", " + "TextChangedEventArgs" + e + ", " + ")");
+            t.Trace("private void cbStudioSetPartSettings1Search_TextChanged (" + "object" + sender + ", " + "TextChangedEventArgs" + e + ", " + ")");
             if (String.IsNullOrEmpty(cbStudioSetPartSettings1Search.Text) || cbStudioSetPartSettings1Search.Text.Length < 3)
             {
                 gEditStudioSetSearchResult.IsVisible = false;
-                grid_StudioSet_Column1.IsVisible = true;
+                gStudioSet_Column1.IsVisible = true;
             }
             else
             {
                 if (MidiChannelIsSameAsPart())
                 {
                     gEditStudioSetSearchResult.IsVisible = true;
-                    grid_StudioSet_Column1.IsVisible = false;
+                    gStudioSet_Column1.IsVisible = false;
                     try
                     {
                         StudioSetEditor_SearchResult.Clear();
@@ -9530,7 +9538,7 @@ namespace INTEGRA_7
 
         private void lvSearchResults_SelectionChanged(object sender, EventArgs e)
         {
-            //t.Trace("private void lvSearchResults_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
+            t.Trace("private void lvSearchResults_SelectionChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             String soundName = (String)((ListView)sender).SelectedItem;
             Boolean drumMap = false;
             if (!String.IsNullOrEmpty(soundName))
@@ -9624,7 +9632,7 @@ namespace INTEGRA_7
 
         private void PopulateCbStudioSetPartSettings1Group()
         {
-            //t.Trace("private void PopulateCbStudioSetPartSettings1Group()");
+            t.Trace("private void PopulateCbStudioSetPartSettings1Group()");
             if (!EditStudioSet_IsCreated)
             {
                 return;
@@ -9661,7 +9669,7 @@ namespace INTEGRA_7
 
         private void PopulateCbStudioSetPartSettings1Category()
         {
-            //t.Trace("private void PopulateCbStudioSetPartSettings1Category()");
+            t.Trace("private void PopulateCbStudioSetPartSettings1Category()");
             if (!EditStudioSet_IsCreated)
             {
                 return;
@@ -9754,7 +9762,7 @@ namespace INTEGRA_7
 
         private void PopulateCbStudioSetPartSettings1Program()
         {
-            //t.Trace("private void PopulateCbStudioSetPartSettings1Program ()");
+            t.Trace("private void PopulateCbStudioSetPartSettings1Program ()");
             if (!EditStudioSet_IsCreated)
             {
                 return;
@@ -9792,7 +9800,7 @@ namespace INTEGRA_7
 
         //private Int32 MsbToCbIndex(Int32 msb)
         //{
-        //    //t.Trace("private Int32 MsbToCbIndex()");
+        //    t.Trace("private Int32 MsbToCbIndex()");
         //    Int32 index = 0;
         //    foreach (ComboBoxItem item in cbStudioSetPartSettings1Group.Items)
         //    {
@@ -9807,7 +9815,7 @@ namespace INTEGRA_7
 
         //private Int32 LsbToCbIndex(Int32 lsb)
         //{
-        //    //t.Trace("private Int32 LsbToCbIndex()");
+        //    t.Trace("private Int32 LsbToCbIndex()");
         //    Int32 index = 0;
         //    foreach (ComboBoxItem item in cbStudioSetPartSettings1Category.Items)
         //    {
@@ -9822,7 +9830,7 @@ namespace INTEGRA_7
 
         private Int32 MaxValidPc()
         {
-            //t.Trace("private Int32 MaxValidPc()");
+            t.Trace("private Int32 MaxValidPc()");
             Int32 max = 1;
             switch (commonState.StudioSet.PartMainSettings[cbStudioSetPartSelector.SelectedIndex].ToneBankSelectMSB)
             {
@@ -10021,14 +10029,14 @@ namespace INTEGRA_7
 
         private String ByteToHexString(byte b)
         {
-            //t.Trace("private String ByteToHexString (" + "byte" + b + ", " + ")");
+            t.Trace("private String ByteToHexString (" + "byte" + b + ", " + ")");
             String chars = "0123456789ABCDEF";
             return (chars.ToCharArray()[b / 16].ToString() + chars.ToCharArray()[b % 16].ToString());
         }
 
         public Int32 FourByteRightNibbleToInt32(Int32 i)
         {
-            //t.Trace("public Int32 FourByteRightNibbleToInt32 (" + "Int32" + i + ", " + ")");
+            t.Trace("public Int32 FourByteRightNibbleToInt32 (" + "Int32" + i + ", " + ")");
             return (rawData[i++] & 0x0f) * 16 * 16 * 16 +
                 (rawData[i++] & 0x0f) * 16 * 16 +
                 (rawData[i++] & 0x0f) * 16 +
@@ -10037,7 +10045,7 @@ namespace INTEGRA_7
 
         private byte[] Int32ToTwoByteArray(Int32 value)
         {
-            //t.Trace("private byte[] Int32ToTwoByteArray (" + "Int32" + value + ", " + ")");
+            t.Trace("private byte[] Int32ToTwoByteArray (" + "Int32" + value + ", " + ")");
             byte[] result = new byte[2];
             result[0] = (byte)(value / 16);
             result[1] = (byte)(value % 16);
@@ -10046,7 +10054,7 @@ namespace INTEGRA_7
 
         private String CalculateChorusPreDelay(Int32 Value)
         {
-            //t.Trace("private String CalculateChorusPreDelay (" + "Int32" + Value + ", " + ")");
+            t.Trace("private String CalculateChorusPreDelay (" + "Int32" + Value + ", " + ")");
             Double stringValue;
             if (Value < 50)
             {
@@ -10069,7 +10077,7 @@ namespace INTEGRA_7
 
         private String CalculateTimeHz(Int32 Value)
         {
-            //t.Trace("private String CalculateTimeHz (" + "Int32" + Value + ", " + ")");
+            t.Trace("private String CalculateTimeHz (" + "Int32" + Value + ", " + ")");
             // 0.05 - 10 in 200 0.05 steps 
             Double stringValue;
             stringValue = Math.Round((Value / 20.0), 2);
@@ -10078,7 +10086,7 @@ namespace INTEGRA_7
 
         private String CalculateTimeNote(Int32 Value)
         {
-            //t.Trace("private String CalculateTimeNote (" + "Int32" + Value + ", " + ")");
+            t.Trace("private String CalculateTimeNote (" + "Int32" + Value + ", " + ")");
             // Different note length values in 22 steps denoted in list:
             String[] noteLengthValues = {
                 "1/64T", "1/64", "1/32T", "1/32", "1/16T", "1/32.",
@@ -10097,7 +10105,7 @@ namespace INTEGRA_7
 
         private void ResetComboBoxes()
         {
-            //t.Trace("private void ResetComboBoxes()");
+            t.Trace("private void ResetComboBoxes()");
             Boolean currentHandleControlEvents = handleControlEvents;
             PushHandleControlEvents();
             cbChorusChorusFilterCutoffFrequency.SelectedIndex = -1;
@@ -10134,7 +10142,7 @@ namespace INTEGRA_7
 
         private void SendHashMarkedMessage(byte[] Address, Double Value)
         {
-            //t.Trace("private void SendHashMarkedMessage (" + "byte[]" + Address + ", " + "Double" + Value + ", " + ")");
+            t.Trace("private void SendHashMarkedMessage (" + "byte[]" + Address + ", " + "Double" + Value + ", " + ")");
             // Since there are no values that takes more than 2 bytes, set first two to 0x08 and 0x00
             // as they are already set in the INTEGRA-7. Split Value into MSB and LSB and send.
             byte[] value = { 0x08, 0x00, (byte)((Value) / 16), (byte)((Value) % 16) };
@@ -10145,7 +10153,7 @@ namespace INTEGRA_7
 
         private void UpdateChorusChorusSubwindow()
         {
-            //t.Trace("private void UpdateChorusChorusSubwindow()");
+            t.Trace("private void UpdateChorusChorusSubwindow()");
 
             switch (commonState.StudioSet.CommonChorus.Type)
             {
@@ -10181,7 +10189,7 @@ namespace INTEGRA_7
 
         private void UpdateChorusReverbSubwindow()
         {
-            //t.Trace("private void UpdateChorusReverbSubwindow()");
+            t.Trace("private void UpdateChorusReverbSubwindow()");
             // Off:
             StudioSetReverbReverb.IsVisible = false;
             StudioSetReverbGM2.IsVisible = false;

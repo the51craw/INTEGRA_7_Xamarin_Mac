@@ -84,12 +84,13 @@ namespace INTEGRA_7
             Settings_SetSliders();
             //Settings_Color_Changed(null, null);
             SetStackLayoutColors(Settings_StackLayout);
-            Settings_gridTopLeft.BackgroundColor = colorSettings.Background;
-            Settings_gridTopRight.BackgroundColor = colorSettings.Background;
-            Settings_gridLeftFiller.BackgroundColor = colorSettings.Background;
-            Settings_gridRightFiller.BackgroundColor = colorSettings.Background;
-            Settings_gridBottomLeft.BackgroundColor = colorSettings.Background;
-            Settings_gridBottomRight.BackgroundColor = colorSettings.Background;
+            Settings_UserColorSettings = colorSettings;
+            Settings_gridTopLeft.BackgroundColor = colorSettings.FrameBorder;
+            Settings_gridTopRight.BackgroundColor = colorSettings.FrameBorder;
+            Settings_gridLeftFiller.BackgroundColor = colorSettings.FrameBorder;
+            Settings_gridRightFiller.BackgroundColor = colorSettings.FrameBorder;
+            Settings_gridBottomLeft.BackgroundColor = colorSettings.FrameBorder;
+            Settings_gridBottomRight.BackgroundColor = colorSettings.FrameBorder;
             //Settings_updateColors = false;
             Settings_StackLayout.IsVisible = true;
         }
@@ -269,9 +270,9 @@ namespace INTEGRA_7
             Settings_gridControls.Children.Add(new GridRow(rowOffset++, new View[]
                 { Settings_lsBankNumberToClipboard }));
             Settings_gridControls.Children.Add(new GridRow(rowOffset++, new View[] 
-                { Settings_lblColorTypeSelector, Settings_pColorSchemeSelector }));
+                { Settings_lblColorSchemeSelector, Settings_pColorSchemeSelector }));
             Settings_gridControls.Children.Add(new GridRow(rowOffset++, new View[] 
-                { Settings_lblColorSchemeSelector, Settings_pColorTypeSelector }));
+                { Settings_lblColorTypeSelector, Settings_pColorTypeSelector }));
             Settings_gridControls.Children.Add(new GridRow(rowOffset++, new View[] 
                 { Settings_lblRed, Settings_slRed }, new byte[] { 1, 10 }));
             Settings_gridControls.Children.Add(new GridRow(rowOffset++, new View[] 
@@ -743,208 +744,211 @@ namespace INTEGRA_7
 
         private void SetControlColors(Object control, ColorSettings settings)
         {
-            Type type = control.GetType();
+            try
+            {
+                Type type = control.GetType();
 
-            if (type == typeof(Button))
-            {
-                if (((String)((Button)control).Tag) == "PianoKeyCover")
+                if (type == typeof(Button))
                 {
-                    ((Button)control).BackgroundColor = settings.Progressbar;
-                }
-                else
-                {
-                    ((Button)control).TextColor = settings.Text;
-                    ((Button)control).BackgroundColor = settings.Background;
-                }
-            }
-            else if (type == typeof(Xamarin.Forms.Button))
-            {
-                ((Xamarin.Forms.Button)control).TextColor = settings.Text;
-                ((Xamarin.Forms.Button)control).BackgroundColor = settings.Background;
-            }
-            else if (type == typeof(PianoKey))
-            {
-                if ((Boolean)((PianoKey)control).WhiteKey)
-                {
-                    ((PianoKey)control).TextColor = settings.WhitePianoKeyText;
-                    ((PianoKey)control).BackgroundColor = settings.WhitePianoKey;
-                }
-                else
-                {
-                    ((PianoKey)control).TextColor = settings.BlackPianoKeyText;
-                    ((PianoKey)control).BackgroundColor = settings.BlackPianoKey;
-                }
-            }
-            else if (type == typeof(FavoritesButton))
-            {
-                ((FavoritesButton)control).TextColor = settings.Text;
-                ((FavoritesButton)control).BackgroundColor = settings.IsFavorite;
-            }
-            else if (type == typeof(Label))
-            {
-                ((Label)control).TextColor = settings.Text;
-                ((Label)control).BackgroundColor = settings.Background;
-            }
-            else if (type == typeof(LabeledText))
-            {
-                ((LabeledText)control).Label.TextColor = settings.Text;
-                ((LabeledText)control).Label.BackgroundColor = settings.Background;
-                ((LabeledText)control).text.TextColor = settings.Text;
-                ((LabeledText)control).text.BackgroundColor = settings.Background;
-                ((LabeledText)control).BackgroundColor = settings.Background;
-                //if (((LabeledText)control).Children.Count > 0)
-                //{
-                //    for (Int32 i = 0; i < ((LabeledText)control).Children.Count; i++)
-                //    {
-                //        foreach (Object child in ((LabeledText)control).Children)
-                //        {
-                //            SetControlColors(child, settings);
-                //        }
-                //    }
-                //}
-            }
-            else if (type == typeof(Switch))
-            {
-                ((Switch)control).OnColor = settings.Text;
-                ((Switch)control).BackgroundColor = settings.Background;
-            }
-            else if (type == typeof(CheckBox)) // This is actually INTEGRA_7.CheckBox
-            {
-                ((CheckBox)control).BackgroundColor = settings.Background;
-                ((CheckBox)control).CBLabel.BackgroundColor = settings.Background;
-                ((CheckBox)control).CBLabel.TextColor = settings.Text;
-                ((CheckBox)control).CBSwitch.BackgroundColor = settings.Background;
-            }
-            else if (type == typeof(LabeledSwitch))
-            {
-                ((LabeledSwitch)control).LSLabel.BackgroundColor = settings.Background;
-                ((LabeledSwitch)control).LSSwitch.BackgroundColor = settings.Background;
-                ((LabeledSwitch)control).LSLabel.TextColor = settings.Text;
-            }
-            else if (type == typeof(ListView))
-            {
-                //String temp = (String)((ListView)control).SelectedItem;
-                ((ListView)control).ItemTemplate = settings.ListViewTextColor;
-                ((ListView)control).BackgroundColor = settings.Background;
-                //((ListView)control).SelectedItem = temp;
-            }
-            else if (type == typeof(Slider))
-            {
-                ((Slider)control).BackgroundColor = settings.Background;
-            }
-            else if (type == typeof(Picker))
-            {
-                ((Picker)control).TextColor = settings.Text;
-                ((Picker)control).BackgroundColor = settings.Background;
-            }
-            else if (type == typeof(ComboBox))
-            {
-                ((ComboBox)control).TextColor = settings.Text;
-                ((ComboBox)control).BackgroundColor = settings.Background;
-            }
-            else if (type == typeof(Editor))
-            {
-                ((Editor)control).TextColor = settings.Text;
-                ((Editor)control).BackgroundColor = settings.Background;
-            }
-            else if (type == typeof(TextBox))
-            {
-                ((TextBox)control).TextColor = settings.Text;
-                ((TextBox)control).BackgroundColor = settings.Background;
-                //((TextBox)control).Editor.TextColor = settings.Text;
-                //((TextBox)control).Editor.BackgroundColor = settings.Background;
-            }
-            else if (type == typeof(TextBlock))
-            {
-                ((TextBlock)control).TextColor = settings.Text;
-                ((TextBlock)control).BackgroundColor = settings.Background;
-            }
-            else if (type == typeof(MotionalSurroundPartLabel))
-            {
-                ((MotionalSurroundPartLabel)control).TextColor = settings.MotionalSurroundPartLabelText;
-                if (((MotionalSurroundPartLabel)control).IsFocused == true)
-                {
-                    ((MotionalSurroundPartLabel)control).BackgroundColor = settings.MotionalSurroundPartLabelFocused;
-                }
-                else
-                {
-                    ((MotionalSurroundPartLabel)control).BackgroundColor = settings.MotionalSurroundPartLabelUnfocused;
-                }
-            }
-            else if (type == typeof(MotionalSurroundPartEditor))
-            {
-                ((MotionalSurroundPartEditor)control).Editor.BackgroundColor = settings.Background;
-                ((MotionalSurroundPartEditor)control).Editor.TextColor = settings.Text;
-                ((MotionalSurroundPartEditor)control).Switch.LSLabel.BackgroundColor = settings.Background;
-                ((MotionalSurroundPartEditor)control).Switch.LSLabel.TextColor = settings.Text;
-                ((MotionalSurroundPartEditor)control).Switch.LSSwitch.BackgroundColor = settings.Background;
-                //((MotionalSurroundPartEditor)control).Switch.LSSwitch.TextColor = settings.Text;
-                ((MotionalSurroundPartEditor)control).BackgroundColor = settings.Background;
-            }
-            else if (type == typeof(Image))
-            {
-                ((Image)control).BackgroundColor = settings.Background;
-            }
-            else if (type == typeof(TouchableImage))
-            {
-                ((TouchableImage)control).BackgroundColor = settings.Background;
-            }
-            else if (type == typeof(ProgressBar))
-            {
-                ((ProgressBar)control).BackgroundColor = settings.Background;
-                ((ProgressBar)control).ProgressColor = settings.Progressbar;
-            }
-            else if (type == typeof(Grid))
-            {
-                if (((Grid)control).IsPianoGrid == 1)
-                {
-                    ((View)control).BackgroundColor = settings.BlackPianoKey;
-                }
-                else if (((Grid)control).IsPianoGrid == 2)
-                {
-                    ((View)control).BackgroundColor = settings.WhitePianoKey;
-                }
-                else
-                {
-                    ((View)control).BackgroundColor = settings.Transparent;
-                }
-                if (((Grid)control).Children.Count > 0)
-                {
-                    for (Int32 i = 0; i < ((Grid)control).Children.Count; i++)
+                    if (((String)((Button)control).Tag) == "PianoKeyCover")
                     {
-                        if (((Grid)control).Children[i].GetType() == typeof(Slider))
-                        {
-                            ((View)control).BackgroundColor = settings.Background;
-                        }
+                        ((Button)control).BackgroundColor = settings.Progressbar;
+                    }
+                    else
+                    {
+                        ((Button)control).TextColor = settings.Text;
+                        ((Button)control).BackgroundColor = settings.Background;
                     }
                 }
-                foreach (Object child in ((Grid)control).Children)
+                else if (type == typeof(Xamarin.Forms.Button))
                 {
-                    SetControlColors(child, settings);
+                    ((Xamarin.Forms.Button)control).TextColor = settings.Text;
+                    ((Xamarin.Forms.Button)control).BackgroundColor = settings.Background;
                 }
-            }
-            else if (type == typeof(GridRow))
-            {
-                ((Grid)((GridRow)control)).BackgroundColor = settings.FrameBorder;
-                if (((Grid)((GridRow)control)).Children.Count > 0)
+                else if (type == typeof(PianoKey))
                 {
-                    for (Int32 i = 0; i < ((Grid)((GridRow)control)).Children.Count; i++)
+                    if ((Boolean)((PianoKey)control).WhiteKey)
                     {
-                        if (((Grid)((GridRow)control)).Children[i].GetType() == typeof(Slider))
-                        {
-                            ((Grid)((GridRow)control)).BackgroundColor = settings.Background;
-                        }
+                        ((PianoKey)control).TextColor = settings.WhitePianoKeyText;
+                        ((PianoKey)control).BackgroundColor = settings.WhitePianoKey;
+                    }
+                    else
+                    {
+                        ((PianoKey)control).TextColor = settings.BlackPianoKeyText;
+                        ((PianoKey)control).BackgroundColor = settings.BlackPianoKey;
                     }
                 }
-                foreach (Object child in ((Grid)((GridRow)control)).Children)
+                else if (type == typeof(FavoritesButton))
                 {
-                    SetControlColors(child, settings);
+                    ((FavoritesButton)control).TextColor = settings.Text;
+                    ((FavoritesButton)control).BackgroundColor = settings.IsFavorite;
                 }
-            }
-            else
-            {
-                throw new Exception("Missing type in SetControlColors(): " + type.ToString());
-            }
+                else if (type == typeof(Label))
+                {
+                    ((Label)control).TextColor = settings.Text;
+                    ((Label)control).BackgroundColor = settings.Background;
+                }
+                else if (type == typeof(LabeledText))
+                {
+                    ((LabeledText)control).Label.TextColor = settings.Text;
+                    ((LabeledText)control).Label.BackgroundColor = settings.Background;
+                    ((LabeledText)control).text.TextColor = settings.Text;
+                    ((LabeledText)control).text.BackgroundColor = settings.Background;
+                    ((LabeledText)control).BackgroundColor = settings.Background;
+                    //if (((LabeledText)control).Children.Count > 0)
+                    //{
+                    //    for (Int32 i = 0; i < ((LabeledText)control).Children.Count; i++)
+                    //    {
+                    //        foreach (Object child in ((LabeledText)control).Children)
+                    //        {
+                    //            SetControlColors(child, settings);
+                    //        }
+                    //    }
+                    //}
+                }
+                else if (type == typeof(Switch))
+                {
+                    ((Switch)control).OnColor = settings.Text;
+                    ((Switch)control).BackgroundColor = settings.Background;
+                }
+                else if (type == typeof(CheckBox)) // This is actually INTEGRA_7.CheckBox
+                {
+                    ((CheckBox)control).BackgroundColor = settings.Background;
+                    ((CheckBox)control).CBLabel.BackgroundColor = settings.Background;
+                    ((CheckBox)control).CBLabel.TextColor = settings.Text;
+                    ((CheckBox)control).CBSwitch.BackgroundColor = settings.Background;
+                }
+                else if (type == typeof(LabeledSwitch))
+                {
+                    ((LabeledSwitch)control).LSLabel.BackgroundColor = settings.Background;
+                    ((LabeledSwitch)control).LSSwitch.BackgroundColor = settings.Background;
+                    ((LabeledSwitch)control).LSLabel.TextColor = settings.Text;
+                }
+                else if (type == typeof(ListView))
+                {
+                    //String temp = (String)((ListView)control).SelectedItem;
+                    ((ListView)control).ItemTemplate = settings.ListViewTextColor;
+                    ((ListView)control).BackgroundColor = settings.Background;
+                    //((ListView)control).SelectedItem = temp;
+                }
+                else if (type == typeof(Slider))
+                {
+                    ((Slider)control).BackgroundColor = settings.Background;
+                }
+                else if (type == typeof(Picker))
+                {
+                    ((Picker)control).TextColor = settings.Text;
+                    ((Picker)control).BackgroundColor = settings.Background;
+                }
+                else if (type == typeof(ComboBox))
+                {
+                    ((ComboBox)control).TextColor = settings.Text;
+                    ((ComboBox)control).BackgroundColor = settings.Background;
+                }
+                else if (type == typeof(Editor))
+                {
+                    ((Editor)control).TextColor = settings.Text;
+                    ((Editor)control).BackgroundColor = settings.Background;
+                }
+                else if (type == typeof(TextBox))
+                {
+                    ((TextBox)control).TextColor = settings.Text;
+                    ((TextBox)control).BackgroundColor = settings.Background;
+                    //((TextBox)control).Editor.TextColor = settings.Text;
+                    //((TextBox)control).Editor.BackgroundColor = settings.Background;
+                }
+                else if (type == typeof(TextBlock))
+                {
+                    ((TextBlock)control).TextColor = settings.Text;
+                    ((TextBlock)control).BackgroundColor = settings.Background;
+                }
+                else if (type == typeof(MotionalSurroundPartLabel))
+                {
+                    ((MotionalSurroundPartLabel)control).TextColor = settings.MotionalSurroundPartLabelText;
+                    if (((MotionalSurroundPartLabel)control).IsFocused == true)
+                    {
+                        ((MotionalSurroundPartLabel)control).BackgroundColor = settings.MotionalSurroundPartLabelFocused;
+                    }
+                    else
+                    {
+                        ((MotionalSurroundPartLabel)control).BackgroundColor = settings.MotionalSurroundPartLabelUnfocused;
+                    }
+                }
+                else if (type == typeof(MotionalSurroundPartEditor))
+                {
+                    ((MotionalSurroundPartEditor)control).Editor.BackgroundColor = settings.Background;
+                    ((MotionalSurroundPartEditor)control).Editor.TextColor = settings.Text;
+                    ((MotionalSurroundPartEditor)control).Switch.LSLabel.BackgroundColor = settings.Background;
+                    ((MotionalSurroundPartEditor)control).Switch.LSLabel.TextColor = settings.Text;
+                    ((MotionalSurroundPartEditor)control).Switch.LSSwitch.BackgroundColor = settings.Background;
+                    //((MotionalSurroundPartEditor)control).Switch.LSSwitch.TextColor = settings.Text;
+                    ((MotionalSurroundPartEditor)control).BackgroundColor = settings.Background;
+                }
+                else if (type == typeof(Image))
+                {
+                    ((Image)control).BackgroundColor = settings.Background;
+                }
+                else if (type == typeof(TouchableImage))
+                {
+                    ((TouchableImage)control).BackgroundColor = settings.Background;
+                }
+                else if (type == typeof(ProgressBar))
+                {
+                    ((ProgressBar)control).BackgroundColor = settings.Background;
+                    ((ProgressBar)control).ProgressColor = settings.Progressbar;
+                }
+                else if (type == typeof(Grid))
+                {
+                    if (((Grid)control).IsPianoGrid == 1)
+                    {
+                        ((View)control).BackgroundColor = settings.BlackPianoKey;
+                    }
+                    else if (((Grid)control).IsPianoGrid == 2)
+                    {
+                        ((View)control).BackgroundColor = settings.WhitePianoKey;
+                    }
+                    else
+                    {
+                        ((View)control).BackgroundColor = settings.Transparent;
+                    }
+                    if (((Grid)control).Children.Count > 0)
+                    {
+                        for (Int32 i = 0; i < ((Grid)control).Children.Count; i++)
+                        {
+                            if (((Grid)control).Children[i].GetType() == typeof(Slider))
+                            {
+                                ((View)control).BackgroundColor = settings.Background;
+                            }
+                        }
+                    }
+                    foreach (Object child in ((Grid)control).Children)
+                    {
+                        SetControlColors(child, settings);
+                    }
+                }
+                else if (type == typeof(GridRow))
+                {
+                    ((Grid)((GridRow)control)).BackgroundColor = settings.FrameBorder;
+                    if (((Grid)((GridRow)control)).Children.Count > 0)
+                    {
+                        for (Int32 i = 0; i < ((Grid)((GridRow)control)).Children.Count; i++)
+                        {
+                            if (((Grid)((GridRow)control)).Children[i].GetType() == typeof(Slider))
+                            {
+                                ((Grid)((GridRow)control)).BackgroundColor = settings.Background;
+                            }
+                        }
+                    }
+                    foreach (Object child in ((Grid)((GridRow)control)).Children)
+                    {
+                        SetControlColors(child, settings);
+                    }
+                }
+                else
+                {
+                    throw new Exception("Missing type in SetControlColors(): " + type.ToString());
+                }
+            } catch { }
         }
 
         private void Settings_RandomUserColors()
