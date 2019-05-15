@@ -592,6 +592,7 @@ namespace INTEGRA_7
         public Grid grid_Buttons;
         public Button btnFileSave;
         public Button btnFileLoad;
+        public Button btnStudioSetPlay;
         public Button btnStudioSetSave;
         public Button btnStudioSetDelete;
         public Button btnStudioSetReturn;
@@ -606,7 +607,7 @@ namespace INTEGRA_7
                 initialGuiDone = false;
                 //studioSetNumberTemp = 0;
                 PushHandleControlEvents();
-                DrawStudioSetEditorPage();
+                //DrawStudioSetEditorPage();
                 StudioSetEditor_StackLayout.MinimumWidthRequest = 1;
                 mainStackLayout.Children.Add(StudioSetEditor_StackLayout);
                 StudioSetEditor_StackLayout.IsVisible = false;
@@ -1184,6 +1185,7 @@ namespace INTEGRA_7
                 grid_Buttons = new Grid();
                 btnFileSave = new Button();
                 btnFileLoad = new Button();
+                btnStudioSetPlay = new Button();
                 btnStudioSetSave = new Button();
                 btnStudioSetDelete = new Button();
                 btnStudioSetReturn = new Button();
@@ -1986,6 +1988,8 @@ namespace INTEGRA_7
             btnFileSave.Clicked += btnFileSave_Click;
             btnFileLoad.Content = "Load file";
             btnFileLoad.Clicked += btnFileLoad_Click;
+            btnStudioSetPlay.Content = "Play";
+            btnStudioSetPlay.Clicked += Librarian_btnPlay_Clicked; // Note! Handled in Librarian!
             btnStudioSetSave.Content = "Save";
             btnStudioSetSave.Clicked += btnStudioSetSave_Click;
             btnStudioSetDelete.Content = "Delete";
@@ -2234,7 +2238,7 @@ namespace INTEGRA_7
             StudioSetPartEQ.Children.Add((new GridRow(7, new View[] { tbStudioSetPartEQHighGain, slStudioSetPartEQHighGain })));
 
             grid_Buttons.Children.Add((new GridRow(0, new View[] { cbStudioSetSlot, lblStudioSetName, tbStudioSetName }, new byte[] { 5, 3, 8 })));
-            grid_Buttons.Children.Add((new GridRow(1, new View[] { /*->btnFileSave, btnFileLoad,*/ btnStudioSetSave, btnStudioSetDelete, btnStudioSetReturn }, new byte[] { 3, 3, 2, 2, 2 })));
+            grid_Buttons.Children.Add((new GridRow(1, new View[] { /*->btnFileSave, btnFileLoad,*/btnStudioSetPlay, btnStudioSetSave, btnStudioSetDelete, btnStudioSetReturn }, new byte[] { 3, 3, 2, 2, 2 })));
 
             //---------------------------------------------------------------------------------------
             // Assemble column 0 
@@ -2363,12 +2367,12 @@ namespace INTEGRA_7
                 //    //commonState.midi.midiInPort.MessageReceived += Edit_MidiInPort_MessageReceived;
                 //    firstTime = false;
                 //}
-                if (btnEditTone_Play != null)
+                if (btnStudioSetPlay != null)
                 {
-                    commonState.Player.btnPlayStop = btnEditTone_Play;
+                    commonState.Player.btnPlayStop = btnStudioSetPlay;
                     if (commonState.Player.Playing)
                     {
-                        btnEditTone_Play.Content = "Stop";
+                        btnStudioSetPlay.Content = "Stop";
                     }
                 }
                 //commonState.reactToMidiInAndTimerTick = CommonState.ReactToMidiInAndTimerTick.EDIT_STUDIO_SET;

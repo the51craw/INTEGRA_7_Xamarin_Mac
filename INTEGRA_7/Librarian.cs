@@ -80,6 +80,7 @@ namespace INTEGRA_7
         Button Librarian_btnMotionalSurround;
         Button Librarian_btnAddFavorite;
         Button Librarian_btnRemoveFavorite;
+        Button Librarian_btnHold;
         Button Librarian_btnPlay;
         Button Librarian_btnShowFavorites;
         Button Librarian_btnResetHangingNotes;
@@ -92,6 +93,7 @@ namespace INTEGRA_7
         //byte keyTranspose = 0;
         private Int32 lowKey = 36;
         byte currentStudioSet;
+        bool Librarian_HoldPedalDown = false;
 
         // Buttons for the keyboard:
         PianoKey[] Librarian_btnWhiteKeys;
@@ -556,6 +558,7 @@ namespace INTEGRA_7
             Librarian_btnAddFavorite = new Button();
             Librarian_btnRemoveFavorite = new Button();
             Librarian_btnPlay = new Button();
+            Librarian_btnHold = new Button();
             Librarian_btnShowFavorites = new Button();
             Librarian_btnResetHangingNotes = new Button();
             Librarian_btnPlus12keys = new Button();
@@ -568,6 +571,7 @@ namespace INTEGRA_7
             Librarian_btnMotionalSurround.Text = "Motional surround";
             Librarian_btnAddFavorite.Text = "Add";
             Librarian_btnRemoveFavorite.Text = "Remove";
+            Librarian_btnHold.Text = "Hold";
             Librarian_btnPlay.Text = "Play";
             Librarian_btnShowFavorites.Text = "Favorites";
             Librarian_btnResetHangingNotes.Text = "Reset";
@@ -592,6 +596,7 @@ namespace INTEGRA_7
             Librarian_btnAddFavorite.Clicked += Librarian_btnAddFavorite_Clicked;
             Librarian_btnRemoveFavorite.Clicked += Librarian_btnRemoveFavorite_Clicked;
             Librarian_btnPlay.Clicked += Librarian_btnPlay_Clicked;
+            Librarian_btnHold.Clicked += Librarian_btnHold_Clicked;
             Librarian_btnShowFavorites.Clicked += Librarian_btnFavorites_Clicked;
             Librarian_btnResetHangingNotes.Clicked += Librarian_btnResetHangingNotes_Clicked;
             Librarian_btnKeys.Clicked += Librarian_btnKeys_Clicked;
@@ -638,7 +643,7 @@ namespace INTEGRA_7
             Librarian_gridCategories.Children.Add((new GridRow(
                 (byte)(listingHeight + 4), new View[] { Librarian_ltProgramNumber })));
             Librarian_gridCategories.Children.Add((new GridRow(
-                (byte)(listingHeight + 5), new View[] { Librarian_btnPlay })));
+                (byte)(listingHeight + 5), new View[] { Librarian_btnPlay } )));
 
             // Assemble column 2:
             Librarian_gridTones.Children.Add((new GridRow(
@@ -669,7 +674,7 @@ namespace INTEGRA_7
                 new View[] { Librarian_btnResetHangingNotes, Librarian_btnResetVolume }, new byte[] { 2, 1 })));
             Librarian_gridTones.Children.Add((new GridRow(
                 (byte)(listingHeight + 5),
-                new View[] { Librarian_btnKeys, Librarian_btnMinus12keys, Librarian_btnPlus12keys }, new byte[] { 3, 1, 1 })));
+                new View[] { Librarian_btnHold, Librarian_btnKeys, Librarian_btnMinus12keys, Librarian_btnPlus12keys }, new byte[] { 1,2,1,1 })));
             Librarian_btnKeys.Margin = new Thickness(0);
 
             // Assemble LibrarianStackLayout --------------------------------------------------------------
@@ -1751,39 +1756,15 @@ namespace INTEGRA_7
         private void Librarian_btnEditStudioSet_Clicked(object sender, EventArgs e)
         {
             Librarian_StackLayout.IsVisible = false;
-
-            // Studio set editor starts assuming we use part 1, and if some other
-            // part has been selected in the Librarian, it will try obtaining 
-            // data from possibly wrong class. Therefore, first read in the tone
-            // in part 1:
-
-            if (EditStudioSet_IsCreated)
+            if (commonState.StudioSet == null)
             {
-                // If studio set editor is created, studio set and studio set must already
-                // have been read, and it is only to go there:
-                //QueryCurrentStudioSetNumber(false);
-                ShowStudioSetEditorPage();
-                //StudioSetEditor_StackLayout.IsVisible = true;
+                commonState.StudioSet = new StudioSet();
             }
-            else if (commonState.StudioSet == null)
+            if (!EditStudioSet_IsCreated)
             {
-                // If studio set has not been read, we must first read that.
-                // Let PleaseWait do it, and also check if studio set names are read:
-                ShowPleaseWaitPage(WaitingFor.READING_STUDIO_SET, CurrentPage.EDIT_STUDIO_SET, null);
+                DrawStudioSetEditorPage();
             }
-            else if (commonState.StudioSetNames == null || commonState.StudioSetNames.Count() < 1)
-            {
-                // Get a list of all studio set names. Start by storing the current studio set number.
-                // Note that consequent queries will be sent from MidiInPort_MessageReceived and Timer_Tick.
-                Librarian_StackLayout.IsVisible = false;
-                ShowPleaseWaitPage(WaitingFor.READING_STUDIO_SET_NAMES, CurrentPage.EDIT_STUDIO_SET, null);
-            }
-            else
-            {
-                // Studio set and studio set names are read, but studio set page is not created:
-                Librarian_StackLayout.IsVisible = false;
-                ShowStudioSetEditorPage();
-            }
+            ShowPleaseWaitPage(WaitingFor.READING_STUDIO_SET, CurrentPage.EDIT_STUDIO_SET, null);
         }
 
         private void Librarian_btnResetVolume_Clicked(object sender, EventArgs e)
@@ -1946,6 +1927,10 @@ namespace INTEGRA_7
                     {
                         Favorites_btnPlay.Text = "Play";
                     }
+                    if (btnStudioSetPlay != null)
+                    {
+                        btnStudioSetPlay.Text = "Play";
+                    }
                 }
             }
             else
@@ -1963,7 +1948,25 @@ namespace INTEGRA_7
                 {
                     Favorites_btnPlay.Text = "Stop";
                 }
+                if (btnStudioSetPlay != null)
+                {
+                    btnStudioSetPlay.Text = "Stop";
+                }
             }
+        }
+
+        private void Librarian_btnHold_Clicked(object sender, EventArgs e)
+        {
+            if (!Librarian_HoldPedalDown)
+            {
+                Librarian_btnHold.BackgroundColor = colorSettings.IsFavorite;
+            }
+            else
+            {
+                Librarian_btnHold.BackgroundColor = colorSettings.Background;
+                commonState.Midi.AllNotesOff(commonState.CurrentPart);
+            }
+            Librarian_HoldPedalDown = !Librarian_HoldPedalDown;
         }
 
         private void Librarian_btnWhiteKey_Pressed(object sender, EventArgs e)
@@ -1977,7 +1980,7 @@ namespace INTEGRA_7
             }
             else if (noteNumber < 128)
             {
-                if (currentNote < 128)
+                if (currentNote < 128 && !Librarian_HoldPedalDown)
                 {
                     commonState.Midi.NoteOff(commonState.CurrentPart, currentNote);
                 }
@@ -1988,21 +1991,24 @@ namespace INTEGRA_7
 
         private void Librarian_btnWhiteKey_Released(object sender, EventArgs e)
         {
-            byte[] keyNumbers = new byte[] { 36, 35, 33, 31, 30, 28, 26, 24, 23, 21, 19, 17, 16, 14, 12, 11, 9, 7, 5, 4, 2, 0 };
-            byte noteNumber = (byte)(keyNumbers[Int32.Parse(((PianoKey)sender).StyleId)] + lowKey);
-            if (noteNumber == currentNote)
+            if (!Librarian_HoldPedalDown)
             {
-                commonState.Midi.NoteOff(commonState.CurrentPart, currentNote);
-                currentNote = 255;
-            }
-            else if (noteNumber < 128)
-            {
-                if (currentNote < 128)
+                byte[] keyNumbers = new byte[] { 36, 35, 33, 31, 30, 28, 26, 24, 23, 21, 19, 17, 16, 14, 12, 11, 9, 7, 5, 4, 2, 0 };
+                byte noteNumber = (byte)(keyNumbers[Int32.Parse(((PianoKey)sender).StyleId)] + lowKey);
+                if (noteNumber == currentNote)
                 {
                     commonState.Midi.NoteOff(commonState.CurrentPart, currentNote);
+                    currentNote = 255;
                 }
-                currentNote = noteNumber;
-                commonState.Midi.NoteOn(commonState.CurrentPart, noteNumber, 64);
+                else if (noteNumber < 128)
+                {
+                    if (currentNote < 128)
+                    {
+                        commonState.Midi.NoteOff(commonState.CurrentPart, currentNote);
+                    }
+                    currentNote = noteNumber;
+                    commonState.Midi.NoteOn(commonState.CurrentPart, noteNumber, 64);
+                }
             }
         }
 

@@ -20,7 +20,7 @@
 
 * Enable the column 'lable' button, it looks better.
 
-Why does it take so long to find I-7?
+* Why does it take so long to find I-7? It does not. It is most probably busy building the lists.
 
 * Hide file save/load buttons and selections.
     They may lager be implemented again.

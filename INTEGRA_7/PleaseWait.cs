@@ -107,18 +107,13 @@ namespace INTEGRA_7
                     btnPleaseWait.Text = "Please wait while initiating editor form...";
                     break;
                 case WaitingFor.READING_STUDIO_SET:
-                    btnPleaseWait.Text = "Please wait while reading studio set.";
+                    waitingState = WaitingState.INITIALIZING;
+                    btnPleaseWait.Text = "Please wait while reading studio set...";
                     pb_WaitingProgress.Progress = 0;
                     break;
                 case WaitingFor.READING_STUDIO_SET_NAMES:
-                    if (continueTo == CurrentPage.EDIT_STUDIO_SET)
-                    {
-                        btnPleaseWait.Text = "Please wait while scanning Studio set names and initiating studio set editor form...";
-                    }
-                    else
-                    {
-                        btnPleaseWait.Text = "Please wait while scanning Studio set names...";
-                    }
+                    waitingState = WaitingState.INITIALIZING;
+                    btnPleaseWait.Text = "Please wait while scanning Studio set names...";
                     pb_WaitingProgress.Progress = 0;
                     break;
             }
@@ -426,18 +421,37 @@ namespace INTEGRA_7
                     }
                     else if (waitingState == WaitingState.DONE)
                     {
-                        ContinueToPage();
-                        //ShowMotionalSurroundPage();
+                        if (continueTo == CurrentPage.EDIT_STUDIO_SET)
+                        {
+                            if (commonState.StudioSetNames == null || commonState.StudioSetNames.Count < 1)
+                            {
+                                waitingFor = WaitingFor.READING_STUDIO_SET_NAMES;
+                                waitingState = WaitingState.INITIALIZING;
+                                btnPleaseWait.Text = "Please wait while reading Studio set names...";
+                            }
+                            else
+                            {
+                                ContinueToPage();
+                            }
+                        }
+                        else
+                        {
+                            ContinueToPage();
+                        }
                     }
                     break;
                 case WaitingFor.READING_STUDIO_SET_NAMES:
-                    if (waitingState == WaitingState.DONE)
-                    {
-                        ContinueToPage();
-                    }
-                    else
+                    if (waitingState == WaitingState.INITIALIZING)
                     {
                         PleaseWait_ReadStudioSetNames();
+                    }
+                    else if (waitingState == WaitingState.PROCESSING)
+                    {
+                        EditStudioSet_Timer_Tick();
+                    }
+                    else if (waitingState == WaitingState.DONE)
+                    {
+                        ContinueToPage();
                     }
                     break;
                 }
@@ -674,18 +688,8 @@ namespace INTEGRA_7
                 case CurrentPage.EDIT_STUDIO_SET:
                     // If we are going to the studio set editor, it might be that
                     // also studio set names must be read:
-                    if (commonState.StudioSetNames == null || commonState.StudioSetNames.Count < 1)
-                    {
-                        waitingFor = WaitingFor.READING_STUDIO_SET_NAMES;
-                        waitingState = WaitingState.INITIALIZING;
-                        btnPleaseWait.Text = "Please wait while scanning Studio set names and initiating studio set editor form...";
-                        PleaseWait_ReadStudioSetNames();
-                    }
-                    else
-                    {
-                        PleaseWait_StackLayout.IsVisible = false;
-                        ShowStudioSetEditorPage();
-                    }
+                    PleaseWait_StackLayout.IsVisible = false;
+                    ShowStudioSetEditorPage();
                     break;
                 case CurrentPage.EDIT_TONE:
                     PleaseWait_StackLayout.IsVisible = false;

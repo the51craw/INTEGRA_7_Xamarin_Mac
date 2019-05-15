@@ -10368,187 +10368,188 @@ namespace INTEGRA_7
             dynamicComboboxes = new List<ComboBox>();
             dynamicCheckboxes = new List<CheckBox>();
             byte itemIndex = 0;
-            for (byte i = 0; i < numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset].Length; i++)
+            byte row;
+            for (row = 0; row < numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset].Length; row++)
             {
                 try
                 {
                     HelpTag tag;
-                    switch (numberedParametersContent.ParameterTypes[commonMFX.MFXType + currentMFXTypeOffset][i])
+                    switch (numberedParametersContent.ParameterTypes[commonMFX.MFXType + currentMFXTypeOffset][row])
                     {
                         case PARAMETER_TYPE.SLIDER_0_TO_127:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value).ToString());
-                            AddDynamicSlider(0, 127, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value).ToString());
+                            AddDynamicSlider(0, 127, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
                             break;
                         case PARAMETER_TYPE.SLIDER_0_TO_100:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value).ToString());
-                            AddDynamicSlider(0, 100, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value).ToString());
+                            AddDynamicSlider(0, 100, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
                             break;
                         case PARAMETER_TYPE.SLIDER_0_TO_100_HZ:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value).ToString() + " Hz");
-                            AddDynamicSlider(0, 100, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value).ToString() + " Hz");
+                            AddDynamicSlider(0, 100, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
                             break;
                         case PARAMETER_TYPE.SLIDER_0_TO_100_MS:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value).ToString() + " ms");
-                            AddDynamicSlider(0, 100, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value).ToString() + " ms");
+                            AddDynamicSlider(0, 100, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
                             break;
                         case PARAMETER_TYPE.SLIDER_0_TO_10:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value).ToString());
-                            AddDynamicSlider(0, 10, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value).ToString());
+                            AddDynamicSlider(0, 10, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
                             break;
                         case PARAMETER_TYPE.SLIDER_MINUS_L64_TO_R63:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value - 64).ToString());
-                            AddDynamicSlider(-64, 63, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value - 64,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 64, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value - 64).ToString());
+                            AddDynamicSlider(-64, 63, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value - 64,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 64, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
                             break;
                         case PARAMETER_TYPE.SLIDER_0_TO_180_STEP_2:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value).ToString());
-                            AddDynamicSlider(0, 180, 2, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, .5));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value).ToString());
+                            AddDynamicSlider(0, 180, 2, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, .5));
                             break;
                         case PARAMETER_TYPE.SLIDER_0_TO_12:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value).ToString());
-                            AddDynamicSlider(0, 12, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value).ToString());
+                            AddDynamicSlider(0, 12, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
                             break;
                         case PARAMETER_TYPE.SLIDER_0_TO_1300_MS:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value).ToString() + " ms");
-                            AddDynamicSlider(0, 1300, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value).ToString() + " ms");
+                            AddDynamicSlider(0, 1300, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
                             break;
                         case PARAMETER_TYPE.SLIDER_0_TO_15:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value).ToString());
-                            AddDynamicSlider(0, 15, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value).ToString());
+                            AddDynamicSlider(0, 15, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
                             break;
                         case PARAMETER_TYPE.SLIDER_0_TO_18_DB:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value).ToString() + " dB");
-                            AddDynamicSlider(0, 18, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value).ToString() + " dB");
+                            AddDynamicSlider(0, 18, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
                             break;
                         case PARAMETER_TYPE.SLIDER_0_TO_20:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value).ToString());
-                            AddDynamicSlider(0, 20, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value).ToString());
+                            AddDynamicSlider(0, 20, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
                             break;
                         case PARAMETER_TYPE.SLIDER_0_TO_2600_MS:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value).ToString());
-                            AddDynamicSlider(0, 2600, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value).ToString());
+                            AddDynamicSlider(0, 2600, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
                             break;
                         case PARAMETER_TYPE.SLIDER_MINUS_10_TO_10:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value - 10).ToString());
-                            AddDynamicSlider(-10, 10, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value - 10,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 10, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value - 10).ToString());
+                            AddDynamicSlider(-10, 10, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value - 10,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 10, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
                             break;
                         case PARAMETER_TYPE.SLIDER_MINUS_15_TO_15:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value - 15).ToString());
-                            AddDynamicSlider(-15, 15, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value - 15,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 15, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value - 15).ToString());
+                            AddDynamicSlider(-15, 15, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value - 15,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 15, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
                             break;
                         case PARAMETER_TYPE.SLIDER_MINUS_20_TO_20:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value - 20).ToString());
-                            AddDynamicSlider(-20, 20, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value - 20,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 20, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value - 20).ToString());
+                            AddDynamicSlider(-20, 20, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value - 20,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 20, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
                             break;
                         case PARAMETER_TYPE.SLIDER_MINUS_24_TO_24:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value - 24).ToString());
-                            AddDynamicSlider(-24, 24, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value - 24,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 24, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value - 24).ToString());
+                            AddDynamicSlider(-24, 24, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value - 24,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 24, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
                             break;
                         case PARAMETER_TYPE.SLIDER_MINUS_50_TO_50:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value - 50).ToString());
-                            AddDynamicSlider(-50, 50, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value - 50,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 50, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value - 50).ToString());
+                            AddDynamicSlider(-50, 50, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value - 50,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 50, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
                             break;
                         case PARAMETER_TYPE.SLIDER_MINUS_63_TO_63:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value - 63).ToString());
-                            AddDynamicSlider(-63, 63, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value - 63,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 63, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value - 63).ToString());
+                            AddDynamicSlider(-63, 63, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value - 63,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 63, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
                             break;
                         case PARAMETER_TYPE.SLIDER_MINUS_64_TO_64:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value - 64).ToString());
-                            AddDynamicSlider(-64, 64, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value - 64,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 64, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value - 64).ToString());
+                            AddDynamicSlider(-64, 64, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value - 64,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 64, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
                             break;
                         case PARAMETER_TYPE.SLIDER_MINUS_98_TO_98_STEP_2:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value - 98).ToString());
-                            AddDynamicSlider(-98, 98, 2, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value - 98,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 98, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 0.5));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value - 98).ToString());
+                            AddDynamicSlider(-98, 98, 2, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value - 98,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 98, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 0.5));
                             break;
                         case PARAMETER_TYPE.SLIDER_MINUS_100_TO_100_STEP_2:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value - 100).ToString());
-                            AddDynamicSlider(-100, 100, 2, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value - 100,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 100, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 0.5));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value - 100).ToString());
+                            AddDynamicSlider(-100, 100, 2, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value - 100,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 100, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 0.5));
                             break;
                         case PARAMETER_TYPE.SLIDER_MINUS_W100_TO_D100_STEP_2:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value - 100).ToString());
-                            AddDynamicSlider(-100, 100, 2, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value - 100,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 100, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 0.5));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value - 100).ToString());
+                            AddDynamicSlider(-100, 100, 2, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value - 100,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 100, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 0.5));
                             break;
                         case PARAMETER_TYPE.SLIDER_0_05_TO_10_00_STEP_0_05:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value).ToString());
-                            AddDynamicSlider(.05, 10, .05, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 20));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value).ToString());
+                            AddDynamicSlider(.05, 10, .05, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 20));
                             break;
                         case PARAMETER_TYPE.SLIDER_0_10_TO_20_00_STEP_0_10:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value).ToString());
-                            AddDynamicSlider(.1, 20, .1, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 10));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value).ToString());
+                            AddDynamicSlider(.1, 20, .1, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 10));
                             break;
                         case PARAMETER_TYPE.COMBOBOX_0_TO_100_STEP_0_1_TO_2:
                         case PARAMETER_TYPE.COMBOBOX_AMPLIFIER_GAIN:
@@ -10590,123 +10591,123 @@ namespace INTEGRA_7
                         case PARAMETER_TYPE.COMBOBOX_LEGATO_SLASH:
                         case PARAMETER_TYPE.COMBOBOX_ROTARY_SPEED:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i]);
-                            AddDynamicComboBox(commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Text,
-                                commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row]);
+                            AddDynamicComboBox(commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Text,
+                                commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
                             break;
                         case PARAMETER_TYPE.COMBOBOX_HZ_AND_NOTE_LENGTHS:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i]);
-                            AddDynamicComboBox(commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Text,
-                                commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row]);
+                            AddDynamicComboBox(commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Text,
+                                commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
                                 new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset),
-                                (byte)(i), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
-                            if (i < numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset].Length - 2)
+                                (byte)(row), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                            if (row < numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset].Length - 2)
                             {
-                                i++;
+                                row++;
                                 tag = new HelpTag(itemIndex++, 0);
-                                AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                    ((Double)(commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value) / 20.0).ToString() + " Hz");
-                                dynamicTextboxes[dynamicTextboxes.Count() - 1].Name = "tbHz" + i.ToString();
-                                switch (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Type)
+                                AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                    ((Double)(commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value) / 20.0).ToString() + " Hz");
+                                dynamicTextboxes[dynamicTextboxes.Count() - 1].Name = "tbHz" + row.ToString();
+                                switch (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Type)
                                 {
                                     case PARAMETER_TYPE.SLIDER_0_05_TO_10_00_STEP_0_05:
-                                        AddDynamicSlider(0.05, 10.00, 0.05, (Double)(commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value) / 20.0,
+                                        AddDynamicSlider(0.05, 10.00, 0.05, (Double)(commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value) / 20.0,
                                             new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset),
-                                            (byte)(i), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 20));
+                                            (byte)(row), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 20));
                                         break;
                                     case PARAMETER_TYPE.SLIDER_0_10_TO_20_00_STEP_0_10:
-                                        AddDynamicSlider(0.1, 20.00, 0.1, (Double)(commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value) / 10.0,
+                                        AddDynamicSlider(0.1, 20.00, 0.1, (Double)(commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value) / 10.0,
                                             new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset),
-                                            (byte)(i), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 10));
+                                            (byte)(row), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 10));
                                         break;
                                     case PARAMETER_TYPE.SLIDER_0_TO_100_HZ:
-                                        AddDynamicSlider(0, 100, 1, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
+                                        AddDynamicSlider(0, 100, 1, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
                                             new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset),
-                                            (byte)(i), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 1));
+                                            (byte)(row), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 1));
                                         break;
                                 }
-                                dynamicSliders[dynamicSliders.Count() - 1].Name = "slHz" + i.ToString();
-                                i++;
+                                dynamicSliders[dynamicSliders.Count() - 1].Name = "slHz" + row.ToString();
+                                row++;
                                 tag = new HelpTag(itemIndex++, 0);
                                 AddDynamicTextbox("Note length: ");
-                                dynamicTextboxes[dynamicTextboxes.Count() - 1].Name = "tbNote" + i.ToString();
-                                AddDynamicComboBox(commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Text,
-                                    commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
+                                dynamicTextboxes[dynamicTextboxes.Count() - 1].Name = "tbNote" + row.ToString();
+                                AddDynamicComboBox(commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Text,
+                                    commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
                                     new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset),
-                                    (byte)(i), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
-                                dynamicComboboxes[dynamicComboboxes.Count() - 1].Name = "cbNote" + i.ToString();
+                                    (byte)(row), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                                dynamicComboboxes[dynamicComboboxes.Count() - 1].Name = "cbNote" + row.ToString();
                             }
                             break;
                         case PARAMETER_TYPE.COMBOBOX_MS_AND_NOTE_LENGTHS:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i]);
-                            AddDynamicComboBox(commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Text,
-                                commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
+                            AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row]);
+                            AddDynamicComboBox(commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Text,
+                                commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
                                 new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset),
-                                (byte)(i), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
-                            if (i < numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset].Length - 2)
+                                (byte)(row), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                            if (row < numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset].Length - 2)
                             {
-                                i++;
+                                row++;
                                 tag = new HelpTag(itemIndex++, 0);
-                                AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i] + ": " +
-                                    ((Double)(commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value) / 20.0).ToString() + " ms");
-                                dynamicTextboxes[dynamicTextboxes.Count() - 1].Name = "tbHz" + i.ToString();
-                                switch (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Type)
+                                AddDynamicTextbox(numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row] + ": " +
+                                    ((Double)(commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value) / 20.0).ToString() + " ms");
+                                dynamicTextboxes[dynamicTextboxes.Count() - 1].Name = "tbHz" + row.ToString();
+                                switch (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Type)
                                 {
                                     case PARAMETER_TYPE.SLIDER_0_05_TO_10_00_STEP_0_05:
-                                        AddDynamicSlider(0.05, 10.00, 0.05, (Double)(commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value) / 20.0,
+                                        AddDynamicSlider(0.05, 10.00, 0.05, (Double)(commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value) / 20.0,
                                             new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset),
-                                            (byte)(i), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 20));
+                                            (byte)(row), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 20));
                                         break;
                                     case PARAMETER_TYPE.SLIDER_0_10_TO_20_00_STEP_0_10:
-                                        AddDynamicSlider(0.1, 20.00, 0.1, (Double)(commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value) / 10.0,
+                                        AddDynamicSlider(0.1, 20.00, 0.1, (Double)(commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value) / 10.0,
                                             new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset),
-                                            (byte)(i), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 10));
+                                            (byte)(row), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 10));
                                         break;
                                     case PARAMETER_TYPE.SLIDER_0_TO_1300_MS:
-                                        AddDynamicSlider(0, 1300, 1, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
+                                        AddDynamicSlider(0, 1300, 1, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
                                             new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset),
-                                            (byte)(i), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 1));
+                                            (byte)(row), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 1));
                                         break;
                                     case PARAMETER_TYPE.SLIDER_0_TO_100_MS:
-                                        AddDynamicSlider(0, 1300, 1, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
+                                        AddDynamicSlider(0, 1300, 1, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
                                             new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset),
-                                            (byte)(i), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 1));
+                                            (byte)(row), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 1));
                                         break;
                                     case PARAMETER_TYPE.SLIDER_0_TO_2600_MS:
-                                        AddDynamicSlider(0, 2600, 1, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
+                                        AddDynamicSlider(0, 2600, 1, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
                                             new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset),
-                                            (byte)(i), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 1));
+                                            (byte)(row), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag, 1));
                                         break;
                                 }
-                                dynamicSliders[dynamicSliders.Count() - 1].Name = "slHz" + i.ToString();
-                                i++;
+                                dynamicSliders[dynamicSliders.Count() - 1].Name = "slHz" + row.ToString();
+                                row++;
                                 tag = new HelpTag(itemIndex++, 0);
                                 AddDynamicTextbox("Note length: ");
-                                dynamicTextboxes[dynamicTextboxes.Count() - 1].Name = "tbNote" + i.ToString();
-                                AddDynamicComboBox(commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Text,
-                                    commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
+                                dynamicTextboxes[dynamicTextboxes.Count() - 1].Name = "tbNote" + row.ToString();
+                                AddDynamicComboBox(commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Text,
+                                    commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
                                     new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset),
-                                    (byte)(i), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
-                                dynamicComboboxes[dynamicComboboxes.Count() - 1].Name = "cbNote" + i.ToString();
+                                    (byte)(row), 0, dynamicTextboxes[dynamicTextboxes.Count - 1], tag));
+                                dynamicComboboxes[dynamicComboboxes.Count() - 1].Name = "cbNote" + row.ToString();
                             }
                             break;
                         case PARAMETER_TYPE.CHECKBOX:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicCheckBox(commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
-                                numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i],
-                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 0, (CheckBox)null, tag));
+                            AddDynamicCheckBox(commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
+                                numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row],
+                                new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 0, (CheckBox)null, tag));
                             break;
                         case PARAMETER_TYPE.CHECKBOX_1:
                             tag = new HelpTag(itemIndex++, 0);
-                            AddDynamicCheckBox(commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
-                                null, new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 0, (CheckBox)null, tag));
-                            if (i < numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset].Length - 1)
+                            AddDynamicCheckBox(commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
+                                null, new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 0, (CheckBox)null, tag));
+                            if (row < numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset].Length - 1)
                             {
                                 // Add the following control:
-                                switch (numberedParametersContent.ParameterTypes[commonMFX.MFXType + currentMFXTypeOffset][i + 1])
+                                switch (numberedParametersContent.ParameterTypes[commonMFX.MFXType + currentMFXTypeOffset][row + 1])
                                 {
                                     case PARAMETER_TYPE.CHECKBOX:
                                     case PARAMETER_TYPE.CHECKBOX_1:
@@ -10716,12 +10717,12 @@ namespace INTEGRA_7
                                         break;
                                     case PARAMETER_TYPE.SLIDER_0_TO_127_R:
                                         tag = new HelpTag(itemIndex++, 0);
-                                        i++;
+                                        row++;
                                         dynamicCheckboxes[dynamicCheckboxes.Count - 1].Content =
-                                            numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][i - 1] + ": " +
-                                            (commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value).ToString();
-                                        AddDynamicSlider(0, 127, commonMFX.MFXNumberedParameters.Parameters.Parameters[i + currentMFXTypePageParameterOffset].Value.Value,
-                                            new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), i, 0, dynamicCheckboxes[dynamicCheckboxes.Count - 1], tag));
+                                            numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset][row - 1] + ": " +
+                                            (commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value).ToString();
+                                        AddDynamicSlider(0, 127, commonMFX.MFXNumberedParameters.Parameters.Parameters[row + currentMFXTypePageParameterOffset].Value.Value,
+                                            new Buddy((byte)(commonMFX.MFXNumberedParameters.Parameters.Offset), row, 0, dynamicCheckboxes[dynamicCheckboxes.Count - 1], tag));
                                         break;
                                 }
                             }
@@ -10748,14 +10749,17 @@ namespace INTEGRA_7
             byte comboboxIndex = 0;
             byte checkboxIndex = 0;
             byte rowOffset = 0;
+            byte parameterNumber = 0;
+            row = 1;
             try
             {
                 // Note! MFX type is in row 0, so all parameters has to be put in to row number parameterNumber + 1 BUT:
                 // Controls like Hz/Note takes one row for the Hz/Note selector and one more row where two sets of
                 // controls reside: one set for the Hz label and slider, and one set for the Note label and combobox.
                 // Therefore, after such a set, the row numbers must be offset to: parameterNumber + 1 - rowOffset.
-                for (byte parameterNumber = 0; parameterNumber < numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset].Length; parameterNumber++)
+                for (parameterNumber = 0; parameterNumber < numberedParametersContent.ParameterNames[commonMFX.MFXType + currentMFXTypeOffset].Length; parameterNumber++)
                 {
+                    row++;
                     switch (numberedParametersContent.ParameterTypes[commonMFX.MFXType + currentMFXTypeOffset][parameterNumber])
                     {
                         case PARAMETER_TYPE.SLIDER_0_TO_127:
@@ -10919,6 +10923,13 @@ namespace INTEGRA_7
                             }
                             break;
                     }
+                }
+
+                while (row < MAX_ROWS + 1)
+                {
+                    Grid dummy = new Grid();
+                    dummy.BackgroundColor = colorSettings.Background;
+                    ControlsGrid.Children.Add((new GridRow(row++, new View[] { dummy })));
                 }
             }
             catch (Exception e)
