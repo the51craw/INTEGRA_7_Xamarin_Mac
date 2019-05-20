@@ -2023,7 +2023,7 @@ namespace INTEGRA_7
             }
             else if (noteNumber < 128)
             {
-                if (currentNote < 128)
+                if (currentNote < 128 && !Librarian_HoldPedalDown)
                 {
                     commonState.Midi.NoteOff(commonState.CurrentPart, currentNote);
                 }
@@ -2034,21 +2034,24 @@ namespace INTEGRA_7
 
         private void Librarian_btnBlackKey_Released(object sender, EventArgs e)
         {
-            byte[] keyNumbers = new byte[] { 34, 32, 29, 27, 25, 22, 20, 18, 15, 13, 10, 8, 6, 3, 1 };
-            byte noteNumber = (byte)(keyNumbers[Int32.Parse(((PianoKey)sender).StyleId)] + lowKey);
-            if (noteNumber == currentNote)
+            if (!Librarian_HoldPedalDown)
             {
-                commonState.Midi.NoteOff(commonState.CurrentPart, currentNote);
-                currentNote = 255;
-            }
-            else if (noteNumber < 128)
-            {
-                if (currentNote < 128)
+                byte[] keyNumbers = new byte[] { 34, 32, 29, 27, 25, 22, 20, 18, 15, 13, 10, 8, 6, 3, 1 };
+                byte noteNumber = (byte)(keyNumbers[Int32.Parse(((PianoKey)sender).StyleId)] + lowKey);
+                if (noteNumber == currentNote)
                 {
                     commonState.Midi.NoteOff(commonState.CurrentPart, currentNote);
+                    currentNote = 255;
                 }
-                currentNote = noteNumber;
-                commonState.Midi.NoteOn(commonState.CurrentPart, noteNumber, 64);
+                else if (noteNumber < 128)
+                {
+                    if (currentNote < 128)
+                    {
+                        commonState.Midi.NoteOff(commonState.CurrentPart, currentNote);
+                    }
+                    currentNote = noteNumber;
+                    commonState.Midi.NoteOn(commonState.CurrentPart, noteNumber, 64);
+                }
             }
         }
 

@@ -5665,7 +5665,7 @@ namespace INTEGRA_7
             t.Trace("private void slChorusGM2ChorusSendLevelToReverb_ValueChanged (" + "object" + sender + ", " + "EventArgs" + e + ", " + ")");
             if (initDone && handleControlEvents)
             {
-                SetStudioSetChorusGM2ChorusSendLevelToReverb((Int32)slChorusGM2ChorusLevel.Value);
+                SetStudioSetChorusGM2ChorusSendLevelToReverb((Int32)slChorusGM2ChorusSendLevelToReverb.Value);
             }
         }
 

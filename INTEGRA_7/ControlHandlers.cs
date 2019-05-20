@@ -1884,6 +1884,7 @@ namespace INTEGRA_7
                                 SendParameter(address, value);
                                 break;
                             case "cbEditTone_PCMSynthTone_Pitch_PartialRandomPitchDepth":
+                                tbEditTone_PCMSynthTone_Pitch_PartialRandomPitchDepth.Text = "Partial " + (currentPartial + 1).ToString() + " Random pitch depth: " + cbEditTone_PCMSynthTone_Pitch_PartialRandomPitchDepth.SelectedItem;
                                 pCMSynthTone.pCMSynthTonePartial[currentPartial].PartialRandomPitchDepth = (byte)comboBox.SelectedIndex;
                                 address = MakeAddress(ProgramType.PCM_SYNTH_TONE, ParameterPage.PARTIAL, new byte[] { 0x03 });
                                 value = new byte[] { (byte)(pCMSynthTone.pCMSynthTonePartial[currentPartial].PartialRandomPitchDepth) };

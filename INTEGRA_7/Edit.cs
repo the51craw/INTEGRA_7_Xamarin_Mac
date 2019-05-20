@@ -194,6 +194,8 @@ namespace INTEGRA_7
         // Pitch
         private TextBox tbEditTone_PCMSynthTone_Pitch_PartialCoarseTune = new TextBox();
         private TextBox tbEditTone_PCMSynthTone_Pitch_PartialFineTune = new TextBox();
+        private TextBox tbEditTone_PCMSynthTone_Pitch_PartialRandomPitchDepth = new TextBox();
+        private ComboBox cbEditTone_PCMSynthTone_Pitch_PartialRandomPitchDepth = new ComboBox();
         private TextBox tbEditTone_PCMSynthTone_Pitch_WavePitchKeyfollow = new TextBox();
         private TextBox tbEditTone_PCMSynthTone_Pitch_PitchBendRangeUp = new TextBox();
         private TextBox tbEditTone_PCMSynthTone_Pitch_PitchBendRangeDown = new TextBox();

@@ -34,11 +34,11 @@
 * Add store images!
 
 Edit tone takes long time when selecting wave page. (Probably filling out wave list takes too long.)
-    Remove possibility to change type!
+    * Remove possibility to change type! Done, but maybe better as a non-functional button?
     Add 'please wait' while filling out wave list at first edit of respective types.
-    Keep wave lists for all types.
+    * Keep wave lists for all types. Already in classes.
 
-Height of MFX pages are not all same.
+* Height of MFX pages are not all same.
 
 * Selecting MFX control after MFX in PCM-D made app crash (happened once).
 
@@ -49,10 +49,12 @@ Height of MFX pages are not all same.
 
 * After a search in librarian, changing tone no longer works.
 
+Replace cbEditTone_SynthesizerType with a button that has no function or a label.
+
 
 Features to add:
 
-Add play button in studio set editor.
+* Add play button in studio set editor.
 
-Add sustain pedal.
+* Add sustain pedal.
 

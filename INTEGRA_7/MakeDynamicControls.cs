@@ -1307,7 +1307,6 @@ namespace INTEGRA_7
             slEditTone_PCMSynthTone_Pitch_PartialFineTune.Maximum = 48;
 
             // ComboBox for Partial Random Pitch Depth
-            ComboBox cbEditTone_PCMSynthTone_Pitch_PartialRandomPitchDepth = new ComboBox();
             cbEditTone_PCMSynthTone_Pitch_PartialRandomPitchDepth.SelectedIndexChanged += GenericCombobox_SelectionChanged;
             cbEditTone_PCMSynthTone_Pitch_PartialRandomPitchDepth.Focused += Generic_GotFocus;
             cbEditTone_PCMSynthTone_Pitch_PartialRandomPitchDepth.Tag = new HelpTag(controlsIndex++, 0);
@@ -1383,7 +1382,7 @@ namespace INTEGRA_7
                 , cbEditTone_PCMSynthTone_Pitch_PitchPartial3Switch, cbEditTone_PCMSynthTone_Pitch_PitchPartial4Switch})));
             ControlsGrid.Children.Add((new GridRow(1, new View[] { tbEditTone_PCMSynthTone_Pitch_PartialCoarseTune, slEditTone_PCMSynthTone_Pitch_PartialCoarseTune }, new byte[] { 1, 2 })));
             ControlsGrid.Children.Add((new GridRow(2, new View[] { tbEditTone_PCMSynthTone_Pitch_PartialFineTune, slEditTone_PCMSynthTone_Pitch_PartialFineTune }, new byte[] { 1, 2 })));
-            ControlsGrid.Children.Add((new GridRow(3, new View[] { cbEditTone_PCMSynthTone_Pitch_PartialRandomPitchDepth })));
+            ControlsGrid.Children.Add((new GridRow(3, new View[] { tbEditTone_PCMSynthTone_Pitch_PartialRandomPitchDepth, cbEditTone_PCMSynthTone_Pitch_PartialRandomPitchDepth }, new byte[] { 1, 2 })));
             ControlsGrid.Children.Add((new GridRow(4, new View[] { tbEditTone_PCMSynthTone_Pitch_WavePitchKeyfollow, slEditTone_PCMSynthTone_Pitch_WavePitchKeyfollow }, new byte[] { 1, 2 })));
             ControlsGrid.Children.Add((new GridRow(5, new View[] { tbEditTone_PCMSynthTone_Pitch_PitchBendRangeUp, slEditTone_PCMSynthTone_Pitch_PitchBendRangeUp }, new byte[] { 1, 2 })));
             ControlsGrid.Children.Add((new GridRow(6, new View[] { tbEditTone_PCMSynthTone_Pitch_PitchBendRangeDown, slEditTone_PCMSynthTone_Pitch_PitchBendRangeDown }, new byte[] { 1, 2 })));
@@ -1406,6 +1405,7 @@ namespace INTEGRA_7
             tbEditTone_PCMSynthTone_Pitch_PartialFineTune.Text = "Partial" + currentPartial.ToString() + " Fine Tune: " + (pCMSynthTone.pCMSynthTonePartial[currentPartial].PartialFineTune - 64).ToString();
             slEditTone_PCMSynthTone_Pitch_PartialFineTune.Value = pCMSynthTone.pCMSynthTonePartial[currentPartial].PartialFineTune - 64;
             cbEditTone_PCMSynthTone_Pitch_PartialRandomPitchDepth.SelectedIndex = pCMSynthTone.pCMSynthTonePartial[currentPartial].PartialRandomPitchDepth;
+            tbEditTone_PCMSynthTone_Pitch_PartialRandomPitchDepth.Text = "Partial " + (currentPartial + 1).ToString() + " Random pitch depth: " + cbEditTone_PCMSynthTone_Pitch_PartialRandomPitchDepth.SelectedItem;
             slEditTone_PCMSynthTone_Pitch_WavePitchKeyfollow.Value = (pCMSynthTone.pCMSynthTonePartial[currentPartial].WavePitchKeyfollow - 64) * 10;
             tbEditTone_PCMSynthTone_Pitch_WavePitchKeyfollow.Text = "Wave Pitch Keyfollow: " + ((pCMSynthTone.pCMSynthTonePartial[currentPartial].WavePitchKeyfollow - 64) * 10).ToString();
             slEditTone_PCMSynthTone_Pitch_PitchBendRangeUp.Value = pCMSynthTone.pCMSynthToneCommon.PitchBendRangeUp;
